@@ -1,0 +1,35 @@
+<%= form_with(model: @event) do |form| %>
+  <%= form.hidden_field :buffet_id, value: @buffet.id %>
+
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+
+  <%= form.label :description %>
+  <%= form.text_area :description %>
+
+  <%= form.label :min_people %>
+  <%= form.number_field :min_people %>
+
+  <%= form.label :max_people %>
+  <%= form.number_field :max_people %>
+
+  <%= form.label :duration %>
+  <%= form.number_field :duration %>
+
+  <%= form.label :menu %>
+  <%= form.text_area :menu %>
+
+  <%= form.label :alcohol %>
+  <%= form.check_box :alcohol %>
+
+  <%= form.label :decoration %>
+  <%= form.check_box :decoration %>
+
+  <%= form.label :parking_service %>
+  <%= form.check_box :parking_service %>
+
+  <%= form.label :at_buffet_location %>
+  <%= form.check_box :at_buffet_location %>
+
+  <%= form.submit 'Cadastrar' %>
+<% end %>

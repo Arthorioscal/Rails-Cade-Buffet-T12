@@ -9,3 +9,25 @@
 
 
 <%= link_to 'Editar', edit_buffet_path(@buffet) %>
+
+<h2> Tipos de eventos do buffet </h2>
+
+<% if @buffet.events.present?%>
+    <% @buffet.events.each do |event_type| %>
+        <h3> <%= event_type.name %> </h3>
+        <p> <%= event_type.name %> </p>
+        <p> <%= event_type.description %> </p>
+        <p> <%= event_type.min_people %> </p>
+        <p> <%= event_type.max_people %> </p>
+        <p> <%= event_type.duration %> </p>
+        <p> <%= event_type.menu %> </p>
+        <p> <%= event_type.alcohol %> </p>
+        <p> <%= event_type.decoration %> </p>
+        <p> <%= event_type.parking_service %> </p>
+        <p> <%= event_type.at_buffet_location %> </p>
+        <%= link_to 'Editar Evento', edit_event_path(event_type) %>
+    <% end %>
+<% else %>
+    <p> Você não tem nenhum tipo de evento cadastrado, cadastre aqui: </p>
+    <%= link_to 'Cadastrar Tipo de Evento', new_event_path %>
+<% end %>

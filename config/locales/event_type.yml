@@ -1,0 +1,45 @@
+pt-BR:
+  activerecord:
+    attributes:
+      event:
+        name: Nome
+        description: Descrição
+        min_people: Quantidade mínima de pessoas
+        max_people: Quantidade máxima de pessoas
+        duration: Duração padrão do evento em minutos
+        menu: Cardápio para o evento
+        alcohol: Serve bebidas alcoólicas
+        alcohol_values:
+          true: Sim
+          false: Não
+        decoration: Possui serviço de decoração
+        decoration_values:
+          true: Sim
+          false: Não
+        parking_service: Possui serviço de estacionamento ou valet
+        parking_service_values:
+          true: Sim
+          false: Não
+        at_buffet_location: Aceita outros endereços de Buffet
+        at_buffet_location_values:
+          true: Sim
+          false: Não
+    errors:
+      models:
+        event:
+          attributes:
+            name:
+              blank: "não pode ficar em branco"
+            description:
+              blank: "não pode ficar em branco"
+            min_people:
+              blank: "Quantidade mínima de pessoas não pode ficar em branco"
+            max_people:
+              blank: "Quantidade máxima de pessoas não pode ficar em branco"
+            duration:
+              blank: "Duração padrão do evento em minutos não pode ficar em branco"
+            menu:
+              blank: "Cardápio para o evento não pode ficar em branco"
+  errors:
+    messages:
+      record_invalid: "Não foi possível cadastrar o tipo de evento, tente novamente"

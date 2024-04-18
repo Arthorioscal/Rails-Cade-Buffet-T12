@@ -1,10 +1,10 @@
-<h1> Editar Buffet </h1>
+<h1> Cadastra Tipo de Evento </h1>
 
-<%if @buffet.errors.any?%>
+<%if @event.errors.any?%>
     <div>
         <h2>Erro ao cadastrar fornecedor</h2>
         <ul>
-            <% @buffet.errors.full_messages.each do |message| %>
+            <% @event.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
             <% end %>
         </ul>
