@@ -20,7 +20,7 @@
               <% if user_signed_in? %>
                 <li><%= current_user.email %></li>
                 <li><%= button_to 'Sair', destroy_user_session_path, method: :delete %>
-                <% if current_user.role == 'buffet_owner' && current_user.buffet %>
+                <% if current_user.role == 'buffet_owner' && Buffet.exists?(user_id: current_user.id) %>
                   <li><%= link_to "Meu Buffet", buffet_path(current_user.buffet) %></li>
                 <% end %>
               <% else %>

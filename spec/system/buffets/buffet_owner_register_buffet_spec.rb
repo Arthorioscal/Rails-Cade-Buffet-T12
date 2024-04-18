@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User register buffets' do
+describe 'Buffet Owner register buffets' do
     it 'successfully from account creation' do
         
         visit root_path
@@ -27,6 +27,26 @@ describe 'User register buffets' do
         click_on 'Cadastrar'
 
         expect(page).to have_content('Buffet cadastrado com sucesso.')
-        end
     end
+
+    it 'and must fill in all fields' do
+
+        visit root_path
+        click_on 'Fazer Cadastro'
+        within('form') do
+            fill_in 'E-mail', with: 'nakedsnake@mgs.com'
+            fill_in 'Senha', with: '123456'
+            fill_in 'Confirme sua senha', with: '123456'
+            select 'Dono de Buffet', from: 'Tipo de Usuário'
+            click_on 'Cadastrar'
+        end
+        fill_in 'Nome Fantasia', with: ''
+        fill_in 'Razão Social', with: ''
+        fill_in 'CNPJ', with: ''
+        fill_in 'Telefone para contato', with: ''
+        click_on 'Cadastrar'
+
+        expect(page).to have_content('Não foi possível cadastrar o buffet, tente novamente')
+    end
+end
 

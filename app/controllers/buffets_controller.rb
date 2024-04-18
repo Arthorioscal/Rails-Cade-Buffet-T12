@@ -1,5 +1,5 @@
 class BuffetsController < ApplicationController
-
+    before_action :authenticate_user!
 
     def new
         @buffet = Buffet.new
@@ -15,7 +15,6 @@ class BuffetsController < ApplicationController
         if @buffet.save
             redirect_to root_path, notice: 'Buffet cadastrado com sucesso.'
         else
-            puts @buffet.errors.full_messages
             flash.now[:notice] = 'Não foi possível cadastrar o buffet, tente novamente'
             render :new
         end
