@@ -20,6 +20,9 @@
               <% if user_signed_in? %>
                 <li><%= current_user.email %></li>
                 <li><%= button_to 'Sair', destroy_user_session_path, method: :delete %>
+                <% if current_user.role == 'buffet_owner' && current_user.buffet %>
+                  <li><%= link_to "Meu Buffet", buffet_path(current_user.buffet) %></li>
+                <% end %>
               <% else %>
                 <li><%= link_to "Fazer Cadastro", new_user_registration_path %></li>
                 <li><%= link_to "Entrar", new_user_session_path %></li>

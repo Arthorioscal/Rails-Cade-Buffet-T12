@@ -1,0 +1,10 @@
+<h1> Meu Buffet </h1>
+
+<p> <%= @buffet.brand_name %> </p>
+<p> <%= @buffet.address %> </p>
+<p> <%= @buffet.phone %> </p>
+<p> <%= @buffet.email %> </p>
+<p> <%= @buffet.description %> </p>
+
+
+<%= link_to 'Editar', edit_buffet_path(@buffet) %>

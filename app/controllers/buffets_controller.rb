@@ -1,6 +1,12 @@
 class BuffetsController < ApplicationController
+
+
     def new
         @buffet = Buffet.new
+    end
+
+    def show
+        @buffet = Buffet.find(params[:id])
     end
 
     def create
@@ -12,6 +18,20 @@ class BuffetsController < ApplicationController
             puts @buffet.errors.full_messages
             flash.now[:notice] = 'Não foi possível cadastrar o buffet, tente novamente'
             render :new
+        end
+    end
+
+    def edit
+        @buffet = Buffet.find(params[:id])
+    end
+    
+    def update
+        @buffet = Buffet.find(params[:id])
+        if @buffet.update(buffet_params)
+            redirect_to buffet_path(@buffet), notice: 'Buffet atualizado com sucesso.'
+        else
+            flash.now[:notice] = 'Não foi possível atualizar o buffet, tente novamente'
+            render :edit
         end
     end
 
