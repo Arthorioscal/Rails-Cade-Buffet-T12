@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Buffet</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application" %>
+  </head>
+
+  <body>
+    <header>
+      <h1>Cade Buffet</h1>
+      <nav>
+        <ul>
+          <li><%= link_to "Home", root_path %></li>
+            </ul>
+            <ul>
+              <% if user_signed_in? %>
+                <li><%= current_user.email %></li>
+                <li><%= button_to 'Sair', destroy_user_session_path, method: :delete %>
+              <% else %>
+                <li><%= link_to "Fazer Cadastro", new_user_registration_path %></li>
+                <li><%= link_to "Entrar", new_user_session_path %></li>
+              <% end %>
+            </ul>
+        </ul>
+      </nav>
+
+    </header>
+    <%= yield %>
+    <div>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    </div>
+  </body>
+</html>

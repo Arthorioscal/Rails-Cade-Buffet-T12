@@ -1,0 +1,32 @@
+require 'rails_helper'
+
+describe 'User register buffets' do
+    it 'successfully from account creation' do
+        
+        visit root_path
+        click_on 'Fazer Cadastro'
+        within('form') do
+            fill_in 'E-mail', with: 'bigboss@mgs.com'
+            fill_in 'Senha', with: '123456'
+            fill_in 'Confirme sua senha', with: '123456'
+            select 'Dono de Buffet', from: 'Tipo de Usuário'
+            click_on 'Cadastrar'
+        end
+        fill_in 'Nome Fantasia', with: 'Buffet do Snake'
+        fill_in 'Razão Social', with: 'Buffet do Snake Ltda'
+        fill_in 'CNPJ', with: '12345678901234'
+        fill_in 'Telefone para contato', with: '11999999999'
+        fill_in 'Email para contato', with: 'metalgearbuffets@buffet.com'
+        fill_in 'Endereço', with: 'Rua do Buffet, 123'
+        fill_in 'Bairro', with: 'Bairro do Buffet'
+        fill_in 'Estado', with: 'São Paulo'
+        fill_in 'Cidade', with: 'São Paulo'
+        fill_in 'CEP', with: '12345678'
+        fill_in 'Descrição', with: 'Buffet especializado em festas de aniversário'
+        fill_in 'Formas de pagamento', with: 'Dinheiro, cartão de crédito e débito'
+        click_on 'Cadastrar'
+
+        expect(page).to have_content('Buffet cadastrado com sucesso.')
+        end
+    end
+

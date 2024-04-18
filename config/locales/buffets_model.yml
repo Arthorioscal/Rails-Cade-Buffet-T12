@@ -1,0 +1,49 @@
+pt-BR:
+  activerecord:
+    attributes:
+      buffet:
+        brand_name: Nome Fantasia
+        corporate_name: Razão Social
+        cnpj: CNPJ
+        phone: Telefone  para contato
+        email: Email  para contato
+        address: Endereço
+        neighborhood: Bairro
+        state: Estado
+        city: Cidade
+        zip_code: CEP
+        description: Descrição
+        payment_methods: Formas de pagamento
+    models:
+      buffet:
+        one: Buffet
+        other: Buffets
+    errors:
+      models:
+        buffet:
+          attributes:
+            brand_name:
+              blank: "não pode ficar em branco"
+            corporate_name:
+              blank: "não pode ficar em branco"
+            cnpj:
+              blank: "não pode ficar em branco"
+            phone:
+              blank: "não pode ficar em branco"
+            email:
+              blank: "não pode ficar em branco"
+              invalid: "não é válido"
+            address:
+              blank: "não pode ficar em branco"
+            neighborhood:
+              blank: "não pode ficar em branco"
+            state:
+              blank: "não pode ficar em branco"
+            city:
+              blank: "não pode ficar em branco"
+            zip_code:
+              blank: "não pode ficar em branco"
+            description:
+              blank: "não pode ficar em branco"
+            payment_methods:
+              blank: "não pode ficar em branco"

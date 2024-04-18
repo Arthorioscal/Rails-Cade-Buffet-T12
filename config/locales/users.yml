@@ -1,0 +1,17 @@
+pt-BR:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: "E-mail já cadastrado"
+              blank: "E-mail não pode ficar em branco"
+              invalid: "E-mail inválido"
+            password:
+              too_short: "A senha é muito curta (mínimo de %{count} caracteres)"
+              confirmation: "A senha não confere com a confirmação"
+              blank: "A senha não pode ficar em branco"
+            password_confirmation:
+              blank: "A confirmação de senha não pode ficar em branco"
+              confirmation: "Confirmação de senha não é igual a Senha"
