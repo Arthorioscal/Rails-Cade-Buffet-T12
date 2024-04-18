@@ -1,0 +1,35 @@
+<%= form_with(model: @event_price) do |form| %>
+    <div class="field">
+        <%= form.label :wd_price %>
+        <%= form.text_field :wd_price %>
+    </div>
+    
+    <div class="field">
+        <%= form.label :wd_add_person_price %>
+        <%= form.text_field :wd_add_person_price %>
+    </div>
+    
+    <div class="field">
+        <%= form.label :wd_extra_hour_price %>
+        <%= form.text_field :wd_extra_hour_price %>
+    </div>
+    
+    <div class="field">
+        <%= form.label :we_price %>
+        <%= form.text_field :we_price %>
+    </div>
+    
+    <div class="field">
+        <%= form.label :we_add_person_price %>
+        <%= form.text_field :we_add_person_price %>
+    </div>
+    
+    <div class="field">
+        <%= form.label :we_extra_hour_price %>
+        <%= form.text_field :we_extra_hour_price %>
+    </div>
+    
+    <div class="actions">
+        <%= form.submit 'Cadastrar' %>
+    </div>
+<% end %>
