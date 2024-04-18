@@ -6,7 +6,10 @@ class BuffetsController < ApplicationController
     end
 
     def show
-        @buffet = Buffet.find(params[:id])
+        @buffet = current_user.buffet
+        if @buffet.id != params[:id].to_i
+          redirect_to root_path, alert: 'Access denied.'
+        end
     end
 
     def create
