@@ -1,7 +1,7 @@
 pt-BR:
   activerecord:
     attributes:
-      model_name:
+      event_price:
         wd_price: "Preço (Durante a semana)"
         wd_add_person_price: "Preço adicional por pessoa (Durante a semana)"
         wd_extra_hour_price: "Preço extra por hora (Durante a semana)"
@@ -10,7 +10,7 @@ pt-BR:
         we_extra_hour_price: "Preço extra por hora (Fim de semana)"
     errors:
       models:
-        model_name:
+        event_price:
           attributes:
             wd_price:
               blank: "não pode ficar em branco"

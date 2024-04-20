@@ -23,6 +23,6 @@ describe 'Buffet owner register event prices' do
         fill_in 'Preço extra por hora (Fim de semana)', with: 150
         click_on 'Cadastrar'
 
-        expect(page).to have_content('Preços cadastrados com sucesso')
+        expect(page).to have_content('Preço do evento foi cadastrado com sucesso.')
     end
 end

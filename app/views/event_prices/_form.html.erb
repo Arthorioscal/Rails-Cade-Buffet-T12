@@ -1,4 +1,7 @@
-<%= form_with(model: @event_price) do |form| %>
+<%= form_with(model: @event_price, url: event_prices_path(event_id: @event.id)) do |form| %>
+    <div>
+        <%= form.hidden_field :event_id, value: @event.id %>
+    </div>
     <div class="field">
         <%= form.label :wd_price %>
         <%= form.text_field :wd_price %>
