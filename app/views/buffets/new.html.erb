@@ -1,3 +1,14 @@
 Cadastro de Buffet
 
+<%if @buffet.errors.any?%>
+    <div>
+        <h2>Erro ao cadastrar fornecedor</h2>
+        <ul>
+            <% @buffet.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
+
 <%= render 'form' %>

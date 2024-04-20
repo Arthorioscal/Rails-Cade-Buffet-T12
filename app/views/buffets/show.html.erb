@@ -14,7 +14,7 @@
 
 <% if @buffet.events.present?%>
     <% @buffet.events.each do |event_type| %>
-        <h3> <%= event_type.name %> </h3>
+        <h3> <%= link_to event_type.name, event_path(event_type) %> </h3>
         <p> <%= event_type.name %> </p>
         <p> <%= event_type.description %> </p>
         <p> <%= event_type.min_people %> </p>

@@ -1,0 +1,33 @@
+<dl>
+    <dt><strong><%= Event.human_attribute_name(:name) %>:</strong></dt>
+    <dd><%= @event.name %></dd>
+
+    <dt><strong><%= Event.human_attribute_name(:description) %>:</strong></dt>
+    <dd><%= @event.description %></dd>
+
+    <dt><strong><%= Event.human_attribute_name(:min_people) %>:</strong></dt>
+    <dd><%= @event.min_people %></dd>
+
+    <dt><strong><%= Event.human_attribute_name(:max_people) %>:</strong></dt>
+    <dd><%= @event.max_people %></dd>
+
+    <dt><strong><%= Event.human_attribute_name(:duration) %>:</strong></dt>
+    <dd><%= @event.duration %></dd>
+
+    <dt><strong><%= Event.human_attribute_name(:menu) %>:</strong></dt>
+    <dd><%= @event.menu %></dd>
+
+    <dt><strong><%= Event.human_attribute_name(:alcohol) %>:</strong></dt>
+    <dd><%= t("activerecord.attributes.event.alcohol_values.#{@event.alcohol}") %></dd>
+
+    <dt><strong><%= Event.human_attribute_name(:decoration) %>:</strong></dt>
+    <dd><%= t("activerecord.attributes.event.decoration_values.#{@event.decoration}") %></dd>
+
+    <dt><strong><%= Event.human_attribute_name(:parking_service) %>:</strong></dt>
+    <dd><%= t("activerecord.attributes.event.parking_service_values.#{@event.parking_service}") %></dd>
+
+    <dt><strong><%= Event.human_attribute_name(:at_buffet_location) %>:</strong></dt>
+    <dd><%= t("activerecord.attributes.event.at_buffet_location_values.#{@event.at_buffet_location}") %></dd>
+</dl>
+
+<%= link_to 'Editar', edit_event_path(@event) %>

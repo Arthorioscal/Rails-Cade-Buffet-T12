@@ -5,6 +5,10 @@ class EventsController < ApplicationController
         @events = Event.all
     end
 
+    def show
+        @event = Event.find(params[:id])
+    end
+
     def new
         @buffet = current_user.buffet
         @event = Event.new

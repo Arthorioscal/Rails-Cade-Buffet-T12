@@ -13,14 +13,14 @@ pt-BR:
         event_price:
           attributes:
             wd_price:
-              blank: "não pode ficar em branco"
+              blank: "Preço (Durante a semana) não pode ficar em branco"
             wd_add_person_price:
-              blank: "não pode ficar em branco"
+              blank: "Preço adicional por pessoa (Durante a semana) não pode ficar em branco"
             wd_extra_hour_price:
-              blank: "não pode ficar em branco"
+              blank: "Preço extra por hora (Durante a semana) não pode ficar em branco"
             we_price:
-              blank: "não pode ficar em branco"
+              blank: "Preço (Fim de semana) não pode ficar em branco"
             we_add_person_price:
-              blank: "não pode ficar em branco"
+              blank: "Preço adicional por pessoa (Fim de semana) não pode ficar em branco"
             we_extra_hour_price:
-              blank: "não pode ficar em branco"
+              blank: "Preço extra por hora (Fim de semana) não pode ficar em branco"
