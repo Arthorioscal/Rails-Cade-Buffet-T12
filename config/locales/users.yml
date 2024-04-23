@@ -15,3 +15,8 @@ pt-BR:
             password_confirmation:
               blank: "A confirmação de senha não pode ficar em branco"
               confirmation: "Confirmação de senha não é igual a Senha"
+            name:
+              blank: "não pode ficar em branco"
+            cpf:
+              blank: "não pode ficar em branco"
+              taken: "já está em uso"

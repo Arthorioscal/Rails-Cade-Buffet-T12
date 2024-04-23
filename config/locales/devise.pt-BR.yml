@@ -6,6 +6,8 @@ pt-BR:
         roles:
           buffet_owner: "Dono de Buffet"
           client: "Cliente"
+        name: "Nome"
+        Cpf: 'CPF'
         confirmation_sent_at: Confirmação enviada em
         confirmation_token: Token de confirmação
         confirmed_at: Confirmado em
