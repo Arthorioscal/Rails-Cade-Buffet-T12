@@ -21,7 +21,7 @@
                 <li><%= current_user.email %></li>
                 <li><%= button_to 'Sair', destroy_user_session_path, method: :delete %>
                 <% if current_user.role == 'buffet_owner' && Buffet.exists?(user_id: current_user.id) %>
-                  <li><%= link_to "Meu Buffet", buffet_path(current_user.buffet) %></li>
+                  <li><%= link_to "Meu Buffet", buffet_profile_path(current_user.buffet) %></li>
                 <% end %>
               <% else %>
                 <li><%= link_to "Fazer Cadastro", choose_role_path %></li>

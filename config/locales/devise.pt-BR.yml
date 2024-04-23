@@ -7,7 +7,7 @@ pt-BR:
           buffet_owner: "Dono de Buffet"
           client: "Cliente"
         name: "Nome"
-        Cpf: 'CPF'
+        cpf: 'CPF'
         confirmation_sent_at: Confirmação enviada em
         confirmation_token: Token de confirmação
         confirmed_at: Confirmado em

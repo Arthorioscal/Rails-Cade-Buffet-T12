@@ -1,34 +1,48 @@
-<h1> Meu Buffet </h1>
-
-<p> <%= @buffet.brand_name %> </p>
 <p> <%= @buffet.corporate_name %> </p>
-<p> <%= @buffet.address %> </p>
+<p> <%= @buffet.cnpj %> </p>
 <p> <%= @buffet.phone %> </p>
 <p> <%= @buffet.email %> </p>
+<p> <%= @buffet.address %> </p>
+<p> <%= @buffet.neighborhood %> </p>
+<p> <%= @buffet.state %> </p>
+<p> <%= @buffet.city %> </p>
+<p> <%= @buffet.zip_code %> </p>
 <p> <%= @buffet.description %> </p>
+<p> <%= @buffet.payment_methods %> </p>
 
 
-<%= link_to 'Editar', edit_buffet_path(@buffet) %>
 
 <h2> Tipos de eventos do buffet </h2>
-
 <% if @buffet.events.present?%>
     <% @buffet.events.each do |event_type| %>
-        <h3> <%= link_to event_type.name, event_path(event_type) %> </h3>
-        <p> <%= event_type.name %> </p>
-        <p> <%= event_type.description %> </p>
-        <p> <%= event_type.min_people %> </p>
-        <p> <%= event_type.max_people %> </p>
-        <p> <%= event_type.duration %> </p>
-        <p> <%= event_type.menu %> </p>
-        <p> <%= event_type.alcohol %> </p>
-        <p> <%= event_type.decoration %> </p>
-        <p> <%= event_type.parking_service %> </p>
-        <p> <%= event_type.at_buffet_location %> </p>
-        <p>Event ID: <%= event_type.id %></p>
-        <%= link_to 'Editar Evento', edit_event_path(event_type) %>
-        <%= link_to 'Cadastrar Preço deste Evento', url_for(controller: 'event_prices', action: 'new', event_id: event_type.id) %>        <% end %>
+        <p> Nome do evento: <%= event_type.name %> </p>
+        <p> Descrição do evento: <%= event_type.description %> </p>
+        <p> Quantidade mínima de pessoas:<%= event_type.min_people %> </p>
+        <p> Quantidade máxima de pessoas:<%= event_type.max_people %> </p>
+        <p> Duração padrão do evento em minutos:<%= event_type.duration %> </p>
+        <p> Cardápio para o evento: <%= event_type.menu %> </p>
+<p> Serve bebidas alcoólicas: <%= t(event_type.alcohol, scope: 'activerecord.boolean') %> </p>
+<p> Possui serviço de decoração: <%= t(event_type.decoration, scope: 'activerecord.boolean') %> </p>
+<p> Possui serviço de estacionamento ou valet: <%= t(event_type.parking_service, scope: 'activerecord.boolean') %> </p>
+<p> Aceita outros endereços de Buffet: <%= t(event_type.at_buffet_location, scope: 'activerecord.boolean') %> </p>
+    <% end %>
 <% else %>
-    <p> Você não tem nenhum tipo de evento cadastrado, cadastre aqui: </p>
-    <%= link_to 'Cadastrar Tipo de Evento', new_event_path %>
+    <p> Buffet não tem nenhum evento cadastrado, tente entrar em contato para mais informações </p>
+<% end %>
+
+<h2> Preços deste Evento </h2>
+
+<% if @buffet.events.present? %>
+  <% @buffet.events.each do |event| %>
+    <% if event.event_price.present? %>
+        <p> Preço do evento mínimo: <%= event.event_price.wd_price %> </p>
+        <p> Preço adicional por pessoa: <%= event.event_price.wd_add_person_price %> </p>
+        <p> Preço adicional por hora: <%= event.event_price.wd_extra_hour_price %> </p>
+        <p> Preço do evento mínimo (final de semana): <%= event.event_price.we_price %> </p>
+        <p> Preço adicional por pessoa (final de semana): <%= event.event_price.we_add_person_price %> </p>
+        <p> Preço adicional por hora (final de semana): <%= event.event_price.we_extra_hour_price %> </p>
+    <% end %>
+  <% end %>
+<% else %>
+  <p> Buffet não tem nenhum evento cadastrado, tente entrar em contato para mais informações </p>
 <% end %>

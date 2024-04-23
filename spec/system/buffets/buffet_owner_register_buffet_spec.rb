@@ -5,10 +5,11 @@ describe 'Buffet Owner register buffets' do
         
         visit root_path
         click_on 'Fazer Cadastro'
-            fill_in 'E-mail', with: 'bigboss@mgs.com'
-            fill_in 'Senha', with: '123456'
-            fill_in 'Confirme sua senha', with: '123456'
-            click_on 'Cadastrar'
+        click_on 'Registrar como um Dono de Buffet'
+        fill_in 'E-mail', with: 'bigboss@mgs.com'
+        fill_in 'Senha', with: '123456'
+        fill_in 'Confirme sua senha', with: '123456'
+        click_on 'Cadastrar'
         fill_in 'Nome Fantasia', with: 'Buffet do Snake'
         fill_in 'Razão Social', with: 'Buffet do Snake Ltda'
         fill_in 'CNPJ', with: '12345678901234'
@@ -30,10 +31,11 @@ describe 'Buffet Owner register buffets' do
 
         visit root_path
         click_on 'Fazer Cadastro'
-            fill_in 'E-mail', with: 'nakedsnake@mgs.com'
-            fill_in 'Senha', with: '123456'
-            fill_in 'Confirme sua senha', with: '123456'
-            click_on 'Cadastrar'
+        click_on 'Registrar como um Dono de Buffet'
+        fill_in 'E-mail', with: 'nakedsnake@mgs.com'
+        fill_in 'Senha', with: '123456'
+        fill_in 'Confirme sua senha', with: '123456'
+        click_on 'Cadastrar'
         fill_in 'Nome Fantasia', with: ''
         fill_in 'Razão Social', with: ''
         fill_in 'CNPJ', with: ''
@@ -41,6 +43,31 @@ describe 'Buffet Owner register buffets' do
         click_on 'Cadastrar'
 
         expect(page).to have_content('Não foi possível cadastrar o buffet, tente novamente')
+    end
+    it 'visit root path after register before registering a buffet and registration prompts again' do
+
+        visit root_path
+        click_on 'Fazer Cadastro'
+        click_on 'Registrar como um Dono de Buffet'
+        fill_in 'E-mail', with: 'bigboss@gmail.com'
+        fill_in 'Senha', with: '123456'
+        fill_in 'Confirme sua senha', with: '123456'
+        click_on 'Cadastrar'
+        visit root_path
+
+        expect(page).to have_content('Você precisa cadastrar um buffet para continuar')
+        expect(page).to have_content('Nome Fantasia')
+        expect(page).to have_content('Razão Social')
+        expect(page).to have_content('CNPJ')
+        expect(page).to have_content('Telefone para contato')
+        expect(page).to have_content('Email para contato')
+        expect(page).to have_content('Endereço')
+        expect(page).to have_content('Bairro')
+        expect(page).to have_content('Estado')
+        expect(page).to have_content('Cidade')
+        expect(page).to have_content('CEP')
+        expect(page).to have_content('Descrição')
+        expect(page).to have_content('Formas de pagamento')
     end
 end
 

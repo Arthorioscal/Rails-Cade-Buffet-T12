@@ -9,7 +9,9 @@ Rails.application.routes.draw do
 
   root to: "home#index"
 
-  resources :buffets, only: %i[index show new create edit update]
+  resources :buffets, only: %i[show new create edit update] do
+    get 'profile', to: 'buffets#profile'
+  end
   resources :events, only: %i[index show new create edit update]
   resources :event_prices, only: %i[show new create edit update]
 

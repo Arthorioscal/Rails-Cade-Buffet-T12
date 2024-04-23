@@ -8,6 +8,9 @@ pt-BR:
         we_price: "Preço (Fim de semana)"
         we_add_person_price: "Preço adicional por pessoa (Fim de semana)"
         we_extra_hour_price: "Preço extra por hora (Fim de semana)"
+    boolean:
+      'true': 'Sim'
+      'false': 'Não'
     errors:
       models:
         event_price:
