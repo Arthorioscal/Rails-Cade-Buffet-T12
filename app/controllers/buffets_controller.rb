@@ -14,6 +14,13 @@ class BuffetsController < ApplicationController
         @event_prices = @buffet.events.map(&:event_price)
     end
 
+    def search
+        @query = params[:query]
+        @buffets = Buffet.joins(:events).distinct
+                         .where("buffets.brand_name LIKE :query OR buffets.city LIKE :query OR events.name LIKE :query", query: "%#{@query}%")
+                         .order(:name)
+    end
+
     def create
         @buffet = Buffet.new(buffet_params)
         @buffet.user = current_user

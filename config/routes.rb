@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   resources :buffets, only: %i[show new create edit update] do
     get 'profile', to: 'buffets#profile'
+    get 'search', to: 'buffets#search', on: :collection
   end
   resources :events, only: %i[index show new create edit update]
   resources :event_prices, only: %i[show new create edit update]

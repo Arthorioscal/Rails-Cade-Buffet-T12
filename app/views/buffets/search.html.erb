@@ -1,0 +1,5 @@
+<h1> Resultados da busca por: <%= params[:query] %> </h1>
+
+<% @buffets.each do |buffet| %>
+    <h2> <%= link_to"#{buffet.brand_name}", buffet_path(buffet) %> </h2>
+<% end %>
