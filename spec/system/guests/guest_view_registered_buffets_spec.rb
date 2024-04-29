@@ -3,11 +3,11 @@ require 'rails_helper'
 describe 'Guest view registered buffets' do
     it 'successfully' do
         user = User.create!(email: 'raiden@mgs.com', password: 'solidsnakefan', role: :buffet_owner)
-        buffet1 = Buffet.create!(brand_name: 'Buffet do Snake', corporate_name: 'Buffet do Snake Ltda', cnpj: '12345678901234',
+        buffet1 = Buffet.create!(brand_name: 'Buffet do Snake', corporate_name: 'Buffet do Snake Ltda', cnpj: '45195101000101',
         phone: '11999999999', email: 'solidsnakefans@mail.com', address: 'Rua do Buffet, 123', neighborhood: 'Bairro do Buffet',
         state: 'São Paulo', city: 'São Paulo', zip_code: '12345678', description: 'Buffet especializado em festas de aniversário',
         payment_methods: 'Dinheiro, cartão de crédito e débito', user: user)
-        buffet2 = Buffet.create!(brand_name: 'Buffet do Raiden', corporate_name: 'Buffet do Raiden Ltda', cnpj: '12345678901235',
+        buffet2 = Buffet.create!(brand_name: 'Buffet do Raiden', corporate_name: 'Buffet do Raiden Ltda', cnpj: '13877871000130',
         phone: '11999999998', email: 'raidenbuffet@email.com', address: 'Rua do Raiden, 123', neighborhood: 'Bairro do Raiden',
         state: 'Rio Grande do Sul', city: 'Caxias do Sul', zip_code: '12345679', description: 'Buffet especializado em festas de casamento',
         payment_methods: 'Dinheiro, cartão de crédito e débito', user: user)
@@ -22,11 +22,11 @@ describe 'Guest view registered buffets' do
 
     it 'and view details' do
         user = User.create!(email: 'raiden@mgs.com', password: 'solidsnakefan', role: :buffet_owner)
-        buffet1 = Buffet.create!(brand_name: 'Buffet do Snake', corporate_name: 'Buffet Metal Gear Ltda', cnpj: '12345678901234',
+        buffet1 = Buffet.create!(brand_name: 'Buffet do Snake', corporate_name: 'Buffet Metal Gear Ltda', cnpj: '45195101000101',
         phone: '11999999999', email: 'solidsnakefans@mail.com', address: 'Rua do Buffet, 123', neighborhood: 'Bairro do Buffet',
         state: 'São Paulo', city: 'São Paulo', zip_code: '12345678', description: 'Buffet especializado em festas de aniversário',
         payment_methods: 'Dinheiro, cartão de crédito e débito', user: user)
-        buffet2 = Buffet.create!(brand_name: 'Buffet do Raiden', corporate_name: 'Buffet do Raiden Ltda', cnpj: '12345678901235',
+        buffet2 = Buffet.create!(brand_name: 'Buffet do Raiden', corporate_name: 'Buffet do Raiden Ltda', cnpj: '13877871000130',
         phone: '11999999998', email: 'raidenbuffet@email.com', address: 'Rua do Raiden, 123', neighborhood: 'Bairro do Raiden',
         state: 'Rio Grande do Sul', city: 'Caxias do Sul', zip_code: '12345679', description: 'Buffet especializado em festas de casamento',
         payment_methods: 'Dinheiro, cartão de crédito e débito', user: user)
@@ -36,7 +36,7 @@ describe 'Guest view registered buffets' do
 
         expect(page).not_to have_content('Buffet do Snake')
         expect(page).to have_content('Buffet Metal Gear Ltda')
-        expect(page).to have_content('12345678901234')
+        expect(page).to have_content('45195101000101')
         expect(page).to have_content('11999999999')
         expect(page).to have_content('solidsnakefans@mail.com')
         expect(page).to have_content('Rua do Buffet, 123')
@@ -51,11 +51,11 @@ describe 'Guest view registered buffets' do
     it 'and view details with events and prices' do
         user = User.create!(email: 'raiden@mgs.com', password: 'solidsnakefan', role: :buffet_owner)
         user2 = User.create!(email: 'raidenz@mgs.com', password: 'solidsnakefanz', role: :buffet_owner)
-        buffet1 = Buffet.create!(brand_name: 'Buffet do Snake', corporate_name: 'Buffet Metal Gear Ltda', cnpj: '12345678901234',
+        buffet1 = Buffet.create!(brand_name: 'Buffet do Snake', corporate_name: 'Buffet Metal Gear Ltda', cnpj: '45195101000101',
         phone: '11999999999', email: 'solidsnakefans@mail.com', address: 'Rua do Buffet, 123', neighborhood: 'Bairro do Buffet',
         state: 'São Paulo', city: 'São Paulo', zip_code: '12345678', description: 'Buffet especializado em festas de aniversário',
         payment_methods: 'Dinheiro, cartão de crédito e débito', user: user)
-        buffet2 = Buffet.create!(brand_name: 'Buffet do Raiden', corporate_name: 'Buffet do Raiden Ltda', cnpj: '12345678901235',
+        buffet2 = Buffet.create!(brand_name: 'Buffet do Raiden', corporate_name: 'Buffet do Raiden Ltda', cnpj: '13877871000130',
         phone: '11999999998', email: 'raidenbuffet@email.com', address: 'Rua do Raiden, 123', neighborhood: 'Bairro do Raiden',
         state: 'Rio Grande do Sul', city: 'Caxias do Sul', zip_code: '12345679', description: 'Buffet especializado em festas de casamento',
         payment_methods: 'Dinheiro, cartão de crédito e débito', user: user)
@@ -69,7 +69,7 @@ describe 'Guest view registered buffets' do
             
         expect(page).not_to have_content('Buffet do Snake')
         expect(page).to have_content('Buffet Metal Gear Ltda')
-        expect(page).to have_content('12345678901234')
+        expect(page).to have_content('45195101000101')
         expect(page).to have_content('11999999999')
         expect(page).to have_content('solidsnakefans@mail.com')
         expect(page).to have_content('Rua do Buffet, 123')

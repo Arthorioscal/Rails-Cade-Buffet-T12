@@ -12,7 +12,7 @@ describe 'Buffet Owner register buffets' do
         click_on 'Cadastrar'
         fill_in 'Nome Fantasia', with: 'Buffet do Snake'
         fill_in 'Razão Social', with: 'Buffet do Snake Ltda'
-        fill_in 'CNPJ', with: '12345678901234'
+        fill_in 'CNPJ', with: '45195101000101'
         fill_in 'Telefone para contato', with: '11999999999'
         fill_in 'Email para contato', with: 'metalgearbuffets@buffet.com'
         fill_in 'Endereço', with: 'Rua do Buffet, 123'

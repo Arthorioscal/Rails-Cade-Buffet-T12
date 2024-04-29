@@ -10,21 +10,21 @@ describe 'Guest search registered buffets' do
     it 'successfully from brand name' do
         user = User.create!(email: 'raiden@mgs.com', password: 'solidsnakefan', role: :buffet_owner)
         user2 = User.create!(email: 'raidenz@mgs.com', password: 'solidsnakefanz', role: :buffet_owner)
-        buffet1 = Buffet.create!(brand_name: 'Buffet do Snake', corporate_name: 'Buffet Metal Gear Ltda', cnpj: '12345678901234',
+        buffet1 = Buffet.create!(brand_name: 'Buffet do Snake', corporate_name: 'Buffet Metal Gear Ltda', cnpj: '89032028000114',
         phone: '11999999999', email: 'solidsnakefans@mail.com', address: 'Rua do Buffet, 123', neighborhood: 'Bairro do Buffet',
         state: 'São Paulo', city: 'São Paulo', zip_code: '12345678', description: 'Buffet especializado em festas de aniversário',
         payment_methods: 'Dinheiro, cartão de crédito e débito', user: user)
-        buffet2 = Buffet.create!(brand_name: 'Buffet do Raiden', corporate_name: 'Buffet do Raiden Ltda', cnpj: '12345678901235',
+        buffet2 = Buffet.create!(brand_name: 'Buffet do Raiden', corporate_name: 'Buffet do Raiden Ltda', cnpj: '90626237000175',
         phone: '11999999998', email: 'raidenbuffet@email.com', address: 'Rua do Raiden, 123', neighborhood: 'Bairro do Raiden',
         state: 'Rio Grande do Sul', city: 'Caxias do Sul', zip_code: '12345679', description: 'Buffet especializado em festas de casamento',
         payment_methods: 'Dinheiro, cartão de crédito e débito', user: user2)
         user3 = User.create!(email: 'snake@mgs.com', password: 'metalgearexperience', role: :buffet_owner)
         user4 = User.create!(email: 'ocelot@mgs.com', password: 'tripleagent123', role: :buffet_owner)
-        buffet3 = Buffet.create!(brand_name: 'Outer Heaven Catering', corporate_name: 'Outer Heaven Events Ltda', cnpj: '12345678901236',
+        buffet3 = Buffet.create!(brand_name: 'Outer Heaven Catering', corporate_name: 'Outer Heaven Events Ltda', cnpj: '16844554000105',
         phone: '11999999997', email: 'outerheaven@mail.com', address: 'Rua Outer, 123', neighborhood: 'Outer District',
         state: 'Rio de Janeiro', city: 'Rio de Janeiro', zip_code: '12345670', description: 'Buffet specializing in corporate events',
         payment_methods: 'Cash, credit and debit cards', user: user3)
-        buffet4 = Buffet.create!(brand_name: 'Diamond Dogs Banquets', corporate_name: 'Diamond Dogs Culinary Services Ltda', cnpj: '12345678901237',
+        buffet4 = Buffet.create!(brand_name: 'Diamond Dogs Banquets', corporate_name: 'Diamond Dogs Culinary Services Ltda', cnpj: '79963258000143',
         phone: '11999999996', email: 'diamonddogs@email.com', address: 'Diamond Street, 123', neighborhood: 'Diamond District',
         state: 'Bahia', city: 'Salvador', zip_code: '12345671', description: 'Buffet specializing in themed events and parties',
         payment_methods: 'Cash, credit and debit cards', user: user4)
@@ -44,21 +44,21 @@ describe 'Guest search registered buffets' do
     it 'successfully from brand name and click to see details' do
         user = User.create!(email: 'raiden@mgs.com', password: 'solidsnakefan', role: :buffet_owner)
         user2 = User.create!(email: 'raidenz@mgs.com', password: 'solidsnakefanz', role: :buffet_owner)
-        buffet1 = Buffet.create!(brand_name: 'Buffet do Snake', corporate_name: 'Buffet Metal Gear Ltda', cnpj: '12345678901234',
+        buffet1 = Buffet.create!(brand_name: 'Buffet do Snake', corporate_name: 'Buffet Metal Gear Ltda', cnpj: '89032028000114',
         phone: '11999999999', email: 'solidsnakefans@mail.com', address: 'Rua do Buffet, 123', neighborhood: 'Bairro do Buffet',
         state: 'São Paulo', city: 'São Paulo', zip_code: '12345678', description: 'Buffet especializado em festas de aniversário',
         payment_methods: 'Dinheiro, cartão de crédito e débito', user: user)
-        buffet2 = Buffet.create!(brand_name: 'Buffet do Raiden', corporate_name: 'Buffet do Raiden Ltda', cnpj: '12345678901235',
+        buffet2 = Buffet.create!(brand_name: 'Buffet do Raiden', corporate_name: 'Buffet do Raiden Ltda', cnpj: '90626237000175',
         phone: '11999999998', email: 'raidenbuffet@email.com', address: 'Rua do Raiden, 123', neighborhood: 'Bairro do Raiden',
         state: 'Rio Grande do Sul', city: 'Caxias do Sul', zip_code: '12345679', description: 'Buffet especializado em festas de casamento',
         payment_methods: 'Dinheiro, cartão de crédito e débito', user: user2)
         user3 = User.create!(email: 'snake@mgs.com', password: 'metalgearexperience', role: :buffet_owner)
         user4 = User.create!(email: 'ocelot@mgs.com', password: 'tripleagent123', role: :buffet_owner)
-        buffet3 = Buffet.create!(brand_name: 'Outer Heaven Catering', corporate_name: 'Outer Heaven Events Ltda', cnpj: '12345678901236',
+        buffet3 = Buffet.create!(brand_name: 'Outer Heaven Catering', corporate_name: 'Outer Heaven Events Ltda', cnpj: '16844554000105',
         phone: '11999999997', email: 'outerheaven@mail.com', address: 'Rua Outer, 123', neighborhood: 'Outer District',
         state: 'Rio de Janeiro', city: 'Rio de Janeiro', zip_code: '12345670', description: 'Buffet specializing in corporate events',
         payment_methods: 'Cash, credit and debit cards', user: user3)
-        buffet4 = Buffet.create!(brand_name: 'Diamond Dogs Banquets', corporate_name: 'Diamond Dogs Culinary Services Ltda', cnpj: '12345678901237',
+        buffet4 = Buffet.create!(brand_name: 'Diamond Dogs Banquets', corporate_name: 'Diamond Dogs Culinary Services Ltda', cnpj: '79963258000143',
         phone: '11999999996', email: 'diamonddogs@email.com', address: 'Diamond Street, 123', neighborhood: 'Diamond District',
         state: 'Bahia', city: 'Salvador', zip_code: '12345671', description: 'Buffet specializing in themed events and parties',
         payment_methods: 'Cash, credit and debit cards', user: user4)
@@ -73,7 +73,7 @@ describe 'Guest search registered buffets' do
         click_on 'Buffet do Snake'
 
         expect(page).to have_content('Buffet Metal Gear Ltda')
-        expect(page).to have_content('12345678901234')
+        expect(page).to have_content('89032028000114')
         expect(page).to have_content('11999999999')
         expect(page).to have_content('solidsnakefans@mail.com')
         expect(page).to have_content('Rua do Buffet, 123')
@@ -104,21 +104,21 @@ describe 'Guest search registered buffets' do
     it 'successfully from event name' do
         user = User.create!(email: 'raiden@mgs.com', password: 'solidsnakefan', role: :buffet_owner)
         user2 = User.create!(email: 'raidenz@mgs.com', password: 'solidsnakefanz', role: :buffet_owner)
-        buffet1 = Buffet.create!(brand_name: 'Buffet do Snake', corporate_name: 'Buffet Metal Gear Ltda', cnpj: '12345678901234',
+        buffet1 = Buffet.create!(brand_name: 'Buffet do Snake', corporate_name: 'Buffet Metal Gear Ltda', cnpj: '89032028000114',
         phone: '11999999999', email: 'solidsnakefans@mail.com', address: 'Rua do Buffet, 123', neighborhood: 'Bairro do Buffet',
         state: 'São Paulo', city: 'São Paulo', zip_code: '12345678', description: 'Buffet especializado em festas de aniversário',
         payment_methods: 'Dinheiro, cartão de crédito e débito', user: user)
-        buffet2 = Buffet.create!(brand_name: 'Buffet do Raiden', corporate_name: 'Buffet do Raiden Ltda', cnpj: '12345678901235',
+        buffet2 = Buffet.create!(brand_name: 'Buffet do Raiden', corporate_name: 'Buffet do Raiden Ltda', cnpj: '90626237000175',
         phone: '11999999998', email: 'raidenbuffet@email.com', address: 'Rua do Raiden, 123', neighborhood: 'Bairro do Raiden',
         state: 'Rio Grande do Sul', city: 'Caxias do Sul', zip_code: '12345679', description: 'Buffet especializado em festas de casamento',
         payment_methods: 'Dinheiro, cartão de crédito e débito', user: user2)
         user3 = User.create!(email: 'snake@mgs.com', password: 'metalgearexperience', role: :buffet_owner)
         user4 = User.create!(email: 'ocelot@mgs.com', password: 'tripleagent123', role: :buffet_owner)
-        buffet3 = Buffet.create!(brand_name: 'Outer Heaven Catering', corporate_name: 'Outer Heaven Events Ltda', cnpj: '12345678901236',
+        buffet3 = Buffet.create!(brand_name: 'Outer Heaven Catering', corporate_name: 'Outer Heaven Events Ltda', cnpj: '16844554000105',
         phone: '11999999997', email: 'outerheaven@mail.com', address: 'Rua Outer, 123', neighborhood: 'Outer District',
         state: 'Rio de Janeiro', city: 'Rio de Janeiro', zip_code: '12345670', description: 'Buffet specializing in corporate events',
         payment_methods: 'Cash, credit and debit cards', user: user3)
-        buffet4 = Buffet.create!(brand_name: 'Diamond Dogs Banquets', corporate_name: 'Diamond Dogs Culinary Services Ltda', cnpj: '12345678901237',
+        buffet4 = Buffet.create!(brand_name: 'Diamond Dogs Banquets', corporate_name: 'Diamond Dogs Culinary Services Ltda', cnpj: '79963258000143',
         phone: '11999999996', email: 'diamonddogs@email.com', address: 'Diamond Street, 123', neighborhood: 'Diamond District',
         state: 'Bahia', city: 'Salvador', zip_code: '12345671', description: 'Buffet specializing in themed events and parties',
         payment_methods: 'Cash, credit and debit cards', user: user4)
@@ -146,21 +146,21 @@ describe 'Guest search registered buffets' do
     it 'search for buffets for their cities' do
         user = User.create!(email: 'raiden@mgs.com', password: 'solidsnakefan', role: :buffet_owner)
         user2 = User.create!(email: 'raidenz@mgs.com', password: 'solidsnakefanz', role: :buffet_owner)
-        buffet1 = Buffet.create!(brand_name: 'Buffet do Snake', corporate_name: 'Buffet Metal Gear Ltda', cnpj: '12345678901234',
+        buffet1 = Buffet.create!(brand_name: 'Buffet do Snake', corporate_name: 'Buffet Metal Gear Ltda', cnpj: '89032028000114',
         phone: '11999999999', email: 'solidsnakefans@mail.com', address: 'Rua do Buffet, 123', neighborhood: 'Bairro do Buffet',
         state: 'São Paulo', city: 'São Paulo', zip_code: '12345678', description: 'Buffet especializado em festas de aniversário',
         payment_methods: 'Dinheiro, cartão de crédito e débito', user: user)
-        buffet2 = Buffet.create!(brand_name: 'Buffet do Raiden', corporate_name: 'Buffet do Raiden Ltda', cnpj: '12345678901235',
+        buffet2 = Buffet.create!(brand_name: 'Buffet do Raiden', corporate_name: 'Buffet do Raiden Ltda', cnpj: '90626237000175',
         phone: '11999999998', email: 'raidenbuffet@email.com', address: 'Rua do Raiden, 123', neighborhood: 'Bairro do Raiden',
         state: 'Rio Grande do Sul', city: 'Caxias do Sul', zip_code: '12345679', description: 'Buffet especializado em festas de casamento',
         payment_methods: 'Dinheiro, cartão de crédito e débito', user: user2)
         user3 = User.create!(email: 'snake@mgs.com', password: 'metalgearexperience', role: :buffet_owner)
         user4 = User.create!(email: 'ocelot@mgs.com', password: 'tripleagent123', role: :buffet_owner)
-        buffet3 = Buffet.create!(brand_name: 'Outer Heaven Catering', corporate_name: 'Outer Heaven Events Ltda', cnpj: '12345678901236',
+        buffet3 = Buffet.create!(brand_name: 'Outer Heaven Catering', corporate_name: 'Outer Heaven Events Ltda', cnpj: '16844554000105',
         phone: '11999999997', email: 'outerheaven@mail.com', address: 'Rua Outer, 123', neighborhood: 'Outer District',
         state: 'Rio de Janeiro', city: 'Rio de Janeiro', zip_code: '12345670', description: 'Buffet specializing in corporate events',
         payment_methods: 'Cash, credit and debit cards', user: user3)
-        buffet4 = Buffet.create!(brand_name: 'Diamond Dogs Banquets', corporate_name: 'Diamond Dogs Culinary Services Ltda', cnpj: '12345678901237',
+        buffet4 = Buffet.create!(brand_name: 'Diamond Dogs Banquets', corporate_name: 'Diamond Dogs Culinary Services Ltda', cnpj: '79963258000143',
         phone: '11999999996', email: 'diamonddogs@email.com', address: 'Diamond Street, 123', neighborhood: 'Diamond District',
         state: 'Bahia', city: 'Salvador', zip_code: '12345671', description: 'Buffet specializing in themed events and parties',
         payment_methods: 'Cash, credit and debit cards', user: user4)
