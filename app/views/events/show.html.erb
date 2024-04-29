@@ -28,6 +28,15 @@
 
     <dt><strong><%= Event.human_attribute_name(:at_buffet_location) %>:</strong></dt>
     <dd><%= t("activerecord.attributes.event.at_buffet_location_values.#{@event.at_buffet_location}") %></dd>
+
+    <dt><strong><%= Event.human_attribute_name(:photos) %>:</strong></dt>
+    <dd>
+        <% if @event.photos.attached? %>
+            <% @event.photos.each do |photo| %>
+                <%= image_tag url_for(photo) %>
+            <% end %>
+        <% end %>
+    </dd>
 </dl>
 
 <%= link_to 'Editar', edit_event_path(@event) %>

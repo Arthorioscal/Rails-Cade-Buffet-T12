@@ -31,5 +31,8 @@
   <%= form.label :at_buffet_location %>
   <%= form.check_box :at_buffet_location %>
 
+  <%= form.label :photos %>
+  <%= form.file_field :photos, multiple: true %>
+
   <%= form.submit 'Cadastrar' %>
 <% end %>

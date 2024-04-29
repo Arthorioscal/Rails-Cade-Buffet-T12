@@ -68,4 +68,32 @@ describe 'Buffet Owner register event types' do
         expect(page).to have_content('Duração padrão do evento em minutos não pode ficar em branco')
         expect(page).to have_content('Cardápio para o evento não pode ficar em branco')
     end
+
+    it 'and he uploads photos for the event type' do
+        user = User.create!(email: 'raiden@mgs.com', password: 'solidsnakefan', role: :buffet_owner)
+        buffet = Buffet.create!(brand_name: 'Buffet do Snake', corporate_name: 'Buffet do Snake Ltda', cnpj: '45195101000101',
+        phone: '11999999999', email: 'solidsnakefans@mail.com', address: 'Rua do Buffet, 123', neighborhood: 'Bairro do Buffet',
+        state: 'São Paulo', city: 'São Paulo', zip_code: '12345678', description: 'Buffet especializado em festas de aniversário',
+        payment_methods: 'Dinheiro, cartão de crédito e débito', user: user)
+
+        login_as(user, scope: :user)
+        visit root_path
+        click_on 'Meu Buffet'
+        click_on 'Cadastrar Tipo de Evento'
+        fill_in 'Nome', with: 'Festa de Aniversário'
+        fill_in 'Descrição', with: 'Festa de aniversário com bolo, doces e salgados'
+        fill_in 'Quantidade mínima de pessoas', with: 10
+        fill_in 'Quantidade máxima de pessoas', with: 100
+        fill_in 'Duração padrão do evento em minutos', with: 180
+        fill_in 'Cardápio para o evento', with: 'Bolo, doces, salgados, refrigerante, vinho'
+        check 'Serve bebidas alcoólicas'
+        check 'Possui serviço de decoração'
+        check 'Possui serviço de estacionamento ou valet'
+        check 'Aceita outros endereços de Buffet'
+        attach_file 'Fotos do Evento', Rails.root.join('spec', 'support', 'images', 'mgsbirthday.jpg')
+        click_on 'Cadastrar'
+
+        expect(page).to have_content('Tipo de evento cadastrado com sucesso')
+        expect(page).to have_css('img[src*="mgsbirthday.jpg"]')
+    end
 end

@@ -25,6 +25,7 @@
         <p> <%= event_type.decoration %> </p>
         <p> <%= event_type.parking_service %> </p>
         <p> <%= event_type.at_buffet_location %> </p>
+            <%= link_to 'Cadastrar outro Tipo de Evento', new_event_path %>
         <%= link_to 'Editar Evento', edit_event_path(event_type) %>
         <%= link_to 'Cadastrar Preço deste Evento', url_for(controller: 'event_prices', action: 'new', event_id: event_type.id) %>        <% end %>
 <% else %>

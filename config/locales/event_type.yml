@@ -24,6 +24,7 @@ pt-BR:
         at_buffet_location_values:
           true: Sim
           false: Não
+        photos: Fotos do Evento
     errors:
       models:
         event:

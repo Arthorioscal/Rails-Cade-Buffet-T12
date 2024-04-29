@@ -13,22 +13,29 @@
 
 
 <h2> Tipos de eventos do buffet </h2>
-<% if @buffet.events.present?%>
-    <% @buffet.events.each do |event_type| %>
-        <p> Nome do evento: <%= event_type.name %> </p>
-        <p> Descrição do evento: <%= event_type.description %> </p>
-        <p> Quantidade mínima de pessoas:<%= event_type.min_people %> </p>
-        <p> Quantidade máxima de pessoas:<%= event_type.max_people %> </p>
-        <p> Duração padrão do evento em minutos:<%= event_type.duration %> </p>
-        <p> Cardápio para o evento: <%= event_type.menu %> </p>
-<p> Serve bebidas alcoólicas: <%= t(event_type.alcohol, scope: 'activerecord.boolean') %> </p>
-<p> Possui serviço de decoração: <%= t(event_type.decoration, scope: 'activerecord.boolean') %> </p>
-<p> Possui serviço de estacionamento ou valet: <%= t(event_type.parking_service, scope: 'activerecord.boolean') %> </p>
-<p> Aceita outros endereços de Buffet: <%= t(event_type.at_buffet_location, scope: 'activerecord.boolean') %> </p>
+<% if @buffet.events.present? %>
+  <% @buffet.events.each do |event_type| %>
+    <p> Nome do evento: <%= event_type.name %> </p>
+    <p> Descrição do evento: <%= event_type.description %> </p>
+    <p> Quantidade mínima de pessoas:<%= event_type.min_people %> </p>
+    <p> Quantidade máxima de pessoas:<%= event_type.max_people %> </p>
+    <p> Duração padrão do evento em minutos:<%= event_type.duration %> </p>
+    <p> Cardápio para o evento: <%= event_type.menu %> </p>
+    <p> Serve bebidas alcoólicas: <%= t(event_type.alcohol, scope: 'activerecord.boolean') %> </p>
+    <p> Possui serviço de decoração: <%= t(event_type.decoration, scope: 'activerecord.boolean') %> </p>
+    <p> Possui serviço de estacionamento ou valet: <%= t(event_type.parking_service, scope: 'activerecord.boolean') %> </p>
+    <p> Aceita outros endereços de Buffet: <%= t(event_type.at_buffet_location, scope: 'activerecord.boolean') %> </p>
+    <% if event_type.photos.attached? %>
+      <strong>Fotos do evento:</strong>
+      <% event_type.photos.each do |photo| %>
+        <%= image_tag url_for(photo) %>
+      <% end %>
     <% end %>
+  <% end %>
 <% else %>
-    <p> Buffet não tem nenhum evento cadastrado, tente entrar em contato para mais informações </p>
+  <p> Buffet não tem nenhum evento cadastrado, tente entrar em contato para mais informações </p>
 <% end %>
+
 
 <h2> Preços deste Evento </h2>
 
