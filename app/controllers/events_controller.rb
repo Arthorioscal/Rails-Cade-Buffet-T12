@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
     before_action :authenticate_user!
+    before_action :user_not_authenticated, only: [:edit, :update]
 
     def index
         @events = Event.all
@@ -44,5 +45,13 @@ class EventsController < ApplicationController
     private
 
     def event_params
-        params.require(:event).permit(:name, :description, :min_people, :max_people, :duration, :menu, :alcohol, :decoration, :parking_service, :at_buffet_location, :buffet_id)    end
+        params.require(:event).permit(:name, :description, :min_people, :max_people, :duration, :menu, :alcohol, :decoration, :parking_service, :at_buffet_location, :buffet_id)    
+    end
+
+    def user_not_authenticated
+        @event = Event.find(params[:id])
+        if @event.buffet.user != current_user
+            redirect_to root_path, notice: 'Você não tem permissão para acessar essa página'
+        end
+    end
 end

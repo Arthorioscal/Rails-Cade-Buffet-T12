@@ -1,5 +1,6 @@
 class BuffetsController < ApplicationController
     before_action :authenticate_user!, only: [:profile, :new, :create, :edit, :update]
+    before_action :user_not_authenticated, only: [:edit, :update]
 
     def new
         @buffet = Buffet.new
@@ -50,5 +51,12 @@ class BuffetsController < ApplicationController
 
     def buffet_params
         params.require(:buffet).permit(:brand_name, :corporate_name, :cnpj, :phone, :email, :address, :neighborhood, :state, :city, :zip_code, :description, :payment_methods)
+    end
+
+    def user_not_authenticated
+        @buffet = Buffet.find(params[:id])
+        if @buffet.user != current_user
+            redirect_to root_path, notice: 'Você não tem permissão para acessar essa página'
+        end        
     end
 end
