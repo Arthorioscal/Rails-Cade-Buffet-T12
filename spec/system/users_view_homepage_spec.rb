@@ -14,11 +14,11 @@ describe 'Users view homepage', type: :system do
         payment_methods: 'Dinheiro, cartão de crédito e débito', user: user2)
         user3 = User.create!(email: 'snake@mgs.com', password: 'metalgearexperience', role: :buffet_owner)
         user4 = User.create!(email: 'ocelot@mgs.com', password: 'tripleagent123', role: :buffet_owner)
-        buffet3 = Buffet.create!(brand_name: 'Outer Heaven Catering', corporate_name: 'Outer Heaven Events Ltda', cnpj: '12345678901236',
+        buffet3 = Buffet.create!(brand_name: 'Outer Heaven Catering', corporate_name: 'Outer Heaven Events Ltda', cnpj: '78719763000184',
         phone: '11999999997', email: 'outerheaven@mail.com', address: 'Rua Outer, 123', neighborhood: 'Outer District',
         state: 'Rio de Janeiro', city: 'Rio de Janeiro', zip_code: '12345670', description: 'Buffet specializing in corporate events',
         payment_methods: 'Cash, credit and debit cards', user: user3)
-        buffet4 = Buffet.create!(brand_name: 'Diamond Dogs Banquets', corporate_name: 'Diamond Dogs Culinary Services Ltda', cnpj: '12345678901237',
+        buffet4 = Buffet.create!(brand_name: 'Diamond Dogs Banquets', corporate_name: 'Diamond Dogs Culinary Services Ltda', cnpj: '92406600000172',
         phone: '11999999996', email: 'diamonddogs@email.com', address: 'Diamond Street, 123', neighborhood: 'Diamond District',
         state: 'Bahia', city: 'Salvador', zip_code: '12345671', description: 'Buffet specializing in themed events and parties',
         payment_methods: 'Cash, credit and debit cards', user: user4)

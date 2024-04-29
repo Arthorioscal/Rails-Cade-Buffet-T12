@@ -24,7 +24,6 @@ class CnpjValidator < ActiveModel::EachValidator
         @value = cnpj.gsub(/[^\d]/, '')
         @value.match?(/^\d{14}$/) && valid_digits?
     end
-  
     def valid_digits?
         number = @value[0..11]
         check = @value[12..13]
@@ -32,7 +31,6 @@ class CnpjValidator < ActiveModel::EachValidator
         number += first_checker_digit.to_s
         second_checker_digit = discover_checker_digit(number, SECOND_CHECKER_DIGITS_MULTIPLIERS)
         calculated_check = "#{first_checker_digit}#{second_checker_digit}"
-        puts "Expected check: #{check}, calculated check: #{calculated_check}"
         check == calculated_check
     end
   
