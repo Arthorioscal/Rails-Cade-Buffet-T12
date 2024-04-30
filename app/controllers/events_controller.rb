@@ -19,7 +19,7 @@ class EventsController < ApplicationController
         @buffet = current_user.buffet
         @event = Event.new(event_params)
         if @event.save
-            redirect_to events_path(@event), notice: 'Tipo de evento cadastrado com sucesso.'
+            redirect_to event_path(@event), notice: 'Tipo de evento cadastrado com sucesso.'
         else
             flash.now[:notice] = 'Não foi possível cadastrar o tipo de evento, tente novamente'
             render :new

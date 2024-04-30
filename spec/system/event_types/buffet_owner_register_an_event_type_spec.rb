@@ -94,6 +94,7 @@ describe 'Buffet Owner register event types' do
         click_on 'Cadastrar'
 
         expect(page).to have_content('Tipo de evento cadastrado com sucesso')
+        expect(page).to have_content('Fotos do Evento')
         expect(page).to have_css('img[src*="mgsbirthday.jpg"]')
     end
 end
