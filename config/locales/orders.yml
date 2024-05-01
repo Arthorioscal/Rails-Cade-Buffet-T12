@@ -1,0 +1,21 @@
+pt-BR:
+  date:
+    formats:
+      default: "%d/%m/%Y"
+      short: "%d de %B"
+      long: "%A, %d de %B de %Y"
+  time:
+    formats:
+      default: "%A, %d de %B de %Y, %H:%M"
+      short: "%d de %B, %H:%M"
+      long: "%A, %d de %B de %Y, %H:%M"
+  activerecord:
+    attributes:
+      order:
+        event_date: 'Data do Evento'
+        event_address: 'Endereço do Evento'
+        estimated_guests: 'Número de Convidados Estimado'
+        details: 'Detalhes do Evento'
+    errors:
+      messages:
+        record_invalid: "Não foi possível cadastrar o pedido, tente novamente"

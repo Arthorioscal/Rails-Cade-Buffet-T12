@@ -14,6 +14,9 @@ Rails.application.routes.draw do
     get 'search', to: 'buffets#search', on: :collection
   end
   resources :events, only: %i[index show new create edit update]
+
+  resources :orders, only: %i[index show new create edit update]
+
   resources :event_prices, only: %i[show new create edit update]
 
   get "up" => "rails/health#show", as: :rails_health_check

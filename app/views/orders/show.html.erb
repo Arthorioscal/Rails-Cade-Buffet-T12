@@ -1,0 +1,12 @@
+<h1> Este é o pedido ##{ @order.order_code } </h1>
+
+<p> Status: <%= @order.status %> </p>
+<p> Data do evento: <%= l(@order.event_date) %> </p>
+<p> Número de convidados: <%= @order.estimated_guests %> </p>
+<p> Detalhes: <%= @order.details %> </p>
+<p> Endereço do evento: <%= @order.event_address %> </p>
+<p> Buffet: <%= @order.buffet.brand_name %> </p>
+<p> TIpo de evento: <%= @order.event.name %> </p>
+<p> Cliente que fez o pedido: <%= @order.user.email %> </p>
+<p> Data do pedido: <%= l(@order.created_at) %> </p>
+<p> Última atualização: <%= l(@order.updated_at) %> </p>

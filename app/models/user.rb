@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
 
   has_one :buffet
+  has_many :orders
 
   validates :role, inclusion: { in: ['client', 'buffet_owner'],
   message: "%{value} não é um tipo de usuário válido" }

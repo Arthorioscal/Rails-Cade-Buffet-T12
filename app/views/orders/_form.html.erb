@@ -1,0 +1,22 @@
+ <%= form_with model: @order do |f| %>
+
+    <%= f.label :event_date%>
+    <%= f.date_field :event_date %>
+
+    <%= f.label :estimated_guests %>
+    <%= f.number_field :estimated_guests %>
+
+    <%= f.label :details %>
+    <%= f.text_area :details %>
+
+    <% if @event.at_buffet_location == true %>
+        <%= f.label :event_address %>
+        <%= f.text_field :event_address %>
+    <% end %>
+
+    <%= f.hidden_field :event_id, value: @event.id %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :buffet_id, value: @event.buffet.id %>
+
+    <%= f.submit 'Enviar Pedido' %>
+<% end %>

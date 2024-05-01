@@ -1,0 +1,14 @@
+<h1> Cadastra Pedido </h1>
+
+<%if @order.errors.any?%>
+    <div>
+        <h2>Erro ao realizar pedido</h2>
+        <ul>
+            <% @order.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
+
+<%= render 'form' %>

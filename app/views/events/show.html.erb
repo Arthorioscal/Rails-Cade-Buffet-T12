@@ -39,4 +39,8 @@
     </dd>
 </dl>
 
-<%= link_to 'Editar', edit_event_path(@event) %>
+<% if current_user.role == 'buffet_owner' %>
+    <%= link_to 'Editar', edit_event_path(@event) %>
+<% else %>
+    <%= link_to 'Realizar Pedido', new_order_path(event_id: @event.id) %>
+<% end %>

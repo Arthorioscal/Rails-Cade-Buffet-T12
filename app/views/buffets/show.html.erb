@@ -15,7 +15,7 @@
 <h2> Tipos de eventos do buffet </h2>
 <% if @buffet.events.present? %>
   <% @buffet.events.each do |event_type| %>
-    <p> Nome do evento: <%= event_type.name %> </p>
+    <p> Tipo de evento: <%= link_to event_type.name, event_path(event_type) %> </p>    <p> Nome do evento: <%= event_type.name %> </p>
     <p> Descrição do evento: <%= event_type.description %> </p>
     <p> Quantidade mínima de pessoas:<%= event_type.min_people %> </p>
     <p> Quantidade máxima de pessoas:<%= event_type.max_people %> </p>
