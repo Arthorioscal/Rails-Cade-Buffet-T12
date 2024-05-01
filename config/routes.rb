@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   resources :buffets, only: %i[show new create edit update] do
+    resources :buffet_orders, only: %i[index show]
     get 'profile', to: 'buffets#profile'
     get 'search', to: 'buffets#search', on: :collection
   end

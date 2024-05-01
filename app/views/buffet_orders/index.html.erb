@@ -1,0 +1,12 @@
+<h1> Estes são os pedidos do seu buffet: </h1>
+
+<% if @orders.present?%>
+    <% @orders.each do |status, orders| %>
+    <h2>Status do Pedido: <%= t(status, scope: [:activerecord, :attributes, :order]) %></h2>
+        <% orders.each do |order| %>
+            <h3><%= link_to  "Pedido: #{order.order_code}",  buffet_buffet_order_path(@buffet,order) %></h3>
+        <% end %>
+    <% end %>
+<% else %>
+    <h2>Você ainda não tem nenhum pedido registrado</h2>
+<% end %>

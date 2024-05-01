@@ -1,0 +1,10 @@
+<h1> Detalhes do Pedido </h1>
+<p> Status: <%= t(@order.status, scope: [:activerecord, :attributes, :order]).upcase %> </p>
+<p> Data do evento: <%= l(@order.event_date) %> </p>
+<p> Número de convidados: <%= @order.estimated_guests %> </p>
+<p> Detalhes: <%= @order.details %> </p>
+<p> Endereço do evento: <%= @order.event_address %> </p>
+<p> Buffet: <%= @order.buffet.brand_name %> </p>
+<p> Tipo de evento: <%= @order.event.name %> </p>
+<p> Cliente que fez o pedido: <%= @order.user.email %> </p>
+<%= link_to 'Voltar', buffet_buffet_orders_path(@buffet) %>
