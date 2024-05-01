@@ -3,7 +3,8 @@
 <% if @orders.present?%>
     <% @orders.each do |o| %>
         <h2><%= link_to  "Pedido: #{o.order_code}",  order_path(o)%></h2>
-        <p><%= o.status %></p>
+        <p>Status do Pedido: <%= t(o.status, scope: [:activerecord, :attributes, :order]).upcase %></p>
+        <p>Data Estimada: <%= l(o.event_date)%>
     <% end %>
 <% else %>
     <h2>Você ainda não fez nenhum pedido</h2>

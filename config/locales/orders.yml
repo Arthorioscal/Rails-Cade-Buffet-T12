@@ -16,6 +16,12 @@ pt-BR:
         event_address: 'Endereço do Evento'
         estimated_guests: 'Número de Convidados Estimado'
         details: 'Detalhes do Evento'
+        status: 'Status'
+        awaiting_evaluation: 'Aguardando Avaliação'
+        confirmed: 'Confirmado'
+        canceled: 'Cancelado'
+        created_at: 'Data de Criação'
+        updated_at: 'Data de Atualização'
     errors:
       messages:
         record_invalid: "Não foi possível cadastrar o pedido, tente novamente"

@@ -3,7 +3,7 @@ class Order < ApplicationRecord
   belongs_to :event
   belongs_to :user
 
-  enum status: { awaiting_evaluation: 0, confirmed: 1}
+  enum status: { awaiting_evaluation: 0, confirmed: 1, canceled: 2}
 
   validates :event_date, :estimated_guests, :details, :order_code, :status, presence: true
   validates :estimated_guests, numericality: { only_integer: true, greater_than: 0 }
@@ -18,7 +18,7 @@ class Order < ApplicationRecord
   private
 
   def generate_order_code
-    self.order_code ||= SecureRandom.alphanumeric(8)
+    self.order_code ||= SecureRandom.alphanumeric(8).upcase
   end
 
   #def event_date_cannot_be_in_the_past
