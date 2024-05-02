@@ -7,4 +7,5 @@
 <p> Buffet: <%= @order.buffet.brand_name %> </p>
 <p> Tipo de evento: <%= @order.event.name %> </p>
 <p> Cliente que fez o pedido: <%= @order.user.email %> </p>
+<%= link_to 'Confirmar Pedido', buffet_confirmation_form_order_path(@order), method: :get %>
 <%= link_to 'Voltar', buffet_buffet_orders_path(@buffet) %>

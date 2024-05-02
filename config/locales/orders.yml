@@ -22,6 +22,7 @@ pt-BR:
         canceled: 'Cancelado'
         created_at: 'Data de Criação'
         updated_at: 'Data de Atualização'
+        valid_until: 'Data de validade para confirmação'
     errors:
       messages:
         record_invalid: "Não foi possível cadastrar o pedido, tente novamente"

@@ -1,0 +1,68 @@
+<h1> Confirme o pedido: </h1>
+
+<% if weekday?(@order.event_date) %>
+    <% wd_price = @order.event.event_price.wd_price %>
+    <% wd_extra_person = @order.event.event_price.wd_add_person_price %>
+    <% wd_extra_hour = @order.event.event_price.wd_extra_hour_price %>
+    <% final_price = calculate_final_price(@order, wd_price, wd_extra_person, wd_extra_hour) %>
+<% else %>
+    <% we_price = @order.event.event_price.we_price %>
+    <% we_extra_person = @order.event.event_price.we_add_person_price %>
+    <% we_extra_hour = @order.event.event_price.we_extra_hour_price %>
+    <% final_price = calculate_final_price(@order, we_price, we_extra_person, we_extra_hour) %>
+<% end %>
+
+<%= form_with(model: @order, url: buffet_confirmation_order_path(@order), method: :patch, local: true) do |form| %>
+  <div>
+    <%= form.label :final_price, "Valor Final" %>
+    <%= form.number_field :final_price, value: number_to_currency(final_price, unit: ""), step: 0.01, readonly: true %>
+  </div>
+
+  <div>
+    <%= form.label :valid_until, "Data de validade para confirmação"%>
+    <%= form.date_field :valid_until %>
+  </div>
+
+  <div>
+    <%= form.label :extra_fee, "Taxa Extra" %>
+    <%= form.number_field :extra_fee, step: 0.01, placeholder: "Opcional" %>
+  </div>
+
+  <div>
+    <%= form.label :discount, "Desconto" %>
+    <%= form.number_field :discount, step: 0.01, placeholder: "Opcional" %>
+  </div>
+
+  <div>
+    <%= form.label :description, "Descrição caso ocorra alteração no valor: " %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :order_payment_method, "Meio de Pagamento" %>
+    <%= form.text_field :order_payment_method %>
+  </div>
+
+  <div style="display: none;">
+    <%= form.label :event_date %>
+    <%= form.date_field :event_date, readonly: true %>
+
+    <%= form.label :estimated_guests %>
+    <%= form.number_field :estimated_guests, readonly: true %>
+
+    <%= form.label :details %>
+    <%= form.text_field :details, readonly: true %>
+
+    <%= form.label :event_address %>
+    <%= form.text_field :event_address, readonly: true %>
+
+    <%= form.label :buffet_id %>
+    <%= form.number_field :buffet_id, readonly: true %>
+
+    <%= form.label :event_id %>
+    <%= form.number_field :event_id, readonly: true %>
+  </div>
+
+  <%= form.submit "Confirmar Pedido" %>
+<% end %>
+

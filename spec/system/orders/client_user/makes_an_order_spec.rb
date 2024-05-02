@@ -21,6 +21,7 @@ describe 'Client makes an order' do
             fill_in 'Data do Evento', with: '10/10/2099'
             fill_in 'Número de Convidados Estimado', with: 50
             fill_in 'Detalhes do Evento', with: 'Festa de aniversário de 50 anos'
+            fill_in 'Endereço do Evento', with: 'Localidade do Buffet, 123'
         click_on 'Enviar Pedido'
 
         expect(page).to have_content('Pedido realizado com sucesso')

@@ -11,12 +11,18 @@ Rails.application.routes.draw do
 
   resources :buffets, only: %i[show new create edit update] do
     resources :buffet_orders, only: %i[index show]
+
     get 'profile', to: 'buffets#profile'
     get 'search', to: 'buffets#search', on: :collection
   end
   resources :events, only: %i[index show new create edit update]
 
-  resources :orders, only: %i[index show new create edit update]
+  resources :orders, only: %i[index show new create edit update] do
+    member do
+      get :buffet_confirmation_form
+      patch :buffet_confirmation
+    end
+  end
 
   resources :event_prices, only: %i[show new create edit update]
 

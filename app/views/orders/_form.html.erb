@@ -9,7 +9,7 @@
     <%= f.label :details %>
     <%= f.text_area :details %>
 
-    <% if @event.at_buffet_location == true %>
+    <% if @event.at_buffet_location %>
         <%= f.label :event_address %>
         <%= f.text_field :event_address %>
     <% end %>
