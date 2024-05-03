@@ -24,7 +24,7 @@ class OrdersController < ApplicationController
           redirect_to buffet_buffet_orders_path(@order.buffet), notice: 'Pedido confirmado com sucesso'
         else
           flash.now[:notice] = 'Não foi possível confirmar o pedido, tente novamente'
-          render :edit
+          render :buffet_confirmation_form
         end
     end
 

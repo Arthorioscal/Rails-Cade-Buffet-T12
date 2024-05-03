@@ -9,12 +9,25 @@
 <p> TIpo de evento: <%= @order.event.name %> </p>
 <p> Cliente que fez o pedido: <%= @order.user.email %> </p>
 
-<% if @order.status == 'confirmed_by_owner' && current_user.role == 'client' %>
-    <p> Data Limite para confirmação: <%= l(@order.valid_until) %> </p>
-    <p> Valor do Pedido: <%= number_to_currency(@order.final_price) %> </p>
-    <p> Taxa Extra: <%= number_to_currency(@order.extra_fee) %> </p>
-    <p> Desconto: <%= number_to_currency(@order.discount) %> </p>
-    <p> Detalhes da Alteração no Valor: <%= @order.description %> </p>
-    <p> Valor Total: <%= number_to_currency(@order.final_price - @order.discount + @order.extra_fee) %> </p>
-    <%= button_to "Confirmar Pedido", client_confirmation_order_path(@order), method: :patch %>
-<% end %>
+
+<div>
+    <% if @order.status == 'confirmed_by_owner' && @order.valid_until > Date.today %>
+        <p> Data Limite para confirmação: <%= l(@order.valid_until) %> </p>
+        <p> Valor do Pedido: <%= number_to_currency(@order.final_price) %> </p>
+        <p> Taxa Extra: <%= number_to_currency(@order.extra_fee) %> </p>
+        <p> Desconto: <%= number_to_currency(@order.discount) %> </p>
+        <p> Detalhes da Alteração no Valor: <%= @order.description %> </p>
+        <p> Valor Total: <%= number_to_currency(@order.final_price - @order.discount + @order.extra_fee) %> </p>
+        <p> Meio de Pagamento: <%= @order.order_payment_method %> </p>
+        <% if current_user.role == 'client' %>
+            <%= button_to "Confirmar Pedido", client_confirmation_order_path(@order), method: :patch %>
+        <% end %>
+    <% elsif @order.valid_until && @order.valid_until < Date.today  %>
+        <h2> Pedido expirado. </h2>
+        <p> Este pedido expirou em <%= l(@order.valid_until) %>. </p>
+        <p> Para mais informações, entre em contato com o buffet. </p>
+    <% else %>
+        <h2> Este pedido ainda não foi confirmado pelo buffet. </h2>
+        <p> Para mais informações, entre em contato com o buffet. </p>
+    <% end %>
+</div>

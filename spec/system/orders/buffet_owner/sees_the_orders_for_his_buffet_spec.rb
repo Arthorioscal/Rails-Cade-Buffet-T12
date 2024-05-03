@@ -63,8 +63,9 @@ describe 'Buffet owner sees the orders made for his buffet' do
         client = User.create!(email: 'bigboss@gmail.com', password: 'bigboss', name: 'Big Boss', cpf: '11543210023', role: :client)
         order = Order.create!(event_date: '10/10/2099', estimated_guests: 50, details: 'Festa de aniversário de 50 anos', event_address: 'Rua do Evento, 123', buffet: buffet, event: event, user: client)
         client2 = User.create!(email: 'TheBoss@mail.com', password: 'theboss', name: 'The Boss', cpf: '99692188086', role: :client)
-        order2 = Order.create!(event_date: '10/10/2098', estimated_guests: 50, details: 'Festa de aniversário de 50 anos', event_address: 'Rua do Evento, 123', buffet: buffet, event: event, user: client2, status: :confirmed)
-        
+        order2 =  Order.create!(event_date: '10/10/2099', estimated_guests: 50, details: 'Festa de aniversário de 50 anos', event_address: 'Rua do Evento, 123', buffet: buffet, event: event, user: client, 
+            status: 1, valid_until: 7.days.from_now, extra_fee: 100, discount: 0, description: 'Festa de aniversário de 50 anos é mais caro', order_payment_method: 'Cartão de Crédito', final_price: 2600)
+
         login_as user, scope: :user
         visit root_path
         click_on 'Meu Buffet'
@@ -90,7 +91,8 @@ describe 'Buffet owner sees the orders made for his buffet' do
         client = User.create!(email: 'bigboss@gmail.com', password: 'bigboss', name: 'Big Boss', cpf: '11543210023', role: :client)
         order = Order.create!(event_date: '10/10/2099', estimated_guests: 50, details: 'Festa de aniversário de 50 anos', event_address: 'Rua do Evento, 123', buffet: buffet, event: event, user: client)
         client2 = User.create!(email: 'TheBoss@mail.com', password: 'theboss', name: 'The Boss', cpf: '99692188086', role: :client)
-        order2 = Order.create!(event_date: '10/10/2099', estimated_guests: 60, details: 'Festa de aniversário de 60 anos', event_address: 'Rua dos Eventos, 133', buffet: buffet, event: event, user: client2, status: :confirmed)
+        order2 =  Order.create!(event_date: '10/10/2099', estimated_guests: 50, details: 'Festa de aniversário de 50 anos', event_address: 'Rua do Evento, 123', buffet: buffet, event: event, user: client, 
+            status: 1, valid_until: 7.days.from_now, extra_fee: 100, discount: 0, description: 'Festa de aniversário de 50 anos é mais caro', order_payment_method: 'Cartão de Crédito', final_price: 2600)
 
         login_as user, scope: :user
         visit root_path

@@ -1,5 +1,17 @@
 <h1> Confirme o pedido: </h1>
 
+<%if @order.errors.any?%>
+    <div>
+        <h2>Erro ao confirmar o pedido.</h2>
+        <ul>
+            <% @order.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
+
+<% final_price = 0 %>
 <% if weekday?(@order.event_date) %>
     <% wd_price = @order.event.event_price.wd_price %>
     <% wd_extra_person = @order.event.event_price.wd_add_person_price %>
@@ -15,7 +27,7 @@
 <%= form_with(model: @order, url: buffet_confirmation_order_path(@order), method: :patch, local: true) do |form| %>
   <div>
     <%= form.label :final_price, "Valor Final" %>
-    <%= form.number_field :final_price, value: number_to_currency(final_price, unit: ""), step: 0.01, readonly: true %>
+    <%= form.number_field :final_price, value: final_price, step: 0.01, readonly: true %>
   </div>
 
   <div>

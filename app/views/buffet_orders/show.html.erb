@@ -7,5 +7,16 @@
 <p> Buffet: <%= @order.buffet.brand_name %> </p>
 <p> Tipo de evento: <%= @order.event.name %> </p>
 <p> Cliente que fez o pedido: <%= @order.user.email %> </p>
-<%= link_to 'Confirmar Pedido', buffet_confirmation_form_order_path(@order), method: :get %>
+<% if @order.status == 'confirmed_by_owner' && @order.valid_until > Date.today %>
+        <p> Data Limite para confirmação: <%= l(@order.valid_until) %> </p>
+        <p> Valor do Pedido: <%= number_to_currency(@order.final_price) %> </p>
+        <p> Taxa Extra: <%= number_to_currency(@order.extra_fee) %> </p>
+        <p> Desconto: <%= number_to_currency(@order.discount) %> </p>
+        <p> Detalhes da Alteração no Valor: <%= @order.description %> </p>
+        <p> Preço do Pedido (sem acréscimo): <%= number_to_currency(@order.final_price) %> </p>
+        <p> Valor Total: <%= number_to_currency(@order.final_price - @order.discount + @order.extra_fee) %> </p>
+        <p> Meio de Pagamento: <%= @order.order_payment_method %> </p>
+<% else%>
+    <%= link_to 'Confirmar Pedido', buffet_confirmation_form_order_path(@order), method: :get %>
+<% end %>
 <%= link_to 'Voltar', buffet_buffet_orders_path(@buffet) %>

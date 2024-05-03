@@ -34,6 +34,8 @@ RSpec.configure do |config|
     driven_by(:rack_test) 
   end
 
+  include ActiveSupport::Testing::TimeHelpers
+
   config.include Devise::Test::IntegrationHelpers, type: :system
   
   config.include Warden::Test::Helpers

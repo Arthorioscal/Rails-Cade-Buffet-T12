@@ -25,5 +25,32 @@ pt-BR:
         updated_at: 'Data de Atualização'
         valid_until: 'Data de validade para confirmação'
     errors:
+      models:
+        order:
+          attributes:
+            extra_fee:
+              blank: "Selecione o preço extra ( se não tiver coloque um zero )"
+            event_date:
+              blank: "Informe a data do evento"
+              invalid_date: "Data inválida"
+            event_address:
+              blank: "Informe o endereço do evento"
+            estimated_guests:
+              blank: "Informe o número de convidados"
+              not_a_number: "Informe um número válido"
+              not_an_integer: "Informe um número inteiro"
+            details:
+              blank: "Informe os detalhes do evento"
+            status:
+              blank: "Informe o status do pedido"
+            valid_until:
+              blank: "Informe a data de validade para confirmação"
+              invalid_date: "Data inválida"
+            discount:
+              not_a_number: "Informe um número válido"
+              not_an_integer: "Informe um número inteiro"
+              blank: "Selecione o desconto ( se não tiver coloque um zero )"
+            description: 
+              blank: "Informe a descrição do pedido"
       messages:
         record_invalid: "Não foi possível cadastrar o pedido, tente novamente"

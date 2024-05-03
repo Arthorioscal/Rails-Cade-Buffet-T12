@@ -9,8 +9,12 @@ class Order < ApplicationRecord
   validates :estimated_guests, numericality: { only_integer: true, greater_than: 0 }
   validates :order_code, length: { is: 8 }
   validates :status, inclusion: { in: %w[awaiting_evaluation confirmed_by_owner confirmed canceled] }
+
+  validates :valid_until, :final_price, :discount, :extra_fee, :description, presence: true, if: :status_confirmed?
+  
+  validate :event_date_cannot_be_in_the_past
   validate :event_address_required_if_at_buffet_location
-  #validates :event_date_cannot_be_in_the_past
+  #validate :valid_until_cannot_be_in_the_past
 
   before_validation :generate_order_code, on: :create
 
@@ -21,13 +25,25 @@ class Order < ApplicationRecord
     self.order_code ||= SecureRandom.alphanumeric(8).upcase
   end
 
-  #def event_date_cannot_be_in_the_past
-  #  errors.add(:event_date, 'não pode ser no passado') if event_date.present? && event_date < Date.today
-  #end
+  def event_date_cannot_be_in_the_past
+    if self.event_date.present? && self.event_date < Date.today
+      self.errors.add(:event_date, 'não pode ser no passado')
+    end
+  end
 
   def event_address_required_if_at_buffet_location
     if event.at_buffet_location? && event_address.blank?
       errors.add(:event_address, "deve ser preenchido se o evento for fora do buffet")
     end
   end
+
+  def status_confirmed?
+    status == 'confirmed_by_owner' || status == 'confirmed'
+  end
+
+  #def valid_until_cannot_be_in_the_past
+  #  if self.valid_until.present? && self.valid_until < Date.today
+  #    self.errors.add(:valid_until, 'O pedido expirou')
+  # end
+  #end
 end
