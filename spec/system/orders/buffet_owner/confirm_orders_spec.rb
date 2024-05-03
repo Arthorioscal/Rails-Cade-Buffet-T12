@@ -56,6 +56,6 @@ describe 'Buffet owner confirms orders' do
         click_on 'Confirmar Pedido'
 
         expect(page).to have_content('Pedido confirmado com sucesso')
-        expect(page).to have_content('Status do Pedido: Confirmado')
+        expect(page).to have_content('Status: Confirmado')
     end
 end

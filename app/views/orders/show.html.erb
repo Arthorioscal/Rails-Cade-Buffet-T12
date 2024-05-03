@@ -1,6 +1,6 @@
-<h1> Este é o pedido ##{ @order.order_code } </h1>
+<h1> Este é o pedido <%= @order.order_code %> </h1>
 
-<p> Status: <%= @order.status %> </p>
+<p> Status: <%= t(@order.status, scope: [:activerecord, :attributes, :order]) %> </p>
 <p> Data do evento: <%= l(@order.event_date) %> </p>
 <p> Número de convidados: <%= @order.estimated_guests %> </p>
 <p> Detalhes: <%= @order.details %> </p>
@@ -8,5 +8,13 @@
 <p> Buffet: <%= @order.buffet.brand_name %> </p>
 <p> TIpo de evento: <%= @order.event.name %> </p>
 <p> Cliente que fez o pedido: <%= @order.user.email %> </p>
-<p> Data do pedido: <%= l(@order.created_at) %> </p>
-<p> Última atualização: <%= l(@order.updated_at) %> </p>
+
+<% if @order.status == 'confirmed_by_owner' && current_user.role == 'client' %>
+    <p> Data Limite para confirmação: <%= l(@order.valid_until) %> </p>
+    <p> Valor do Pedido: <%= number_to_currency(@order.final_price) %> </p>
+    <p> Taxa Extra: <%= number_to_currency(@order.extra_fee) %> </p>
+    <p> Desconto: <%= number_to_currency(@order.discount) %> </p>
+    <p> Detalhes da Alteração no Valor: <%= @order.description %> </p>
+    <p> Valor Total: <%= number_to_currency(@order.final_price - @order.discount + @order.extra_fee) %> </p>
+    <%= button_to "Confirmar Pedido", client_confirmation_order_path(@order), method: :patch %>
+<% end %>

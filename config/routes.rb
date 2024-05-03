@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     member do
       get :buffet_confirmation_form
       patch :buffet_confirmation
+      patch :client_confirmation
     end
   end
 

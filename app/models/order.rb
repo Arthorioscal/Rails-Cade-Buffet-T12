@@ -3,12 +3,12 @@ class Order < ApplicationRecord
   belongs_to :event
   belongs_to :user
 
-  enum status: { awaiting_evaluation: 0, confirmed: 1, canceled: 2}
+  enum status: { awaiting_evaluation: 0, confirmed_by_owner: 1, confirmed: 2, canceled: 3}
 
   validates :event_date, :estimated_guests, :details, :order_code, :status, presence: true
   validates :estimated_guests, numericality: { only_integer: true, greater_than: 0 }
   validates :order_code, length: { is: 8 }
-  validates :status, inclusion: { in: %w[awaiting_evaluation confirmed cancelled] }
+  validates :status, inclusion: { in: %w[awaiting_evaluation confirmed_by_owner confirmed canceled] }
   validate :event_address_required_if_at_buffet_location
   #validates :event_date_cannot_be_in_the_past
 

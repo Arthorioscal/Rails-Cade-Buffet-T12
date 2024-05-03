@@ -20,12 +20,18 @@ class OrdersController < ApplicationController
 
     def buffet_confirmation
         @order = Order.find(params[:id])
-        if @order.update(order_params.merge(status: 'confirmed'))
+        if @order.update(order_params.merge(status: 'confirmed_by_owner'))
           redirect_to buffet_buffet_orders_path(@order.buffet), notice: 'Pedido confirmado com sucesso'
         else
           flash.now[:notice] = 'Não foi possível confirmar o pedido, tente novamente'
           render :edit
         end
+    end
+
+    def client_confirmation
+        @order = Order.find(params[:id])
+        @order.update(status: 2)
+        redirect_to orders_path(@order), notice: 'Pedido confirmado com sucesso'
     end
 
     def create 
@@ -46,6 +52,6 @@ class OrdersController < ApplicationController
     private
 
     def order_params
-        params.require(:order).permit(:event_date, :estimated_guests, :details, :event_address, :buffet_id, :event_id)
+        params.require(:order).permit(:event_date, :estimated_guests, :details, :event_address, :buffet_id, :event_id, :final_price, :valid_until, :extra_fee, :discount, :description, :order_payment_method)
     end
 end

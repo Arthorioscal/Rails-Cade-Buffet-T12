@@ -18,6 +18,7 @@ pt-BR:
         details: 'Detalhes do Evento'
         status: 'Status'
         awaiting_evaluation: 'Aguardando Avaliação'
+        confirmed_by_owner: "Confirmado pelo Dono do Buffet"
         confirmed: 'Confirmado'
         canceled: 'Cancelado'
         created_at: 'Data de Criação'

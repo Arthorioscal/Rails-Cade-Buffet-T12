@@ -5,6 +5,10 @@
         <h2><%= link_to  "Pedido: #{o.order_code}",  order_path(o)%></h2>
         <p>Status do Pedido: <%= t(o.status, scope: [:activerecord, :attributes, :order]).upcase %></p>
         <p>Data Estimada: <%= l(o.event_date)%>
+        <% if o.status == 'confirmed_by_owner' %>
+            <p> Válido até: <%= l(o.valid_until) %> </p>
+            <p> Valor Total: <%= number_to_currency(o.final_price + o.discount - o.extra_fee)%> </p>
+        <% end %>
     <% end %>
 <% else %>
     <h2>Você ainda não fez nenhum pedido</h2>
