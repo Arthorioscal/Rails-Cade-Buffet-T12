@@ -39,7 +39,7 @@ class OrdersController < ApplicationController
         @order = Order.new(order_params)
         @order.user = current_user # set the user to the currently logged in user
         if @order.event_address.blank? && @order.event.at_buffet_location == true
-            @order.errors.add(:event_address, "deve ser preenchido se o evento for fora do buffet")
+            @order.errors.add(:event_address, "adicione informações no campo")
             render :new
         elsif @order.save
             redirect_to orders_path(@order), notice: 'Pedido realizado com sucesso'

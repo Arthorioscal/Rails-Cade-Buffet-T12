@@ -8,6 +8,7 @@ class Order < ApplicationRecord
   validates :event_date, :estimated_guests, :details, :order_code, :status, presence: true
   validates :estimated_guests, numericality: { only_integer: true, greater_than: 0 }
   validates :order_code, length: { is: 8 }
+
   validates :status, inclusion: { in: %w[awaiting_evaluation confirmed_by_owner confirmed canceled] }
 
   validates :valid_until, :final_price, :discount, :extra_fee, :description, presence: true, if: :status_confirmed?
@@ -46,4 +47,11 @@ class Order < ApplicationRecord
   #    self.errors.add(:valid_until, 'O pedido expirou')
   # end
   #end
+
+  def cancel_if_not_confirmed_and_event_date_passed
+    if !status_confirmed? || status == 'awaiting_evaluation' && event_date < Date.current
+      self.status = 'canceled'
+      self.save
+    end
+  end
 end
