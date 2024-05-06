@@ -36,7 +36,7 @@
     <h2> Mensagens </h2>
     <% @order.messages.each do |message| %>
     <p>
-        <strong><%= message.user.name %>:</strong>
+        <strong><%= message.user.buffet ? message.user.buffet.brand_name : message.user.name %>:</strong>
         <%= message.content %>
         <em><%= message.created_at.strftime('%d/%m/%Y %H:%M') %></em>
     </p>
