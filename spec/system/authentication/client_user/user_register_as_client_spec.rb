@@ -65,4 +65,19 @@ describe 'User signs up as a client' do
         expect(page).to have_content('Nome não pode ficar em branco')
         expect(page).to have_content('CPF não pode ficar em branco')
     end
+    
+    it 'guests will register from the login page' do
+
+        visit root_path
+        click_on 'Fazer Cadastro'
+        click_on 'Registrar como um Cliente'
+        fill_in 'E-mail', with: 'nakedsnake@mgs.com'
+        fill_in 'Senha', with: 'bigboss'
+        fill_in 'Confirme sua senha', with: 'bigboss'
+        fill_in 'Nome', with: 'Naked Snake'
+        fill_in 'CPF', with: '20201881047'
+        click_on 'Cadastrar'
+
+        expect(page).to have_content('Você realizou seu registro com sucesso.')
+    end
 end

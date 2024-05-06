@@ -31,3 +31,20 @@
         <p> Para mais informações, entre em contato com o buffet. </p>
     <% end %>
 </div>
+
+<div>
+    <h2> Mensagens </h2>
+    <% @order.messages.each do |message| %>
+    <p>
+        <strong><%= message.user.name %>:</strong>
+        <%= message.content %>
+        <em><%= message.created_at.strftime('%d/%m/%Y %H:%M') %></em>
+    </p>
+    <% end %>
+</div>
+<div>
+    <%= form_for [@order, Message.new] do |f| %>
+        <%= f.text_area :content %>
+        <%= f.submit 'Enviar mensagem' %>
+    <% end %>
+</div>

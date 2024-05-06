@@ -113,6 +113,5 @@ describe 'Buffet owner confirms orders' do
         
         expect(page).not_to have_link('Confirmar Pedido')
         expect(page).to have_content('Pedido expirado.')
-
     end
 end

@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   resources :events, only: %i[index show new create edit update]
 
   resources :orders, only: %i[index show new create edit update] do
+    resources :messages, only: %i[create]
+    
     member do
       get :buffet_confirmation_form
       patch :buffet_confirmation

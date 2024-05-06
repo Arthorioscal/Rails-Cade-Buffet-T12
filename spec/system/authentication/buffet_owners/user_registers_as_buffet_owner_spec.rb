@@ -62,4 +62,18 @@ describe 'User registers as buffet owner' do
 
         expect(page).to have_content('E-mail já cadastrado')
     end
+
+    it 'user from the login page will register as buffet owner' do
+
+        visit root_path
+        click_on 'Entrar'
+        click_on 'Cadastre-se'
+        click_on 'Registrar como um Dono de Buffet'
+        fill_in 'E-mail', with: 'bigboss@mgs'
+        fill_in 'Senha', with: 'nakedsnake'
+        fill_in 'Confirme sua senha', with: 'nakedsnake'
+        click_on 'Cadastrar'
+
+        expect(page).to have_content('Bem vindo! Você realizou seu registro com sucesso.')
+    end
 end

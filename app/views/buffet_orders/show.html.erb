@@ -20,3 +20,20 @@
     <%= link_to 'Confirmar Pedido', buffet_confirmation_form_order_path(@order), method: :get %>
 <% end %>
 <%= link_to 'Voltar', buffet_buffet_orders_path(@buffet) %>
+
+<div>
+    <h2> Mensagens </h2>
+    <% @order.messages.each do |message| %>
+    <p>
+        <strong><%= message.user.buffet ? message.user.buffet.brand_name : message.user.name %>:</strong>
+        <%= message.content %>
+        <em><%= message.created_at.strftime('%d/%m/%Y %H:%M') %></em>
+    </p>
+    <% end %>
+</div>
+<div>
+    <%= form_for [@order, Message.new] do |f| %>
+        <%= f.text_area :content %>
+        <%= f.submit 'Enviar mensagem' %>
+    <% end %>
+</div>  

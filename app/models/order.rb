@@ -1,4 +1,5 @@
 class Order < ApplicationRecord
+  has_many :messages, dependent: :destroy
   belongs_to :buffet
   belongs_to :event
   belongs_to :user
@@ -48,10 +49,10 @@ class Order < ApplicationRecord
   # end
   #end
 
-  def cancel_if_not_confirmed_and_event_date_passed
-    if !status_confirmed? || status == 'awaiting_evaluation' && event_date < Date.current
-      self.status = 'canceled'
-      self.save
-    end
-  end
+  #def cancel_if_not_confirmed_and_event_date_passed
+  #  if !status_confirmed? || status == 'awaiting_evaluation' && event_date < Date.current
+  #    self.status = 'canceled'
+  #    self.save
+  #  end
+  #end
 end
