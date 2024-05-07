@@ -5,7 +5,8 @@ class Api::V1::BuffetsController < Api::V1::ApiController
     end
 
     def show
-        @buffet = Buffet.find(params:[:id])
-        render status: 200, json: @buffet
+        @buffet = Buffet.find(params[:id])
+        render status: 200, json: @buffet.as_json(except: %i[corporate_name cnpj])
     end
+    
 end

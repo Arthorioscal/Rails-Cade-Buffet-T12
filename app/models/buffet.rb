@@ -12,4 +12,5 @@ class Buffet < ApplicationRecord
   def self.search(search)
     search ? where("brand_name LIKE ?", "%#{search}%") : all
   end
+  
 end
