@@ -29,5 +29,14 @@ Rails.application.routes.draw do
 
   resources :event_prices, only: %i[show new create edit update]
 
+  namespace :api do
+    namespace :v1 do
+      resources :buffets, only: %i[index show] do
+        resources :events, only: %i[index]
+        get 'available_dates', on: :member
+      end
+    end
+  end
+
   get "up" => "rails/health#show", as: :rails_health_check
 end
