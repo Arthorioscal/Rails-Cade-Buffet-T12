@@ -10,7 +10,7 @@ class Event < ApplicationRecord
   validates :alcohol, :decoration, :parking_service, :at_buffet_location, inclusion: { in: [true, false] }
 
   def available_on?(date, guests)
-    if orders.where(event_date: date).exists?
+    if orders.where(event_date: date).exists? || guests > max_people || date < Date.today || orders.pluck(:status).any? { |status| [1, 2].include?(status) }
       { available: false }
     else
       price = calculate_price(date, guests)
