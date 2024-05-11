@@ -76,4 +76,17 @@ describe 'User registers as buffet owner' do
 
         expect(page).to have_content('Bem vindo! Você realizou seu registro com sucesso.')
     end
+
+    it 'and return to home page and requires him to register a buffet before' do
+        visit root_path
+        click_on 'Entrar'
+        click_on 'Cadastre-se'
+        click_on 'Registrar como um Dono de Buffet'
+        fill_in 'E-mail', with: 'bigboss@mgs'
+        fill_in 'Senha', with: 'nakedsnake'
+        fill_in 'Confirme sua senha', with: 'nakedsnake'
+        click_on 'Cadastrar'
+    
+        expect(current_path).to eq('/buffets/new')
+    end
 end

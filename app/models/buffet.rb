@@ -1,5 +1,7 @@
 class Buffet < ApplicationRecord
   belongs_to :user
+
+  has_one_attached :cover_photo
   
   has_many :events
   has_many :event_prices, through: :events

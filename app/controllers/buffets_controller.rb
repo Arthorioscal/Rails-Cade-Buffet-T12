@@ -50,7 +50,7 @@ class BuffetsController < ApplicationController
     private
 
     def buffet_params
-        params.require(:buffet).permit(:brand_name, :corporate_name, :cnpj, :phone, :email, :address, :neighborhood, :state, :city, :zip_code, :description, :payment_methods)
+        params.require(:buffet).permit(:brand_name, :corporate_name, :cnpj, :phone, :email, :address, :neighborhood, :state, :city, :zip_code, :description, :payment_methods, :cover_photo)
     end
 
     def user_not_authenticated

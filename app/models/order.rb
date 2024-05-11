@@ -34,7 +34,7 @@ class Order < ApplicationRecord
   end
 
   def event_address_required_if_at_buffet_location
-    if event.at_buffet_location? && event_address.blank?
+    if event && event.at_buffet_location? && event_address.blank?
       errors.add(:event_address, "deve ser preenchido se o evento for fora do buffet")
     end
   end

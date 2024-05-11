@@ -37,6 +37,7 @@ pt-BR:
               blank: "Informe o endereço do evento"
             estimated_guests:
               blank: "Informe o número de convidados"
+              greater_than: "Número de convidados deve ser maior que zero"
               not_a_number: "Informe um número válido"
               not_an_integer: "Informe um número inteiro"
             details:

@@ -118,4 +118,20 @@ describe 'Guest view registered buffets' do
         expect(page).to have_content('Rua do Buffet, 123')
         expect(page).to have_content('Bairro do Buffet')
     end         
+
+    it 'views a buffet with an cover photo attached' do
+        user = User.create!(email: 'raiden@mgs.com', password: 'solidsnakefan', role: :buffet_owner)
+        buffet1 = Buffet.create!(brand_name: 'Buffet do Snake', corporate_name: 'Buffet Metal Gear Ltda', cnpj: '45195101000101',
+            phone: '11999999999', email: 'solidsnakefans@mail.com', address: 'Rua do Buffet, 123', neighborhood: 'Bairro do Buffet',
+            state: 'São Paulo', city: 'São Paulo', zip_code: '12345678', description: 'Buffet especializado em festas de aniversário',
+            payment_methods: 'Dinheiro, cartão de crédito e débito', cover_photo: fixture_file_upload(Rails.root.join('spec/support/images/mgsbirthday.jpg')), user: user)
+        Event.create!(name: 'Festa de Aniversário', description: 'Festa de aniversário com bolo, doces e salgados', min_people: 10,
+            max_people: 100, duration: 180, menu: 'Bolo, doces, salgados, refrigerante, vinho', alcohol: true, decoration: true, parking_service: true,
+            at_buffet_location: true, buffet: buffet1, photos: [fixture_file_upload(Rails.root.join('spec/support/images/mgsbirthday.jpg'))])
+
+        visit root_path
+        
+        expect(page).to have_css('img[src*="mgsbirthday.jpg"]')
+        expect(page).to have_content('Buffet do Snake')
+    end
 end

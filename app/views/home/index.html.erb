@@ -1,6 +1,7 @@
 <h1>Bem vindo ao Cade Buffet</h1>
 
 <% @buffets.each do |b| %>
+    <%= image_tag b.cover_photo if b.cover_photo.attached? %>
     <h2><%= link_to  "#{b.brand_name}",  buffet_path(b)%></h2>
     <p><%= b.city %> - <%= b.state%></p>
 <% end %>

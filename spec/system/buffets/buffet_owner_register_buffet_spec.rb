@@ -69,5 +69,20 @@ describe 'Buffet Owner register buffets' do
         expect(page).to have_content('Descrição')
         expect(page).to have_content('Formas de pagamento')
     end
+
+    it 'signs out in the registration page' do
+
+        visit root_path
+        click_on 'Fazer Cadastro'
+        click_on 'Registrar como um Dono de Buffet'
+        fill_in 'E-mail', with: 'bigboss@mgs.com'
+        fill_in 'Senha', with: '123456'
+        fill_in 'Confirme sua senha', with: '123456'
+        click_on 'Cadastrar'
+        click_on 'Sair'
+
+        expect(page).to have_content('Fazer Cadastro')
+        expect(page).to have_content('Entrar')
+    end
 end
 

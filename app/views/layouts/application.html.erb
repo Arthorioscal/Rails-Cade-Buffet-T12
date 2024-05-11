@@ -3,6 +3,8 @@
   <head>
     <title>Buffet</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -11,32 +13,48 @@
 
   <body>
     <header>
-      <h1>Cade Buffet</h1>
-      <nav>
-        <ul>
-          <li><%= link_to "Home", root_path %></li>
-            </ul>
-            <ul>
-              <%= form_with(url: search_buffets_path, method: :get) do |s|%>
-                <%= s.label :query, 'Buscar Buffet'%>
-                <%= s.text_field :query %>
-                <%= s.submit 'Buscar' %> 
-              <% end %>
-              <% if user_signed_in? %>
-                <li><%= current_user.email %></li>
-                <li><%= button_to 'Sair', destroy_user_session_path, method: :delete %>
-                <% if current_user.role == 'buffet_owner' && Buffet.exists?(user_id: current_user.id) %>
-                  <li><%= link_to "Meu Buffet", buffet_profile_path(current_user.buffet) %></li>
-                <% elsif current_user.role == 'client'%>
-                  <li><%= link_to "Meus Pedidos", orders_path %></li>
+    
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#"><%= link_to "Cade Buffet", root_path %></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <% if user_signed_in? %>
+                  <li class="nav-item">
+                    <%= link_to current_user.email, "#", class: "nav-link" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= button_to 'Sair', destroy_user_session_path, method: :delete, class: "nav-link" %>
+                  </li>
+                  <% if current_user.role == 'buffet_owner' && Buffet.exists?(user_id: current_user.id) %>
+                    <li class="nav-item">
+                      <%= link_to "Meu Buffet", buffet_profile_path(current_user.buffet), class: "nav-link" %>
+                    </li>
+                  <% elsif current_user.role == 'client'%>
+                    <li class="nav-item">
+                      <%= link_to "Meus Pedidos", orders_path, class: "nav-link" %>
+                    </li>
+                  <% end %>
+                <% else %>
+                  <li class="nav-item">
+                    <%= link_to "Fazer Cadastro", choose_role_path, class: "nav-link" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "Entrar", new_user_session_path, class: "nav-link" %>
+                  </li>
                 <% end %>
-              <% else %>
-                <li><%= link_to "Fazer Cadastro", choose_role_path %></li>
-                <li><%= link_to "Entrar", new_user_session_path %></li>
+              </ul>
+              <%= form_with(url: search_buffets_path, method: :get, class: "d-flex") do |s|%>
+                <%= s.label :query, 'Buscar Buffet', class: "visually-hidden" %>
+                <%= s.text_field :query, class: "form-control me-2", placeholder: "Buscar Buffet", aria_label: "Buscar Buffet" %>
+                <%= s.submit 'Buscar', class: "btn btn-outline-success" %> 
               <% end %>
-            </ul>
-        </ul>
-      </nav>
+            </div>
+          </div>
+  </nav>
 
     </header>
     <%= yield %>
@@ -44,5 +62,7 @@
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>

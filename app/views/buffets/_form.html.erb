@@ -47,6 +47,12 @@
         <%= f.label :payment_methods %>
         <%= f.text_field :payment_methods %>
     </div>
+
+    <div>
+        <%= f.label :cover_photo, 'Adicione uma foto para a exibição de seu Buffet' %>
+        <%= f.file_field :cover_photo %>
+    </div>
+
     <div>
         <%= f.submit 'Cadastrar' %>
     </div>
