@@ -9,6 +9,17 @@ class Event < ApplicationRecord
   validates :name, :description, :min_people, :max_people, :duration, :menu, :buffet_id, presence: true
   validates :alcohol, :decoration, :parking_service, :at_buffet_location, inclusion: { in: [true, false] }
 
+  validate :max_and_min_people_cannot_be_zero
+
+  def max_and_min_people_cannot_be_zero
+    if min_people == 0
+        errors.add(:min_people, 'não pode ser zero')
+    end
+    if max_people == 0
+        errors.add(:max_people, 'não pode ser zero')
+    end
+  end
+
   def available_on?(date, guests)
     if orders.where(event_date: date).exists? || guests > max_people || date < Date.today || orders.pluck(:status).any? { |status| [1, 2].include?(status) }
       { available: false }
