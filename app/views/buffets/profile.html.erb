@@ -5,12 +5,15 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="Buffet-prf-card-body">
-                    <h5 class="Buffet-prf-card-title"><%= @buffet.brand_name %></h5>
+                    <h4 class="Buffet-prf-card-title"><%= @buffet.brand_name %> </h5>
+                    <h5 class="Buffet-status"><strong> Status do Buffet: <%= @buffet.active %></strong></h6>
                     <p class="Buffet-prf-card-text"><%= @buffet.corporate_name %></p>
                     <p class="Buffet-prf-card-text"><%= @buffet.address %></p>
                     <p class="Buffet-prf-card-text"><%= @buffet.phone %></p>
                     <p class="Buffet-prf-card-text"><%= @buffet.email %></p>
                     <p class="Buffet-prf-card-text"><%= @buffet.description %></p>
+                    <p><%= button_to 'Toggle Active Status', toggle_active_buffet_path(@buffet), class: "btn btn-primary" %></p>
+
                 </div>
             </div>
             <div class="col-md-6">
@@ -34,7 +37,8 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="Event-card-body">
-                            <h5 class="Event-card-title" ><%= link_to event_type.name, event_path(event_type), class: "btn btn-info" %></h5>
+                            <h5 class="Event-card-title" ><%= link_to event_type.name, event_path(event_type), class: "btn btn-info" %>
+                            Status do Evento: <%= event_type.active%></h5>
                             <p class="Event-card-text">Descrição do Evento: <%= event_type.description %></p>
                             <p class="Event-card-text">Quantidade Mínima de Convidados: <%= event_type.min_people %></p>
                             <p class="Event-card-text">Quantidade Máxima de Convidados: <%= event_type.max_people %></p>
@@ -68,6 +72,7 @@
                     <%= link_to 'Cadastrar outro Tipo de Evento', new_event_path, class: "btn btn-primary" %>
                     <%= link_to 'Editar Evento', edit_event_path(event_type), class: "btn btn-primary" %>
                     <%= link_to 'Cadastrar Preço deste Evento', url_for(controller: 'event_prices', action: 'new', event_id: event_type.id), class: "btn btn-primary" %>
+                    <%= button_to 'Toggle Active Status', toggle_active_event_path(event_type), class: "btn btn-primary" %>
                 </div>
             </div>
         <% end %>

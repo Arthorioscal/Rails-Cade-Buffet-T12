@@ -23,12 +23,6 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <% if user_signed_in? %>
-                  <li class="nav-item">
-                    <%= link_to current_user.email, "#", class: "nav-link" %>
-                  </li>
-                  <li class="nav-item">
-                    <%= button_to 'Sair', destroy_user_session_path, method: :delete, class: "nav-link" %>
-                  </li>
                   <% if current_user.role == 'buffet_owner' && Buffet.exists?(user_id: current_user.id) %>
                     <li class="nav-item">
                       <%= link_to "Meu Buffet", buffet_profile_path(current_user.buffet), class: "nav-link" %>
@@ -38,6 +32,12 @@
                       <%= link_to "Meus Pedidos", orders_path, class: "nav-link" %>
                     </li>
                   <% end %>
+                  <li class="nav-item">
+                    <%= link_to current_user.email, "#", class: "nav-link" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= button_to 'Sair', destroy_user_session_path, method: :delete, class: "nav-link" %>
+                  </li>
                 <% else %>
                   <li class="nav-item">
                     <%= link_to "Fazer Cadastro", choose_role_path, class: "nav-link" %>

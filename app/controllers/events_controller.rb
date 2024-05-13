@@ -3,7 +3,7 @@ class EventsController < ApplicationController
     before_action :user_not_authenticated, only: [:edit, :update]
 
     def index
-        @events = Event.all
+        @events = Event.where(active: true)
     end
 
     def show
@@ -40,6 +40,12 @@ class EventsController < ApplicationController
             flash.now[:notice] = 'Não foi possível atualizar o tipo de evento, tente novamente'
             render :edit
         end
+    end
+
+    def toggle_active
+        @event = Event.find(params[:id])
+        @event.toggle!(:active)
+        redirect_to buffet_profile_path(current_user.buffet), notice: 'Status do tipo de evento atualizado com sucesso.'
     end
 
     private

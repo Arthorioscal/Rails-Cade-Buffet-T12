@@ -10,12 +10,21 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   resources :buffets, only: %i[show new create edit update] do
+    member do
+      post :toggle_active
+    end
+    
     resources :buffet_orders, only: %i[index show]
 
     get 'profile', to: 'buffets#profile'
     get 'search', to: 'buffets#search', on: :collection
   end
-  resources :events, only: %i[index show new create edit update]
+  
+  resources :events, only: %i[index show new create edit update] do
+    member do
+      post :toggle_active
+    end
+  end
 
   resources :orders, only: %i[index show new create edit update] do
     resources :messages, only: %i[create]

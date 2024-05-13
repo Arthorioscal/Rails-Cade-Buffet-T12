@@ -1,9 +1,11 @@
-<h1>Você é um Cliente ou um Dono de Buffet?</h1>
+<div class="container text-center">
+  <h1 class="my-4">Você deseja se registrar como um Dono de Buffet ou um Cliente?</h1>
 
-<p>
-  <%= link_to "Registrar como um Cliente", new_client_registration_path(role: 'client') %>
-</p>
+  <p>
+    <%= link_to "Registrar como um Cliente", new_client_registration_path(role: 'client'), class: "btn btn-primary mb-3" %>
+  </p>
 
-<p>
-  <%= link_to "Registrar como um Dono de Buffet", new_buffet_owner_registration_path(role: 'buffet_owner') %>
-</p>
+  <p>
+    <%= link_to "Registrar como um Dono de Buffet", new_buffet_owner_registration_path(role: 'buffet_owner'), class: "btn btn-primary mb-3" %>
+  </p>
+</div>

@@ -11,8 +11,12 @@ class Buffet < ApplicationRecord
   validates :cnpj, :email, uniqueness: true
   validates :cnpj, cnpj: { message: 'Inválido, tente novamente.' }
 
-  def self.search(search)
-    search ? where("brand_name LIKE ?", "%#{search}%") : all
+  def self.search(search, active: true)
+    if search
+      where("brand_name LIKE ? AND active = ?", "%#{search}%", active)
+    else
+      where(active: active)
+    end
   end
   
 end

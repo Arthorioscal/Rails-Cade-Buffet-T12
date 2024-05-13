@@ -1,16 +1,18 @@
-<h1>New Event Price</h1>
+<div class="container">
+  <h1 class="my-4">New Event Price</h1>
 
-<%if @event_price.errors.any?%>
-    <div>
-        <h2>Erro ao cadastrar fornecedor</h2>
-        <ul>
-            <% @event_price.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-        </ul>
+  <% if @event_price.errors.any? %>
+    <div class="alert alert-danger">
+      <h2>Erro ao cadastrar fornecedor</h2>
+      <ul>
+        <% @event_price.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     </div>
-<% end %>
+  <% end %>
 
-<%= render 'form', event_price: @event_price %>
+  <%= render 'form', event_price: @event_price %>
 
-<%= link_to 'Voltar', buffet_profile_path(@event.buffet.id) %>
+  <%= link_to 'Voltar', buffet_profile_path(@event.buffet.id), class: 'btn btn-secondary mt-3' %>
+</div>

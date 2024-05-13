@@ -2,26 +2,27 @@ class BuffetsController < ApplicationController
     before_action :authenticate_user!, only: [:profile, :new, :create, :edit, :update]
     before_action :user_not_authenticated, only: [:edit, :update]
 
-    def new
-        @buffet = Buffet.new
-    end
-
+    
     def show
         @buffet = Buffet.find(params[:id])
     end
-
+    
     def profile
         @buffet = current_user.buffet
         @event_prices = @buffet.events.map(&:event_price)
     end
-
+    
     def search
         @query = params[:query]
-        @buffets = Buffet.joins(:events).distinct
-                         .where("buffets.brand_name LIKE :query OR buffets.city LIKE :query OR events.name LIKE :query", query: "%#{@query}%")
-                         .order(:name)
+        @buffets = Buffet.where(active: true).joins(:events).distinct
+        .where("buffets.brand_name LIKE :query OR buffets.city LIKE :query OR events.name LIKE :query", query: "%#{@query}%")
+        .order(:name)
     end
-
+    
+    def new
+        @buffet = Buffet.new
+    end
+    
     def create
         @buffet = Buffet.new(buffet_params)
         @buffet.user = current_user
@@ -45,6 +46,12 @@ class BuffetsController < ApplicationController
             flash.now[:notice] = 'Não foi possível atualizar o buffet, tente novamente'
             render :edit
         end
+    end
+
+    def toggle_active
+        @buffet = Buffet.find(params[:id])
+        @buffet.toggle!(:active)
+        redirect_to buffet_profile_path(@buffet), notice: 'Status do buffet atualizado com sucesso.'
     end
 
     private
