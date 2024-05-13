@@ -1,14 +1,16 @@
-<h1> Cadastra Tipo de Evento </h1>
+<div class="container">
+  <h1 class="my-4">Cadastra Tipo de Evento</h1>
 
-<%if @event.errors.any?%>
-    <div>
-        <h2>Erro ao cadastrar fornecedor</h2>
-        <ul>
-            <% @event.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-        </ul>
+  <% if @event.errors.any? %>
+    <div class="alert alert-danger">
+      <h2>Erro ao cadastrar fornecedor</h2>
+      <ul>
+        <% @event.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     </div>
-<% end %>
+  <% end %>
 
-<%= render 'form' %>
+  <%= render 'form' %>
+</div>

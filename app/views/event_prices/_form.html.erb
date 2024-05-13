@@ -1,38 +1,37 @@
-<%= form_with(model: @event_price, url: event_prices_path(event_id: @event.id)) do |form| %>
-    <div>
-        <%= form.hidden_field :event_id, value: @event.id %>
-    </div>
-    <div class="field">
+<%= form_with(model: @event_price, url: event_prices_path(event_id: @event.id), html: { class: 'row gy-2 gx-3 align-items-center' }) do |form| %>
+    <%= form.hidden_field :event_id, value: @event.id %>
+
+    <div class="col-auto">
         <%= form.label :wd_price %>
-        <%= form.text_field :wd_price %>
+        <%= form.text_field :wd_price, class: 'form-control', placeholder: 'WD Price' %>
     </div>
-    
-    <div class="field">
+
+    <div class="col-auto">
         <%= form.label :wd_add_person_price %>
-        <%= form.text_field :wd_add_person_price %>
+        <%= form.text_field :wd_add_person_price, class: 'form-control', placeholder: 'WD Add Person Price' %>
     </div>
-    
-    <div class="field">
+
+    <div class="col-auto">
         <%= form.label :wd_extra_hour_price %>
-        <%= form.text_field :wd_extra_hour_price %>
+        <%= form.text_field :wd_extra_hour_price, class: 'form-control', placeholder: 'WD Extra Hour Price' %>
     </div>
-    
-    <div class="field">
+
+    <div class="col-auto">
         <%= form.label :we_price %>
-        <%= form.text_field :we_price %>
+        <%= form.text_field :we_price, class: 'form-control', placeholder: 'WE Price' %>
     </div>
-    
-    <div class="field">
+
+    <div class="col-auto">
         <%= form.label :we_add_person_price %>
-        <%= form.text_field :we_add_person_price %>
+        <%= form.text_field :we_add_person_price, class: 'form-control', placeholder: 'WE Add Person Price' %>
     </div>
-    
-    <div class="field">
+
+    <div class="col-auto">
         <%= form.label :we_extra_hour_price %>
-        <%= form.text_field :we_extra_hour_price %>
+        <%= form.text_field :we_extra_hour_price, class: 'form-control', placeholder: 'WE Extra Hour Price' %>
     </div>
-    
-    <div class="actions">
-        <%= form.submit 'Cadastrar' %>
+
+    <div class="col-auto">
+        <%= form.submit 'Cadastrar', class: 'btn btn-primary' %>
     </div>
 <% end %>

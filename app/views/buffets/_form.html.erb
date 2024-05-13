@@ -1,59 +1,59 @@
-<%= form_with model: @buffet do |f|%>
-    <div>
+<%= form_with model: @buffet, html: { class: 'row gy-2 gx-3 align-items-center' } do |f|%>
+    <div class="col-auto">
         <%= f.label :brand_name %>
-        <%= f.text_field :brand_name %>
+        <%= f.text_field :brand_name, class: 'form-control', placeholder: 'Brand Name' %>
     </div>
-    <div>
+    <div class="col-auto">
         <%= f.label :corporate_name %>
-        <%= f.text_field :corporate_name %>
+        <%= f.text_field :corporate_name, class: 'form-control', placeholder: 'Corporate Name' %>
     </div>
-    <div>
+    <div class="col-auto">
         <%= f.label :cnpj %>
-        <%= f.text_field :cnpj %>
+        <%= f.text_field :cnpj, class: 'form-control', placeholder: 'CNPJ' %>
     </div>
-    <div>
+    <div class="col-auto">
         <%= f.label :phone %>
-        <%= f.text_field :phone %>
+        <%= f.text_field :phone, class: 'form-control', placeholder: 'Phone' %>
     </div>
-    <div>
+    <div class="col-auto">
         <%= f.label :email %>
-        <%= f.text_field :email %>
+        <%= f.text_field :email, class: 'form-control', placeholder: 'Email' %>
     </div>
-    <div>
+    <div class="col-auto">
         <%= f.label :address %>
-        <%= f.text_field :address %>
+        <%= f.text_field :address, class: 'form-control', placeholder: 'Address' %>
     </div>
-    <div>
+    <div class="col-auto">
         <%= f.label :neighborhood %>
-        <%= f.text_field :neighborhood %>
+        <%= f.text_field :neighborhood, class: 'form-control', placeholder: 'Neighborhood' %>
     </div>
-    <div>
+    <div class="col-auto">
         <%= f.label :state %>
-        <%= f.text_field :state %>
+        <%= f.text_field :state, class: 'form-control', placeholder: 'State' %>
     </div>
-    <div>
+    <div class="col-auto">
         <%= f.label :city %>
-        <%= f.text_field :city %>
+        <%= f.text_field :city, class: 'form-control', placeholder: 'City' %>
     </div>
-    <div>
+    <div class="col-auto">
         <%= f.label :zip_code %>
-        <%= f.text_field :zip_code %>
+        <%= f.text_field :zip_code, class: 'form-control', placeholder: 'Zip Code' %>
     </div>
-    <div>
+    <div class="col-auto">
         <%= f.label :description %>
-        <%= f.text_area :description %>
+        <%= f.text_area :description, class: 'form-control', placeholder: 'Description' %>
     </div>
-    <div>
+    <div class="col-auto">
         <%= f.label :payment_methods %>
-        <%= f.text_field :payment_methods %>
+        <%= f.text_field :payment_methods, class: 'form-control', placeholder: 'Payment Methods' %>
     </div>
 
-    <div>
+    <div class="col-auto">
         <%= f.label :cover_photo, 'Adicione uma foto para a exibição de seu Buffet' %>
-        <%= f.file_field :cover_photo %>
+        <%= f.file_field :cover_photo, class: 'form-control' %>
     </div>
 
-    <div>
-        <%= f.submit 'Cadastrar' %>
+    <div class="col-auto">
+        <%= f.submit 'Cadastrar', class: 'btn btn-primary' %>
     </div>
 <% end %>

@@ -1,16 +1,18 @@
-<h1> Editar Buffet </h1>
+<div class="container">
+  <h1 class="my-4">Editar Buffet</h1>
 
-<%if @buffet.errors.any?%>
-    <div>
-        <h2>Erro ao cadastrar fornecedor</h2>
-        <ul>
-            <% @buffet.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-        </ul>
+  <% if @buffet.errors.any? %>
+    <div class="alert alert-danger">
+      <h2>Erro ao cadastrar fornecedor</h2>
+      <ul>
+        <% @buffet.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     </div>
-<% end %>
+  <% end %>
 
-<%= render 'form' %>
+  <%= render 'form' %>
 
-<%= link_to 'Voltar', buffet_profile_path(@buffet.id) %>
+  <%= link_to 'Voltar', buffet_profile_path(@buffet.id), class: "btn btn-secondary mt-3" %>
+</div>

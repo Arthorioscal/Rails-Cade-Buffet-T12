@@ -1,38 +1,62 @@
-<%= form_with(model: @event) do |form| %>
+<%= form_with(model: @event, html: { class: 'row gy-2 gx-3 align-items-center' }) do |form| %>
   <%= form.hidden_field :buffet_id, value: @buffet.id %>
 
-  <%= form.label :name %>
-  <%= form.text_field :name %>
+  <div class="col-auto">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'form-control', placeholder: 'Name' %>
+  </div>
 
-  <%= form.label :description %>
-  <%= form.text_area :description %>
+  <div class="col-auto">
+    <%= form.label :description %>
+    <%= form.text_area :description, class: 'form-control', placeholder: 'Description' %>
+  </div>
 
-  <%= form.label :min_people %>
-  <%= form.number_field :min_people %>
+  <div class="col-auto">
+    <%= form.label :min_people %>
+    <%= form.number_field :min_people, class: 'form-control', placeholder: 'Min People' %>
+  </div>
 
-  <%= form.label :max_people %>
-  <%= form.number_field :max_people %>
+  <div class="col-auto">
+    <%= form.label :max_people %>
+    <%= form.number_field :max_people, class: 'form-control', placeholder: 'Max People' %>
+  </div>
 
-  <%= form.label :duration %>
-  <%= form.number_field :duration %>
+  <div class="col-auto">
+    <%= form.label :duration %>
+    <%= form.number_field :duration, class: 'form-control', placeholder: 'Duration' %>
+  </div>
 
-  <%= form.label :menu %>
-  <%= form.text_area :menu %>
+  <div class="col-auto">
+    <%= form.label :menu %>
+    <%= form.text_area :menu, class: 'form-control', placeholder: 'Menu' %>
+  </div>
 
-  <%= form.label :alcohol %>
-  <%= form.check_box :alcohol %>
+  <div class="col-auto">
+    <%= form.label :alcohol, class: 'form-check-label' %>
+    <%= form.check_box :alcohol, class: 'form-check-input' %>
+  </div>
 
-  <%= form.label :decoration %>
-  <%= form.check_box :decoration %>
+  <div class="col-auto">
+    <%= form.label :decoration, class: 'form-check-label' %>
+    <%= form.check_box :decoration, class: 'form-check-input' %>
+  </div>
 
-  <%= form.label :parking_service %>
-  <%= form.check_box :parking_service %>
+  <div class="col-auto">
+    <%= form.label :parking_service, class: 'form-check-label' %>
+    <%= form.check_box :parking_service, class: 'form-check-input' %>
+  </div>
 
-  <%= form.label :at_buffet_location %>
-  <%= form.check_box :at_buffet_location %>
+  <div class="col-auto">
+    <%= form.label :at_buffet_location, class: 'form-check-label' %>
+    <%= form.check_box :at_buffet_location, class: 'form-check-input' %>
+  </div>
 
-  <%= form.label :photos %>
-  <%= form.file_field :photos, multiple: true %>
+  <div class="col-auto">
+    <%= form.label :photos %>
+    <%= form.file_field :photos, multiple: true, class: 'form-control' %>
+  </div>
 
-  <%= form.submit 'Cadastrar' %>
+  <div class="col-auto">
+    <%= form.submit 'Cadastrar', class: 'btn btn-primary' %>
+  </div>
 <% end %>
