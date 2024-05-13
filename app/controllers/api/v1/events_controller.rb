@@ -1,13 +1,14 @@
 class Api::V1::EventsController < Api::V1::ApiController
     def index
-        @events = Event.all
-        render status: 200, json: @events
-    end
-
-    def buffet_events
-        @buffets = Buffet.find(params[:id])
-        @events = @buffets.events
-        render status: 200, json: @events
+        @buffet = Buffet.find_by_id(params[:buffet_id])
+        if @buffet
+            @events = @buffet.events.map do |event|
+                event.attributes.transform_values { |value| value.is_a?(TrueClass) || value.is_a?(FalseClass) ? I18n.t(value.to_s) : value }
+            end
+            render status: 200, json: @events
+        else
+            render status: 404, json: { message: "Buffet not found" }
+        end
     end
 
     def availability

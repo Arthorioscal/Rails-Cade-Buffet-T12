@@ -1,35 +1,80 @@
-<h1> Meu Buffet </h1>
+<div class="container">
+    <h1 class="my-4">Meu Buffet</h1>
 
-<p> <%= @buffet.brand_name %> </p>
-<p> <%= @buffet.corporate_name %> </p>
-<p> <%= @buffet.address %> </p>
-<p> <%= @buffet.phone %> </p>
-<p> <%= @buffet.email %> </p>
-<p> <%= @buffet.description %> </p>
+    <div class="Buffet-prf-card mb-4">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="Buffet-prf-card-body">
+                    <h5 class="Buffet-prf-card-title"><%= @buffet.brand_name %></h5>
+                    <p class="Buffet-prf-card-text"><%= @buffet.corporate_name %></p>
+                    <p class="Buffet-prf-card-text"><%= @buffet.address %></p>
+                    <p class="Buffet-prf-card-text"><%= @buffet.phone %></p>
+                    <p class="Buffet-prf-card-text"><%= @buffet.email %></p>
+                    <p class="Buffet-prf-card-text"><%= @buffet.description %></p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="Buffet-pfr_cover_photo">
+                    <p> <strong> Foto de Capa do Buffet: </strong> </p>
+                    <%= image_tag @buffet.cover_photo, class: "Buffet-prf-card-img-top" if @buffet.cover_photo.attached? %>
+                </div>
+            </div>
+        </div>
+        <div class="Buffet-prf-card-footer">
+            <%= link_to 'Editar', edit_buffet_path(@buffet), class: "btn btn-primary" %>
+            <%= link_to 'Pedidos', buffet_buffet_orders_path(buffet_id: @buffet.id), class: "btn btn-primary" %>
+        </div>
+    </div>
 
+    <h2 class="my-3"><strong>Tipos de eventos do buffet</strong></h2>
 
-<%= link_to 'Editar', edit_buffet_path(@buffet) %>
-<%= link_to 'Pedidos', buffet_buffet_orders_path(buffet_id: @buffet.id) %>
-
-<h2> Tipos de eventos do buffet </h2>
-
-<% if @buffet.events.present?%>
-    <% @buffet.events.each do |event_type| %>
-        <h3> <%= link_to event_type.name, event_path(event_type) %> </h3>
-        <p> <%= event_type.name %> </p>
-        <p> <%= event_type.description %> </p>
-        <p> <%= event_type.min_people %> </p>
-        <p> <%= event_type.max_people %> </p>
-        <p> <%= event_type.duration %> </p>
-        <p> <%= event_type.menu %> </p>
-        <p> <%= event_type.alcohol %> </p>
-        <p> <%= event_type.decoration %> </p>
-        <p> <%= event_type.parking_service %> </p>
-        <p> <%= event_type.at_buffet_location %> </p>
-            <%= link_to 'Cadastrar outro Tipo de Evento', new_event_path %>
-        <%= link_to 'Editar Evento', edit_event_path(event_type) %>
-        <%= link_to 'Cadastrar Preço deste Evento', url_for(controller: 'event_prices', action: 'new', event_id: event_type.id) %>        <% end %>
-<% else %>
-    <p> Você não tem nenhum tipo de evento cadastrado, cadastre aqui: </p>
-    <%= link_to 'Cadastrar Tipo de Evento', new_event_path %>
-<% end %>
+    <% if @buffet.events.present? %>
+        <% @buffet.events.each do |event_type| %>
+            <div class="Event-card mb-4">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="Event-card-body">
+                            <h5 class="Event-card-title" ><%= link_to event_type.name, event_path(event_type), class: "btn btn-info" %></h5>
+                            <p class="Event-card-text">Descrição do Evento: <%= event_type.description %></p>
+                            <p class="Event-card-text">Quantidade Mínima de Convidados: <%= event_type.min_people %></p>
+                            <p class="Event-card-text">Quantidade Máxima de Convidados: <%= event_type.max_people %></p>
+                            <p class="Event-card-text">Duração do Evento: <%= event_type.duration %></p>
+                            <p class="Event-card-text">Event-cardápio para o Evento: <%= event_type.menu %></p>
+                            <p class="Event-card-text">Serve bebidas Alcoólicas: <%= event_type.alcohol %></p>
+                            <p class="Event-card-text">Disponibiliza serviço de decoração: <%= event_type.decoration %></p>
+                            <p class="Event-card-text">Disponibiliza serviço de estacionamento: <%= event_type.parking_service %></p>
+                            <p class="Event-card-text">Realiza evento em outros locais: <%= event_type.at_buffet_location %></p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="Event-Price-card"> 
+                            <% if event_type.event_price.present?%>
+                                <div class="Event-Price-card-content">
+                                    <h3 class="Event-Price-card-title"><strong> Preço deste Evento: </strong></h3>
+                                    <p class="Event-Price-card-text">Preço do Evento (Dia de Semana): <%= event_type.event_price.wd_price %></p>
+                                    <p class="Event-card-text">Preço por Pessoa Adicional (Dia de Semana): <%= event_type.event_price.wd_add_person_price %></p>
+                                    <p class="Event-card-text">Preço por Hora Extra (Dia de Semana): <%= event_type.event_price.wd_extra_hour_price %></p>
+                                    <p class="Event-card-text">Preço do Evento (Fim de Semana): <%= event_type.event_price.we_price %></p>
+                                    <p class="Event-card-text">Preço por Pessoa Adicional (Fim de Semana): <%= event_type.event_price.we_add_person_price %></p>
+                                    <p class="Event-card-text">Preço por Hora Extra (Fim de Semana): <%= event_type.event_price.we_extra_hour_price %></p>
+                                </div>
+                            <% else %>
+                                <p>Nenhum preço cadastrado para este evento</p>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+                <div class="Event-card-footer">
+                    <%= link_to 'Cadastrar outro Tipo de Evento', new_event_path, class: "btn btn-primary" %>
+                    <%= link_to 'Editar Evento', edit_event_path(event_type), class: "btn btn-primary" %>
+                    <%= link_to 'Cadastrar Preço deste Evento', url_for(controller: 'event_prices', action: 'new', event_id: event_type.id), class: "btn btn-primary" %>
+                </div>
+            </div>
+        <% end %>
+    <% else %>
+        <div class="alert alert-warning" role="alert">
+            Você não tem nenhum tipo de evento cadastrado, cadastre aqui:
+            <%= link_to 'Cadastrar Tipo de Evento', new_event_path, class: "btn btn-primary" %>
+        </div>
+    <% end %>
+</div>

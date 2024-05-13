@@ -1,7 +1,13 @@
-<h1>Bem vindo ao Cade Buffet</h1>
+<h1 class="home_title">Bem vindo ao Cade Buffet!</h1>
 
 <% @buffets.each do |b| %>
-    <%= image_tag b.cover_photo if b.cover_photo.attached? %>
-    <h2><%= link_to  "#{b.brand_name}",  buffet_path(b)%></h2>
-    <p><%= b.city %> - <%= b.state%></p>
+    <div class="Home-Card" style="width: 18rem;">
+        <%= image_tag b.cover_photo, class: "Home-Card-img-top" if b.cover_photo.attached? %>
+        <div class="Home-Card-body">
+            <h5 class="Home-Card-title"><%= link_to b.brand_name, buffet_path(b) %></h5>
+            <p class="Home-Card-text"><%= "#{b.city} - #{b.state}" %></p>
+            <p class="HOme-Card-text"><%= b.address%></p>
+            <%= link_to 'Ver Detalhes', buffet_path(b), class: "btn btn-primary" %>
+        </div>
+    </div>
 <% end %>

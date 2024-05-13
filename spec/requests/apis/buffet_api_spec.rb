@@ -57,5 +57,25 @@ describe 'Buffet API' do
             expect(json_response).not_to include(:cnpj)
             expect(json_response).not_to include(:corporate_name)
         end
+
+        it 'failed to show the buffet' do
+            get "/api/v1/buffets/0000"
+
+            expect(response).to have_http_status(404)
+            expect(response.content_type).to include('application/json')
+            json_response = JSON.parse(response.body)
+            expect(json_response['message']).to eq('Buffet not found')
+        end
+
+        it 'failed if there is an internal error' do
+            allow(Buffet).to receive(:all).and_raise(ActiveRecord::QueryCanceled)
+
+            get "/api/v1/buffets"
+
+            expect(response).to have_http_status(500)
+            expect(response.content_type).to include('application/json')
+            json_response = JSON.parse(response.body)
+            expect(json_response['message']).to eq('Internal Error')
+        end
     end
 end

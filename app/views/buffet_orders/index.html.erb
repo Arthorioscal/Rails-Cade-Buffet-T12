@@ -1,12 +1,20 @@
-<h1> Estes são os pedidos do seu buffet: </h1>
+<div class="container">
+    <h1 class="my-4">Estes são os pedidos do seu buffet:</h1>
 
-<% if @orders.present?%>
-    <% @orders.each do |status, orders| %>
-    <h2>Status do Pedido: <%= t(status, scope: [:activerecord, :attributes, :order]) %></h2>
-        <% orders.each do |order| %>
-            <h3><%= link_to  "Pedido: #{order.order_code}",  buffet_buffet_order_path(@buffet,order) %></h3>
+    <% if @orders.present? %>
+        <% @orders.each do |status, orders| %>
+            <h2 class="mt-4">Status do Pedido: <%= t(status, scope: [:activerecord, :attributes, :order]) %></h2>
+            <div class="list-group">
+                <% orders.each do |order| %>
+                    <a href="<%= buffet_buffet_order_path(@buffet, order) %>" class="btn btn-info">
+                        Pedido: <%= order.order_code %>
+                    </a>
+                <% end %>
+            </div>
         <% end %>
+    <% else %>
+        <div class="alert alert-info" role="alert">
+            <h2 class="alert-heading">Você ainda não tem nenhum pedido registrado</h2>
+        </div>
     <% end %>
-<% else %>
-    <h2>Você ainda não tem nenhum pedido registrado</h2>
-<% end %>
+</div>

@@ -25,10 +25,10 @@ describe 'Event API' do
                 expect(event[:max_people]).to eq(100)
                 expect(event[:duration]).to eq(180)
                 expect(event[:menu]).to eq('Bolo, doces, salgados, refrigerante, vinho')
-                expect(event[:alcohol]).to eq(true)
-                expect(event[:decoration]).to eq(true)
-                expect(event[:parking_service]).to eq(true)
-                expect(event[:at_buffet_location]).to eq(true)
+                expect(event[:alcohol]).to eq("Sim")
+                expect(event[:decoration]).to eq("Sim")
+                expect(event[:parking_service]).to eq("Sim")
+                expect(event[:at_buffet_location]).to eq("Sim")
             end
         end
     end

@@ -9,6 +9,6 @@ class Api::V1::ApiController < ActionController::API
     end
   
     def return_404
-      render status:404, json: {message: 'Warehouse not found'}
+      render status:404, json: {message: 'Buffet not found'}
     end
 end

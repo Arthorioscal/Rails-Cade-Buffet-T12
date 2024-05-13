@@ -1,39 +1,49 @@
-<h1> Detalhes do Pedido </h1>
-<p> Status: <%= t(@order.status, scope: [:activerecord, :attributes, :order]).upcase %> </p>
-<p> Data do evento: <%= l(@order.event_date) %> </p>
-<p> Número de convidados: <%= @order.estimated_guests %> </p>
-<p> Detalhes: <%= @order.details %> </p>
-<p> Endereço do evento: <%= @order.event_address %> </p>
-<p> Buffet: <%= @order.buffet.brand_name %> </p>
-<p> Tipo de evento: <%= @order.event.name %> </p>
-<p> Cliente que fez o pedido: <%= @order.user.email %> </p>
-<% if @order.status == 'confirmed_by_owner' && @order.valid_until > Date.today %>
-        <p> Data Limite para confirmação: <%= l(@order.valid_until) %> </p>
-        <p> Valor do Pedido: <%= number_to_currency(@order.final_price) %> </p>
-        <p> Taxa Extra: <%= number_to_currency(@order.extra_fee) %> </p>
-        <p> Desconto: <%= number_to_currency(@order.discount) %> </p>
-        <p> Detalhes da Alteração no Valor: <%= @order.description %> </p>
-        <p> Preço do Pedido (sem acréscimo): <%= number_to_currency(@order.final_price) %> </p>
-        <p> Valor Total: <%= number_to_currency(@order.final_price - @order.discount + @order.extra_fee) %> </p>
-        <p> Meio de Pagamento: <%= @order.order_payment_method %> </p>
-<% else%>
-    <%= link_to 'Confirmar Pedido', buffet_confirmation_form_order_path(@order), method: :get %>
-<% end %>
-<%= link_to 'Voltar', buffet_buffet_orders_path(@buffet) %>
+<div class="container">
+    <h1 class="my-4">Detalhes do Pedido</h1>
 
-<div>
-    <h2> Mensagens </h2>
-    <% @order.messages.each do |message| %>
-    <p>
-        <strong><%= message.user.buffet ? message.user.buffet.brand_name : message.user.name %>:</strong>
-        <%= message.content %>
-        <em><%= message.created_at.strftime('%d/%m/%Y %H:%M') %></em>
-    </p>
-    <% end %>
+    <div class="card mb-4">
+        <div class="card-body">
+            <p class="card-text">Status: <%= t(@order.status, scope: [:activerecord, :attributes, :order]).upcase %></p>
+            <p class="card-text">Data do evento: <%= l(@order.event_date) %></p>
+            <p class="card-text">Número de convidados: <%= @order.estimated_guests %></p>
+            <p class="card-text">Detalhes: <%= @order.details %></p>
+            <p class="card-text">Endereço do evento: <%= @order.event_address %></p>
+            <p class="card-text">Buffet: <%= @order.buffet.brand_name %></p>
+            <p class="card-text">Tipo de evento: <%= @order.event.name %></p>
+            <p class="card-text">Cliente que fez o pedido: <%= @order.user.email %></p>
+            <% if @order.status == 'confirmed_by_owner' && @order.valid_until > Date.today %>
+                <p class="card-text">Data Limite para confirmação: <%= l(@order.valid_until) %></p>
+                <p class="card-text">Valor do Pedido: <%= number_to_currency(@order.final_price) %></p>
+                <p class="card-text">Taxa Extra: <%= number_to_currency(@order.extra_fee) %></p>
+                <p class="card-text">Desconto: <%= number_to_currency(@order.discount) %></p>
+                <p class="card-text">Detalhes da Alteração no Valor: <%= @order.description %></p>
+                <p class="card-text">Preço do Pedido (sem acréscimo): <%= number_to_currency(@order.final_price) %></p>
+                <p class="card-text">Valor Total: <%= number_to_currency(@order.final_price - @order.discount + @order.extra_fee) %></p>
+                <p class="card-text">Meio de Pagamento: <%= @order.order_payment_method %></p>
+            <% else %>
+                <%= link_to 'Confirmar Pedido', buffet_confirmation_form_order_path(@order), method: :get, class: "btn btn-primary" %>
+            <% end %>
+        </div>
+    </div>
+
+    <%= link_to 'Voltar', buffet_buffet_orders_path(@buffet), class: "btn btn-secondary mb-4" %>
+
+    <h2 class="my-4">Mensagens</h2>
+    <div class="list-group">
+        <% @order.messages.each do |message| %>
+            <div class="list-group-item">
+                <strong><%= message.user.buffet ? message.user.buffet.brand_name : message.user.name %>:</strong>
+                <%= message.content %>
+                <em><%= message.created_at.strftime('%d/%m/%Y %H:%M') %></em>
+            </div>
+        <% end %>
+    </div>
+
+    <div class="my-4">
+        <%= form_for [@order, Message.new], html: { class: 'form-group' } do |f| %>
+            <%= f.label :content, 'Nova mensagem' %>
+            <%= f.text_area :content, class: 'form-control' %>
+            <%= f.submit 'Enviar mensagem', class: 'btn btn-primary mt-2' %>
+        <% end %>
+    </div>
 </div>
-<div>
-    <%= form_for [@order, Message.new] do |f| %>
-        <%= f.text_area :content %>
-        <%= f.submit 'Enviar mensagem' %>
-    <% end %>
-</div>  
