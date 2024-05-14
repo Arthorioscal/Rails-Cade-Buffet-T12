@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     end
     
     resources :buffet_orders, only: %i[index show]
+    resources :reviews, only: %i[index show new create]
 
     get 'profile', to: 'buffets#profile'
     get 'search', to: 'buffets#search', on: :collection

@@ -9,8 +9,10 @@
             <p> Válido até: <%= l(o.valid_until) %> </p>
             <p> Valor Total: <%= number_to_currency(o.final_price + o.discount - o.extra_fee)%> </p>
         <% end %>
+        <% if o.event_date <= Date.today %>
+        <%= link_to 'Avaliar Buffet', new_buffet_review_path(o.buffet) %>
+        <% end %>
     <% end %>
 <% else %>
     <h2>Você ainda não fez nenhum pedido</h2>
-    <%= link_to 'Realizar Pedido', new_order_path %>
 <% end %>

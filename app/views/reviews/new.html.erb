@@ -1,0 +1,12 @@
+<%= form_with model: [@buffet, @review] do |review|%>
+    <%= review.label :rating %>
+    <%= review.number_field :rating %>
+
+    <%= review.label :comment %>
+    <%= review.text_area :comment %>
+
+    <%= review.hidden_field :buffet_id, value: @buffet.id %>
+    <%= review.hidden_field :user_id, value: current_user.id %>
+
+    <%= review.submit 'Enviar Avaliação' %>
+<% end %>

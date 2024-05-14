@@ -6,11 +6,12 @@ class User < ApplicationRecord
 
 
   has_one :buffet
+
   has_many :orders
   has_many :messages, dependent: :destroy
+  has_many :reviews
 
-  validates :role, inclusion: { in: ['client', 'buffet_owner'],
-  message: "%{value} não é um tipo de usuário válido" }
+  validates :role, inclusion: { in: ['client', 'buffet_owner'], message: "%{value} não é um tipo de usuário válido" }
   validates :role, presence: true
   validates :name, :cpf, presence: true, if: :client_role?
   validates :cpf, uniqueness: true, if: :client_role?

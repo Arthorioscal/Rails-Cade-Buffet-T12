@@ -46,3 +46,7 @@ event5 = Event.create!(name: 'Festa de Halloween', description: 'Festa de hallow
 menu: 'Pratos temáticos, cerveja, refrigerante, doces', alcohol: true, decoration: true, parking_service: true, at_buffet_location: true, buffet: buffet4)
 EventPrice.create!(wd_price: 2500, wd_add_person_price: 70, wd_extra_hour_price: 100, we_price: 3000, we_add_person_price: 80, we_extra_hour_price: 150, event: event5)
 
+client1 = User.create!(email: 'clienteteste@mail.com', password: 'teste123', name: 'Cliente Teste', cpf: '12552367011', role: :client)
+client2 = User.create!(email: 'ocritico@critico.com', passowrd: 'eucriticobuffets', name: 'O crítico', cpf: '03483774017', role: :client)
+client3 = User.create!(email: 'captainprice@sas.com', password: 'callofdutymw', name: 'Captain Price', cpf: '41135177031', role: :client)
+client4 = User.create!(email: 'alberteinstein@physics.com', password: 'ilovephysics', name: 'Albert Einstein', cpf: '79912834020', role: :client)

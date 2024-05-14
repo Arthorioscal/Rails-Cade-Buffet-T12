@@ -6,6 +6,7 @@ class Buffet < ApplicationRecord
   has_many :events
   has_many :event_prices, through: :events
   has_many :orders
+  has_many :reviews
 
   validates :brand_name, :corporate_name, :cnpj, :phone, :email, :address, :neighborhood, :state, :city, :zip_code, :description, :payment_methods, presence: true
   validates :cnpj, :email, uniqueness: true
@@ -19,4 +20,7 @@ class Buffet < ApplicationRecord
     end
   end
   
+  def average_rating
+    reviews.average(:rating)
+  end
 end

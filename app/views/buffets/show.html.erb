@@ -79,3 +79,21 @@
     <p>Buffet não tem nenhum evento cadastrado, tente entrar em contato para mais informações</p>
   <% end %>
 </div>
+<div>
+  <h2 class="my-3">Avaliações do Buffet</h2>
+  <% if @buffet.reviews.present? %>
+    <% @buffet.reviews.last(3).each do |review| %>
+      <div class="card my-2">
+        <div class="card-body">
+          <h5 class="card-title
+          "><strong>Usuário:</strong> <%= review.user.name %></h5>
+          <p class="card-text"><strong>Nota:</strong> <%= review.rating %></p>
+          <p class="card-text"><strong>Comentário:</strong> <%= review.comment %></p>
+        </div>
+      </div>
+    <% end %>
+        <p class="card-link"><%= link_to 'Ver mais Avaliações', buffet_reviews_path(@buffet)%></p>
+  <% else %>
+    <p>Este buffet ainda não tem avaliações.</p>
+  <% end %>
+</div>
