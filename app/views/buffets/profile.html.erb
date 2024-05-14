@@ -82,7 +82,7 @@
                     <%= link_to 'Cadastrar outro Tipo de Evento', new_event_path, class: "btn btn-primary" %>
                     <%= link_to 'Editar Evento', edit_event_path(event_type), class: "btn btn-primary" %>
                     <%= link_to 'Cadastrar Preço deste Evento', url_for(controller: 'event_prices', action: 'new', event_id: event_type.id), class: "btn btn-primary" %>
-                    <%= button_to 'Toggle Active Status', toggle_active_event_path(event_type), class: "btn btn-primary" %>
+                    <%= button_to 'Ativar/Desativar Evento', toggle_active_event_path(event_type), class: "btn btn-primary" %>
                 </div>
             </div>
         <% end %>

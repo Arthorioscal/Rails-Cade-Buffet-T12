@@ -4,7 +4,7 @@ class BuffetsController < ApplicationController
 
     
     def show
-        @buffet = Buffet.find(params[:id])
+        @buffet = Buffet.find_by(params[:id], active: true)
     end
     
     def profile
