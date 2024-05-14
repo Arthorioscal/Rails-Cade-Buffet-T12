@@ -1,5 +1,9 @@
 <h1> Resultados da busca por: <%= params[:query] %> </h1>
 
-<% @buffets.each do |buffet| %>
-    <h2> <%= link_to"#{buffet.brand_name}", buffet_path(buffet) %> </h2>
+<% if @buffets.empty? %>
+  <h2> Nenhum buffet encontrado </h2>
+<% else %>
+  <% @buffets.each do |buffet| %>
+    <h2> <%= link_to "#{buffet.brand_name}", buffet_path(buffet) %> </h2>
+  <% end %>
 <% end %>

@@ -6,13 +6,17 @@
             <div class="col-md-6">
                 <div class="Buffet-prf-card-body">
                     <h4 class="Buffet-prf-card-title"><%= @buffet.brand_name %> </h5>
-                    <h5 class="Buffet-status"><strong> Status do Buffet: <%= @buffet.active %></strong></h6>
+                    <% if @buffet.active == true && @buffet.active.present?%>
+                     <h5 class="badge rounded-pill text-bg-success"><strong> Status do Buffet: <%= t(@buffet.active, scope: "activerecord.attributes.buffet.active") %></strong></h6>
+                    <% else %>
+                     <h5 class="badge rounded-pill text-bg-danger"><strong> Status do Buffet: <%= t(@buffet.active, scope: "activerecord.attributes.buffet.active") %></strong></h6>
+                    <% end %>
                     <p class="Buffet-prf-card-text"><%= @buffet.corporate_name %></p>
                     <p class="Buffet-prf-card-text"><%= @buffet.address %></p>
                     <p class="Buffet-prf-card-text"><%= @buffet.phone %></p>
                     <p class="Buffet-prf-card-text"><%= @buffet.email %></p>
                     <p class="Buffet-prf-card-text"><%= @buffet.description %></p>
-                    <p><%= button_to 'Toggle Active Status', toggle_active_buffet_path(@buffet), class: "btn btn-primary" %></p>
+                    <p><%= button_to 'Ativar/Desativar Buffet', toggle_active_buffet_path(@buffet), class: "btn btn-primary" %></p>
 
                 </div>
             </div>
@@ -37,8 +41,14 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="Event-card-body">
-                            <h5 class="Event-card-title" ><%= link_to event_type.name, event_path(event_type), class: "btn btn-info" %>
-                            Status do Evento: <%= event_type.active%></h5>
+                            <h5 class="Event-card-title">
+                                <%= link_to event_type.name, event_path(event_type), class: "btn btn-info" %>
+                                <% if event_type.active == true && event_type.active.present? %>
+                                    <span class="badge rounded-pill text-bg-success"><strong> Status do Evento: <%= t(event_type.active, scope: "activerecord.attributes.event.active") %></strong></span>
+                                <% else %>
+                                    <span class="badge rounded-pill text-bg-danger"><strong> Status do Evento: <%= t(event_type.active, scope: "activerecord.attributes.event.active") %></strong></span>
+                                <% end %>
+                            </h5>
                             <p class="Event-card-text">Descrição do Evento: <%= event_type.description %></p>
                             <p class="Event-card-text">Quantidade Mínima de Convidados: <%= event_type.min_people %></p>
                             <p class="Event-card-text">Quantidade Máxima de Convidados: <%= event_type.max_people %></p>

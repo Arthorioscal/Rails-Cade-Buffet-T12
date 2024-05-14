@@ -25,6 +25,9 @@ pt-BR:
           true: Sim
           false: Não
         photos: Fotos do Evento
+        active:
+          true: Ativo
+          false: Inativo
     errors:
       models:
         event:

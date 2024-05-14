@@ -10,7 +10,7 @@ describe 'Guest search registered buffets' do
     it 'successfully from brand name' do
         user = User.create!(email: 'raiden@mgs.com', password: 'solidsnakefan', role: :buffet_owner)
         user2 = User.create!(email: 'raidenz@mgs.com', password: 'solidsnakefanz', role: :buffet_owner)
-        buffet1 = Buffet.create!(brand_name: 'Buffet do Snake', corporate_name: 'Buffet Metal Gear Ltda', cnpj: '89032028000114',
+        buffet1 = Buffet.create!(brand_name: 'Buffet do Snake', corporate_name: 'Buffet do Metal Gear Ltda', cnpj: '89032028000114',
         phone: '11999999999', email: 'solidsnakefans@mail.com', address: 'Rua do Buffet, 123', neighborhood: 'Bairro do Buffet',
         state: 'São Paulo', city: 'São Paulo', zip_code: '12345678', description: 'Buffet especializado em festas de aniversário',
         payment_methods: 'Dinheiro, cartão de crédito e débito', user: user)
@@ -32,16 +32,20 @@ describe 'Guest search registered buffets' do
         max_people: 100, duration: 180, menu: 'Bolo, doces, salgados, refrigerante, vinho', alcohol: true, decoration: true, parking_service: true,
         at_buffet_location: true, buffet: buffet1)
         event_price = EventPrice.create!(event: event, wd_price: 2000, wd_add_person_price: 70, wd_extra_hour_price: 100, we_price: 2500, we_add_person_price: 80, we_extra_hour_price: 150)
-
+        event2 = Event.create!(name: 'Festa de Aniversário', description: 'Festa de aniversário com bolo, tortas, palhaço, doces e salgados', min_people: 10,
+        max_people: 100, duration: 180, menu: 'Bolo, doces, salgados, refrigerante, vinho', alcohol: false, decoration: true, parking_service: true,
+        at_buffet_location: true, buffet: buffet2)
+        
         visit root_path
-        fill_in 'Buscar Buffet', with: 'Buffet do Raiden'
+        fill_in 'Buscar Buffet', with: 'Buffet do'
         click_on 'Buscar'
 
-        expect(page).to have_content('Resultados da busca por: Buffet do Raiden')
-        expect(page).to have_content('Buffet do Raiden')        
+        expect(page).to have_content('Resultados da busca por: Buffet do')
+        expect(page).to have_content('Buffet do Raiden')
+        expect(page).to have_content('Buffet do Snake')
     end
 
-    it 'successfully from brand name and click to see details' do
+    it 'successfully from brand name and gets redirected to see details' do
         user = User.create!(email: 'raiden@mgs.com', password: 'solidsnakefan', role: :buffet_owner)
         user2 = User.create!(email: 'raidenz@mgs.com', password: 'solidsnakefanz', role: :buffet_owner)
         buffet1 = Buffet.create!(brand_name: 'Buffet do Snake', corporate_name: 'Buffet Metal Gear Ltda', cnpj: '89032028000114',
@@ -70,7 +74,6 @@ describe 'Guest search registered buffets' do
         visit root_path
         fill_in 'Buscar Buffet', with: 'Buffet do Snake'
         click_on 'Buscar'
-        click_on 'Buffet do Snake'
 
         expect(page).to have_content('Buffet Metal Gear Ltda')
         expect(page).to have_content('89032028000114')
@@ -148,7 +151,7 @@ describe 'Guest search registered buffets' do
         user2 = User.create!(email: 'raidenz@mgs.com', password: 'solidsnakefanz', role: :buffet_owner)
         buffet1 = Buffet.create!(brand_name: 'Buffet do Snake', corporate_name: 'Buffet Metal Gear Ltda', cnpj: '89032028000114',
         phone: '11999999999', email: 'solidsnakefans@mail.com', address: 'Rua do Buffet, 123', neighborhood: 'Bairro do Buffet',
-        state: 'São Paulo', city: 'São Paulo', zip_code: '12345678', description: 'Buffet especializado em festas de aniversário',
+        state: 'São Paulo', city: 'Caxias do Sul', zip_code: '12345678', description: 'Buffet especializado em festas de aniversário',
         payment_methods: 'Dinheiro, cartão de crédito e débito', user: user)
         buffet2 = Buffet.create!(brand_name: 'Buffet do Raiden', corporate_name: 'Buffet do Raiden Ltda', cnpj: '90626237000175',
         phone: '11999999998', email: 'raidenbuffet@email.com', address: 'Rua do Raiden, 123', neighborhood: 'Bairro do Raiden',
@@ -181,7 +184,7 @@ describe 'Guest search registered buffets' do
         
         expect(page).to have_content('Resultados da busca por: Caxias do Sul')
         expect(page).to have_content('Buffet do Raiden')
-        expect(page).not_to have_content('Buffet do Snake')
+        expect(page).to have_content('Buffet do Snake')
         expect(page).not_to have_content('Outer Heaven Catering')
         expect(page).not_to have_content('Diamond Dogs Banquets')
     end
