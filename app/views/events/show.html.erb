@@ -1,46 +1,62 @@
-<dl>
-    <dt><strong><%= Event.human_attribute_name(:name) %>:</strong></dt>
-    <dd><%= @event.name %></dd>
-
-    <dt><strong><%= Event.human_attribute_name(:description) %>:</strong></dt>
-    <dd><%= @event.description %></dd>
-
-    <dt><strong><%= Event.human_attribute_name(:min_people) %>:</strong></dt>
-    <dd><%= @event.min_people %></dd>
-
-    <dt><strong><%= Event.human_attribute_name(:max_people) %>:</strong></dt>
-    <dd><%= @event.max_people %></dd>
-
-    <dt><strong><%= Event.human_attribute_name(:duration) %>:</strong></dt>
-    <dd><%= @event.duration %></dd>
-
-    <dt><strong><%= Event.human_attribute_name(:menu) %>:</strong></dt>
-    <dd><%= @event.menu %></dd>
-
-    <dt><strong><%= Event.human_attribute_name(:alcohol) %>:</strong></dt>
-    <dd><%= t("activerecord.attributes.event.alcohol_values.#{@event.alcohol}") %></dd>
-
-    <dt><strong><%= Event.human_attribute_name(:decoration) %>:</strong></dt>
-    <dd><%= t("activerecord.attributes.event.decoration_values.#{@event.decoration}") %></dd>
-
-    <dt><strong><%= Event.human_attribute_name(:parking_service) %>:</strong></dt>
-    <dd><%= t("activerecord.attributes.event.parking_service_values.#{@event.parking_service}") %></dd>
-
-    <dt><strong><%= Event.human_attribute_name(:at_buffet_location) %>:</strong></dt>
-    <dd><%= t("activerecord.attributes.event.at_buffet_location_values.#{@event.at_buffet_location}") %></dd>
-
-    <dt><strong><%= Event.human_attribute_name(:photos) %>:</strong></dt>
-    <dd>
-        <% if @event.photos.attached? %>
-            <% @event.photos.each do |photo| %>
-                <%= image_tag url_for(photo) %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><%= @event.name %></h5>
+          <% if @event.promotion.present?%>
+            <div class="alert alert-success" role="alert">
+              <h5> Este evento está com uma Promoção Ativa!</h5>
+              <p> Promoção Ativa: <%= @event.promotion.name %></p>
+              <p> Desconto na Semana: <%= @event.promotion.weekday_discount * 100%>%</p>
+              <p> Desconto no Fim de Semana: <%= @event.promotion.weekend_discount * 100%>%</p>
+              <p> Está promoção vai até o dia: <%= @event.promotion.end_date.strftime('%d/%m/%Y')%></p>
+            </div>
+          <% end %>
+          <p class="card-text"><strong>Descrição: </strong><%= @event.description %></p>
+          <ul class="list-group list-group-flush">
+            <% [:min_people, :max_people, :duration, :menu, :alcohol, :decoration, :parking_service, :at_buffet_location].each do |attribute| %>
+              <li class="list-group-item">
+                <strong><%= Event.human_attribute_name(attribute) %>:</strong>
+                <%= attribute == :alcohol || attribute == :decoration || attribute == :parking_service || attribute == :at_buffet_location ? t("activerecord.attributes.event.#{attribute}_values.#{@event.send(attribute)}") : @event.send(attribute) %>
+              </li>
             <% end %>
-        <% end %>
-    </dd>
-</dl>
+          </ul>
+        </div>
+      </div>
+    </div>
 
-<% if current_user.role == 'buffet_owner' %>
-    <%= link_to 'Editar', edit_event_path(@event) %>
-<% else %>
-    <%= link_to 'Realizar Pedido', new_order_path(event_id: @event.id) %>
-<% end %>
+    <div class="col-md-6">
+      <% if @event.photos.attached? %>
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <% @event.photos.each_with_index do |photo, index| %>
+              <div class="carousel-item <%= 'active' if index.zero? %>">
+                <h3> Fotos do Evento: </h3>
+                <%= image_tag url_for(photo), class: 'd-block w-100' %>
+              </div>
+            <% end %>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Anterior</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Próximo</span>
+          </a>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-md-12">
+      <% if current_user.role == 'buffet_owner' %>
+        <%= link_to 'Editar', edit_event_path(@event), class: 'btn btn-primary' %>
+      <% else %>
+        <%= link_to 'Realizar Pedido', new_order_path(event_id: @event.id), class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>

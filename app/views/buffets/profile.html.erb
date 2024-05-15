@@ -72,6 +72,27 @@
                                     <p class="Event-card-text">Preço por Pessoa Adicional (Fim de Semana): <%= event_type.event_price.we_add_person_price %></p>
                                     <p class="Event-card-text">Preço por Hora Extra (Fim de Semana): <%= event_type.event_price.we_extra_hour_price %></p>
                                 </div>
+                                    <h2> Gerenciar Promoções do Evento </h2>
+                                    <% if event_type.promotion.present? %>
+                                    <div class="card">
+                                        <div class="card-body">
+                                        <h2 class="card-title">Promoção Ativa: <%= event_type.promotion.name %></h2>
+                                        <p class="card-text">Início da Promoção: <%= event_type.promotion.start_date.strftime('%d/%m/%Y') %> / Fim da Promoção: <%= event_type.promotion.end_date.strftime('%d/%m/%Y') %></p>
+                                        <p class="card-text">Desconto para Eventos de Segunda a Sexta: <%= (event_type.promotion.weekday_discount) * 100 %>%</p>
+                                        <p class="card-text">Desconto para Eventos de Fim de Semana: <%= (event_type.promotion.weekend_discount) * 100 %>%</p>
+                                        <%= button_to 'Deletar Promoção', event_promotion_path(event_type, event_type.promotion), method: :delete, class: "btn btn-danger" %>
+                                        </div>
+                                    </div>
+                                    <% else %>
+                                    <div class="card">
+                                        <div class="card-body">
+                                        <h5> Você ainda não tem nenhuma promoção ativa.</h3>
+                                        <%= link_to 'Criar Promoção', new_event_promotion_path(event_id: event_type.id), class: "btn btn-primary" %>
+                                        </div>
+                                    </div>
+                                    <% end %>
+                                <div>
+                            </div>
                             <% else %>
                                 <p>Nenhum preço cadastrado para este evento</p>
                             <% end %>

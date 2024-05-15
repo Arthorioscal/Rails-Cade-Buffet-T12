@@ -7,10 +7,10 @@
         <p>Data Estimada: <%= l(o.event_date)%>
         <% if o.status == 'confirmed_by_owner' %>
             <p> Válido até: <%= l(o.valid_until) %> </p>
-            <p> Valor Total: <%= number_to_currency(o.final_price + o.discount - o.extra_fee)%> </p>
+            <p> Valor Total: <%= number_to_currency(o.final_price - o.discount + o.extra_fee)%> </p>
         <% end %>
-        <% if o.event_date <= Date.today %>
-        <%= link_to 'Avaliar Buffet', new_buffet_review_path(o.buffet) %>
+        <% if o.event_date <= Date.today && o.status == 'confirmed'%>
+            <%= link_to 'Avaliar Buffet', new_buffet_review_path(o.buffet) %>
         <% end %>
     <% end %>
 <% else %>

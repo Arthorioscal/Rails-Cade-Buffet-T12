@@ -12,7 +12,20 @@
 <% end %>
 
 <% final_price = 0 %>
-<% if weekday?(@order.event_date) %>
+<% if @order.event.promotion.present? && @order.event.promotion.end_date >= @order.event_date%>
+  <% if weekday?(@order.event_date) %>
+    <% wd_price = (@order.event.event_price.wd_price) * ( 1 - @order.event.promotion.weekday_discount) %>
+    <% wd_extra_person = @order.event.event_price.wd_add_person_price %>
+    <% wd_extra_hour = @order.event.event_price.wd_extra_hour_price %>
+    <% final_price = calculate_final_price(@order, wd_price, wd_extra_person, wd_extra_hour) %>
+<% else %>
+    <% we_price = (@order.event.event_price.we_price) * ( 1- @order.event.promotion.weekend_discount)%>
+    <% we_extra_person = @order.event.event_price.we_add_person_price %>
+    <% we_extra_hour = @order.event.event_price.we_extra_hour_price %>
+    <% final_price = calculate_final_price(@order, we_price, we_extra_person, we_extra_hour) %>
+  <% end %>
+<%else %>
+  <% if weekday?(@order.event_date) %>
     <% wd_price = @order.event.event_price.wd_price %>
     <% wd_extra_person = @order.event.event_price.wd_add_person_price %>
     <% wd_extra_hour = @order.event.event_price.wd_extra_hour_price %>
@@ -22,6 +35,7 @@
     <% we_extra_person = @order.event.event_price.we_add_person_price %>
     <% we_extra_hour = @order.event.event_price.we_extra_hour_price %>
     <% final_price = calculate_final_price(@order, we_price, we_extra_person, we_extra_hour) %>
+  <% end %>
 <% end %>
 
 <%= form_with(model: @order, url: buffet_confirmation_order_path(@order), method: :patch, local: true) do |form| %>
@@ -36,13 +50,13 @@
   </div>
 
   <div>
-    <%= form.label :extra_fee, "Taxa Extra" %>
-    <%= form.number_field :extra_fee, step: 0.01, placeholder: "Opcional" %>
+    <%= form.label :extra_fee, "Taxa Extra (Caso não deseje conceder, deixe 0)" %>
+    <%= form.number_field :extra_fee, step: 0.01, value: 0, placeholder: "Opcional" %>
   </div>
 
   <div>
-    <%= form.label :discount, "Desconto" %>
-    <%= form.number_field :discount, step: 0.01, placeholder: "Opcional" %>
+    <%= form.label :discount, "Desconto (Caso não deseje conceder, deixe 0)" %>
+    <%= form.number_field :discount, step: 0.01, value: 0, placeholder: "Opcional" %>
   </div>
 
   <div>

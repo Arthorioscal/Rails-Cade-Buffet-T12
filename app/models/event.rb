@@ -3,6 +3,7 @@ class Event < ApplicationRecord
 
   belongs_to :buffet
   has_one :event_price
+  has_one :promotion
   has_many :orders
   has_many_attached :photos
 

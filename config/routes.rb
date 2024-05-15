@@ -22,9 +22,12 @@ Rails.application.routes.draw do
   end
   
   resources :events, only: %i[index show new create edit update] do
+    resources :promotions, only: %i[new create destroy]
+    
     member do
       post :toggle_active
     end
+  
   end
 
   resources :orders, only: %i[index show new create edit update] do

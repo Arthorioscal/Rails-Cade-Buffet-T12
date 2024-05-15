@@ -22,7 +22,7 @@
       <% active_events.each do |event_type| %>
         <div class="card my-2">
           <div class="card-body">
-            <h5 class="card-title"><strong>Tipo de evento:</strong> <%= link_to event_type.name, event_path(event_type) %></h5>
+            <h5 class="card-title"><strong>Tipo de evento:</strong> <%= link_to event_type.name, event_path(event_type), class:"btn btn-outline-primary" %> (Clique <%= link_to 'Aqui', event_path(event_type) %>  para mais informações e realização de pedidos)</h5>
             <p class="card-text"><strong>Nome do evento:</strong> <%= event_type.name %></p>
             <p class="card-text"><strong>Descrição do evento:</strong> <%= event_type.description %></p>
             <p class="card-text"><strong>Quantidade mínima de pessoas:</strong><%= event_type.min_people %></p>

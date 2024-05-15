@@ -1,0 +1,11 @@
+pt-BR:
+  activerecord:
+    models:
+      promotion: Promoção
+    attributes:
+      promotion:
+        name: Nome
+        start_date: Data de Início
+        end_date: Data de Término
+        weekday_discount: Desconto para dias de semana
+        weekend_discount: Desconto para finais de semana
