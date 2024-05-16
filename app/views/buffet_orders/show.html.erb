@@ -27,7 +27,11 @@
                     <p class="card-text">Confirmar Pagamento da Multa: <%= button_to 'Confirmar Pagamento', order_fine_path(@order), method: :patch, class: "btn btn-danger" %><p>
                 <% end %>
             <% else %>
-                <%= link_to 'Confirmar Pedido', buffet_confirmation_form_order_path(@order), method: :get, class: "btn btn-primary" %>
+                <% if @order.event_date < Date.today%>
+                    <p class="card-text"> Pedido expirado.</p>
+                <% else %>
+                    <%= link_to 'Confirmar Pedido', buffet_confirmation_form_order_path(@order), method: :get, class: "btn btn-primary" %>
+                <% end %>
             <% end %>
         </div>
     </div>

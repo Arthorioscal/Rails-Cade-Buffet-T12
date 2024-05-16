@@ -9,3 +9,24 @@ pt-BR:
         end_date: Data de Término
         weekday_discount: Desconto para dias de semana
         weekend_discount: Desconto para finais de semana
+    errors:
+      models:
+        promotion:
+          attributes:
+            name:
+              blank: "não pode ficar em branco"
+            start_date:
+              blank: "não pode ficar em branco"
+              cant_be_in_the_past: "não pode ser no passado"
+            end_date:
+              blank: "não pode ficar em branco"
+              cant_be_in_the_past: "não pode ser no passado"
+              must_be_greater_than_or_equal_to: "deve ser maior que a data de inicío"
+            weekday_discount:
+              blank: "não pode ficar em branco"
+              less_than_or_equal_to: "deve ser menor ou igual a 1"
+              greater_than_or_equal_to: "deve ser maior ou igual a 0"
+            weekend_discount:
+              blank: "não pode ficar em branco"
+              less_than_or_equal_to: "deve ser menor ou igual a 1"
+              greater_than_or_equal_to: "deve ser maior ou igual a 0"

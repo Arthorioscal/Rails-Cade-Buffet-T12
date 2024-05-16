@@ -1,6 +1,10 @@
 <% if @order.event.partial_cancellation_fine.present? %>
     <h2> Você tem certeza que deseja cancelar esse pedido? </h2>
-    <h3> Valor da Multa: <%= number_to_currency(@cancellation_fee) %> </h3>
+    <% if @cancellation_fee.present?%>
+        <h3> Valor da Multa: <%= number_to_currency(@cancellation_fee) %> </h3>
+    <% else %>
+        <h3> As regras de multa não se aplicam a você. </h3>
+    <% end %>
     <%= button_to 'Cancelar Pedido', cancel_order_path(@order, cancellation_fee: @cancellation_fee), method: :patch %>
 <% else %>
     <h3> O pedido não possui multa ou o prazo para ser taxado excede. </h3>

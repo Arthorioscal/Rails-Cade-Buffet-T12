@@ -37,7 +37,7 @@ class OrdersController < ApplicationController
     def create 
         @event = Event.find_by(id: params[:order][:event_id])
         @order = Order.new(order_params)
-        @order.user = current_user # set the user to the currently logged in user
+        @order.user = current_user
         if @order.event_address.blank? && @order.event.at_buffet_location == true
             @order.errors.add(:event_address, "adicione informações no campo")
             render :new
@@ -79,7 +79,5 @@ class OrdersController < ApplicationController
         params.require(:order).permit(:event_date, :estimated_guests, :details, :event_address, :buffet_id, :event_id, :final_price, :valid_until, :extra_fee, :discount, :description, :order_payment_method)
     end
 
-    def calculate_fine
-        
-    end
+    
 end
