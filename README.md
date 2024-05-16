@@ -37,12 +37,13 @@ rails db:create # Vai criar o banco de dados usado no ambiente atual (sqlite3)
 rails db:migrate # Vai executar todas as migrações pendentes do projeto
 rails server # Iniciar o servidor no url padrão (http://localhost:3000)
 
-Agora espera-se que o projeto já esteja rodando porém com nada criado, então para navegação inicial do projeto rode
+#Agora espera-se que o projeto já esteja rodando porém com nada criado, então para navegação inicial do projeto rode:
+
 rails db:seed
 
-Nota: Tomei a liberdade de criar os buffets :P
+#Nota: Tomei a liberdade de criar os buffets :P
 
-
+```
 * Configuration
 
 * Database creation
