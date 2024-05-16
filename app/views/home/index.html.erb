@@ -19,7 +19,11 @@
             <h5 class="card-title"><%= link_to b.brand_name, buffet_path(b) %></h5>
             <p class="card-text"><%= "#{b.city} - #{b.state}" %></p>
             <p class="card-text">Endereço: <%= b.address %></p>
-            <p class="card-text">Nota do Buffet: <%= b.average_rating%>></p>
+            <% if b.average_rating.present?%>
+              <p class="card-text">Nota do Buffet: <%= b.average_rating%>></p>
+            <% else%>
+                <p class="card-text">Nota do Buffet: Este Buffet não possui avaliações ainda.</p>
+            <% end %>
             <%= link_to 'Ver Detalhes', buffet_path(b.id), class: "btn btn-primary" %>
           </div>
         </div>
