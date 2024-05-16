@@ -25,7 +25,7 @@ describe 'Buffet owner confirms orders' do
         expect(page).to have_content('Data de validade para confirmação')
         expect(page).to have_content('Taxa Extra')
         expect(page).to have_content('Desconto')
-        expect(page).to have_content('Descrição caso ocorra alteração no valor')
+        expect(page).to have_content('Descrição para caso ocorra alteração no valor ou não:')
         expect(page).to have_content('Meio de Pagamento')
     end
 
@@ -51,7 +51,7 @@ describe 'Buffet owner confirms orders' do
         fill_in 'Data de validade para confirmação', with: '10/10/2099'
         fill_in 'Taxa Extra', with: '0'
         fill_in 'Desconto', with: '200'
-        fill_in 'Descrição caso ocorra alteração no valor', with: 'Valor final com desconto de 10%'
+        fill_in 'Descrição para caso ocorra alteração no valor ou não:', with: 'Valor final com desconto de 10%'
         fill_in 'Meio de Pagamento', with: 'Cartão de Crédito ou Pix'   
         click_on 'Confirmar Pedido'
 
@@ -81,7 +81,7 @@ describe 'Buffet owner confirms orders' do
         fill_in 'Data de validade para confirmação', with: '10/10/2099'
         fill_in 'Taxa Extra', with: '0'
         fill_in 'Desconto', with: '200'
-        fill_in 'Descrição caso ocorra alteração no valor', with: 'Valor final com desconto de 10%'
+        fill_in 'Descrição para caso ocorra alteração no valor ou não:', with: 'Valor final com desconto de 10%'
         fill_in 'Meio de Pagamento', with: 'Cartão de Crédito ou Pix'   
         click_on 'Confirmar Pedido'
         click_on "Pedido: #{order.order_code}"
@@ -135,7 +135,7 @@ describe 'Buffet owner confirms orders' do
         click_on "Pedido: #{order.order_code}"
         click_on 'Confirmar Pedido'
         fill_in 'Data de validade para confirmação', with: 2.days.from_now
-        fill_in 'Descrição caso ocorra alteração no valor:', with: 'tudo certo'
+        fill_in 'Descrição para caso ocorra alteração no valor ou não:', with: 'tudo certo'
         fill_in 'Meio de Pagamento', with: 'pix'
         click_on 'Confirmar Pedido'
         click_on "Pedido: #{order.order_code}"
@@ -164,7 +164,7 @@ describe 'Buffet owner confirms orders' do
         click_on "Pedido: #{order.order_code}"
         click_on 'Confirmar Pedido'
         fill_in 'Data de validade para confirmação', with: 5.days.from_now
-        fill_in 'Descrição caso ocorra alteração no valor:', with: 'tudo certo'
+        fill_in 'Descrição para caso ocorra alteração no valor ou não:', with: 'tudo certo'
         fill_in 'Meio de Pagamento', with: 'pix'
         click_on 'Confirmar Pedido'
         click_on "Pedido: #{order.order_code}"
@@ -194,7 +194,7 @@ describe 'Buffet owner confirms orders' do
         click_on 'Confirmar Pedido'
         fill_in 'Data de validade para confirmação', with: 5.days.from_now
         fill_in 'Taxa Extra', with: '100'
-        fill_in 'Descrição caso ocorra alteração no valor:', with: 'é aniversario do meu tio esse dia'
+        fill_in 'Descrição para caso ocorra alteração no valor ou não:', with: 'é aniversario do meu tio esse dia'
         fill_in 'Meio de Pagamento', with: 'pix'
         click_on 'Confirmar Pedido'
         click_on "Pedido: #{order.order_code}"

@@ -1,14 +1,17 @@
-<h1> Cadastra Pedido </h1>
+<div class="container">
+    <h1 class="my-4"><strong>Realizar Pedido para o evento:</strong> <%= @event.name%></h1>
+    <h1 class="my-4"><strong>do Buffet: </strong><%= @event.buffet.brand_name%></h1>
 
-<%if @order.errors.any?%>
-    <div>
+    <% if @order.errors.any? %>
+    <div class="alert alert-danger">
         <h2>Erro ao realizar pedido</h2>
         <ul>
-            <% @order.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
+        <% @order.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+        <% end %>
         </ul>
     </div>
-<% end %>
+    <% end %>
 
-<%= render 'form' %>
+    <%= render 'form' %>
+</div>

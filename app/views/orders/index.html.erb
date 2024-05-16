@@ -1,22 +1,32 @@
-<h1> Estes são seus pedidos: </h1>
+<div class="container">
+    <h1 class="my-4">Estes são seus pedidos:</h1>
 
-<% if @orders.present?%>
-    <% @orders.each do |o| %>
-        <h2><%= link_to  "Pedido: #{o.order_code}",  order_path(o)%></h2>
-        <p>Status do Pedido: <%= t(o.status, scope: [:activerecord, :attributes, :order]).upcase %></p>
-        <p>Data Estimada: <%= l(o.event_date)%>
-        <% if o.status == 'confirmed_by_owner' %>
-            <p> Válido até: <%= l(o.valid_until) %> </p>
-            <p> Valor Total: <%= number_to_currency(o.final_price - o.discount + o.extra_fee)%> </p>
+    <% if @orders.present? %>
+        <% @orders.each do |o| %>
+            <div class="card mb-4">
+                <div class="card-header">
+                    <%= link_to "Pedido: #{o.order_code}", order_path(o), class: 'h2' %>
+                </div>
+                <div class="card-body">
+                    <p>Status do Pedido: <span class="badge bg-primary"><%= t(o.status, scope: [:activerecord, :attributes, :order]).upcase %></span></p>
+                    <p>Data Estimada: <%= l(o.event_date) %></p>
+                    <% if o.status == 'confirmed_by_owner' %>
+                        <p>Válido até: <%= l(o.valid_until) %></p>
+                        <p>Valor Total: <%= number_to_currency(o.final_price - o.discount + o.extra_fee) %></p>
+                    <% end %>
+                    <% if o.fine.present? %>
+                        <p>Valor da multa: <%= number_to_currency(o.fine.amount) %></p>
+                        <p>Status da multa: <%= t("activerecord.attributes.fine.#{o.fine.status}") %></p>
+                    <% end %>
+                    <% if o.event_date <= Date.today && o.status == 'confirmed' %>
+                        <%= link_to 'Avaliar Buffet', new_buffet_review_path(o.buffet), class: 'btn btn-primary' %>
+                    <% end %>
+                </div>
+            </div>
         <% end %>
-        <% if o.fine.present?%>
-            <p> Valor da multa: <%= number_to_currency(o.fine.amount) %> </p>
-            <p> Status da multa: <%= t("activerecord.attributes.fine.#{o.fine.status}") %> </p>
-        <% end %>
-        <% if o.event_date <= Date.today && o.status == 'confirmed'%>
-            <%= link_to 'Avaliar Buffet', new_buffet_review_path(o.buffet) %>
-        <% end %>
+    <% else %>
+        <div class="alert alert-warning" role="alert">
+            <h2>Você ainda não fez nenhum pedido</h2>
+        </div>
     <% end %>
-<% else %>
-    <h2>Você ainda não fez nenhum pedido</h2>
-<% end %>
+</div>

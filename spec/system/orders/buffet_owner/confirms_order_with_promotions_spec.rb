@@ -22,7 +22,7 @@ describe 'Buffet owner confirms order with promotions' do
         click_on "Pedido: #{order.order_code}"
         click_on 'Confirmar Pedido'
         fill_in 'Data de validade para confirmação', with: 4.days.from_now
-        fill_in 'Descrição caso ocorra alteração no valor:', with: 'tudo certo'
+        fill_in 'Descrição para caso ocorra alteração no valor ou não:', with: 'tudo certo'
         fill_in 'Meio de Pagamento', with: 'pix'
         click_on 'Confirmar Pedido'
         click_on "Pedido: #{order.order_code}"
@@ -52,7 +52,7 @@ describe 'Buffet owner confirms order with promotions' do
         click_on "Pedido: #{order.order_code}"
         click_on 'Confirmar Pedido'
         fill_in 'Data de validade para confirmação', with: 3.days.from_now
-        fill_in 'Descrição caso ocorra alteração no valor:', with: 'tudo certo'
+        fill_in 'Descrição para caso ocorra alteração no valor ou não:', with: 'tudo certo'
         fill_in 'Meio de Pagamento', with: 'pix'
         click_on 'Confirmar Pedido'
         click_on "Pedido: #{order.order_code}"

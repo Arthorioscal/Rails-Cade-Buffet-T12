@@ -6,8 +6,14 @@
             <h2 class="mt-4">Status do Pedido: <%= t(status, scope: [:activerecord, :attributes, :order]) %></h2>
             <div class="list-group">
                 <% orders.each do |order| %>
-                    <a href="<%= buffet_buffet_order_path(@buffet, order) %>" class="btn btn-info">
-                        Pedido: <%= order.order_code %>
+                    <% if order.status == 'awaiting_evaluation'%>
+                        <a href="<%= buffet_buffet_order_path(@buffet, order) %>" class="btn btn-info">
+                    <% elsif order.status == 'confirmed' || order.status == 'confirmed_by_owner'%>
+                        <a href="<%= buffet_buffet_order_path(@buffet, order) %>" class="btn btn-success">
+                    <% elsif order.status == 'cancelled'%>
+                        <a href="<%= buffet_buffet_order_path(@buffet, order) %>" class="btn btn-danger">
+                    <% end %>
+                        Pedido: <%= order.order_code %> / Data do Evento: <%= l(order.event_date) %>
                         <% if order.fine.present?%>
                             Pedido: <%= order.order_code %> - Status da Multa = <%= t("activerecord.attributes.fine.#{order.fine.status}") %>
                         <% end %>

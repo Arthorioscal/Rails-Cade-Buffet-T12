@@ -1,6 +1,7 @@
 class BuffetsController < ApplicationController
     before_action :authenticate_user!, only: [:profile, :new, :create, :edit, :update]
-    before_action :user_not_authenticated, only: [:edit, :update]
+    before_action :user_owner_authentication, only: [:profile, :new, :create, :edit, :update, :toggle_active]
+    before_action :owner_not_authenticated, only: [:edit, :update, :toggle_active]
 
     
     def show
@@ -64,10 +65,14 @@ class BuffetsController < ApplicationController
         params.require(:buffet).permit(:brand_name, :corporate_name, :cnpj, :phone, :email, :address, :neighborhood, :state, :city, :zip_code, :description, :payment_methods, :cover_photo)
     end
 
-    def user_not_authenticated
+    def owner_not_authenticated
         @buffet = Buffet.find(params[:id])
         if @buffet.user != current_user
             redirect_to root_path, notice: 'Você não tem permissão para acessar essa página'
         end        
+    end
+
+    def user_owner_authentication
+        redirect_to root_path, notice: 'Acesso não autorizado' unless current_user.role == 'buffet_owner'
     end
 end
