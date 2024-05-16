@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
     before_action :authenticate_user!
+    before_action :authenticate_user_client, only: [:new, :create]
 
     def index
         @orders = current_user.orders
@@ -79,5 +80,7 @@ class OrdersController < ApplicationController
         params.require(:order).permit(:event_date, :estimated_guests, :details, :event_address, :buffet_id, :event_id, :final_price, :valid_until, :extra_fee, :discount, :description, :order_payment_method)
     end
 
-    
+    def authenticate_user_client
+        redirect_to root_path, notice: 'Acesso não autorizado' unless current_user.role == 'client'
+    end
 end

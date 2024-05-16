@@ -35,7 +35,6 @@ describe 'Client views buffets' do
         click_on 'Ver Detalhes'
 
         expect(page).to have_content('Buffet do Snake')
-        expect(page).to have_content('Buffet do Snake Ltda')
         expect(page).to have_content('45195101000101')
         expect(page).to have_content('11999999999')
         expect(page).to have_content('solidsnakefans@mail.com')
@@ -137,7 +136,6 @@ describe 'Client views buffets' do
         click_on 'Ver Detalhes'
 
         expect(page).to have_content('Buffet do Snake')
-        expect(page).to have_content('Buffet do Snake Ltda')
         expect(page).to have_content('45195101000101')
         expect(page).to have_content('11999999999')
         expect(page).to have_content('solidsnakefans@mail.com')

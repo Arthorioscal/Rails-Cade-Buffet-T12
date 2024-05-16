@@ -1,11 +1,11 @@
 <%= form_with model: @buffet, html: { class: 'row gy-2 gx-3 align-items-center' } do |f|%>
     <div class="col-auto">
         <%= f.label :brand_name %>
-        <%= f.text_field :brand_name, class: 'form-control', placeholder: 'Brand Name' %>
+        <%= f.text_field :brand_name, class: 'form-control', placeholder: 'Nome Fantasia' %>
     </div>
     <div class="col-auto">
         <%= f.label :corporate_name %>
-        <%= f.text_field :corporate_name, class: 'form-control', placeholder: 'Corporate Name' %>
+        <%= f.text_field :corporate_name, class: 'form-control', placeholder: 'Razão Social' %>
     </div>
     <div class="col-auto">
         <%= f.label :cnpj %>
@@ -13,7 +13,7 @@
     </div>
     <div class="col-auto">
         <%= f.label :phone %>
-        <%= f.text_field :phone, class: 'form-control', placeholder: 'Phone' %>
+        <%= f.text_field :phone, class: 'form-control', placeholder: 'Celular para contato' %>
     </div>
     <div class="col-auto">
         <%= f.label :email %>
@@ -21,31 +21,31 @@
     </div>
     <div class="col-auto">
         <%= f.label :address %>
-        <%= f.text_field :address, class: 'form-control', placeholder: 'Address' %>
+        <%= f.text_field :address, class: 'form-control', placeholder: 'Endereço' %>
     </div>
     <div class="col-auto">
         <%= f.label :neighborhood %>
-        <%= f.text_field :neighborhood, class: 'form-control', placeholder: 'Neighborhood' %>
+        <%= f.text_field :neighborhood, class: 'form-control', placeholder: 'Bairro' %>
     </div>
     <div class="col-auto">
         <%= f.label :state %>
-        <%= f.text_field :state, class: 'form-control', placeholder: 'State' %>
+        <%= f.text_field :state, class: 'form-control', placeholder: 'Estado' %>
     </div>
     <div class="col-auto">
         <%= f.label :city %>
-        <%= f.text_field :city, class: 'form-control', placeholder: 'City' %>
+        <%= f.text_field :city, class: 'form-control', placeholder: 'Cidade' %>
     </div>
     <div class="col-auto">
         <%= f.label :zip_code %>
-        <%= f.text_field :zip_code, class: 'form-control', placeholder: 'Zip Code' %>
+        <%= f.text_field :zip_code, class: 'form-control', placeholder: 'CEP' %>
     </div>
     <div class="col-auto">
         <%= f.label :description %>
-        <%= f.text_area :description, class: 'form-control', placeholder: 'Description' %>
+        <%= f.text_area :description, class: 'form-control', placeholder: 'Descrição' %>
     </div>
     <div class="col-auto">
         <%= f.label :payment_methods %>
-        <%= f.text_field :payment_methods, class: 'form-control', placeholder: 'Payment Methods' %>
+        <%= f.text_field :payment_methods, class: 'form-control', placeholder: 'Formas de Pagamento aceitas' %>
     </div>
 
     <div class="col-auto">

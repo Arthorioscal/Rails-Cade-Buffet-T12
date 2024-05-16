@@ -44,6 +44,7 @@ describe 'Buffet Owner register buffets' do
 
         expect(page).to have_content('Não foi possível cadastrar o buffet, tente novamente')
     end
+
     it 'visit root path after register before registering a buffet and registration prompts again' do
 
         visit root_path
@@ -83,6 +84,13 @@ describe 'Buffet Owner register buffets' do
 
         expect(page).to have_content('Fazer Cadastro')
         expect(page).to have_content('Entrar')
+    end
+
+    it 'and must be logged in to register a buffet' do
+        
+        visit new_buffet_path
+
+        expect(current_path).to eq(new_user_session_path)
     end
 end
 

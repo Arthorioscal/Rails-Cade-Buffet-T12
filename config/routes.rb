@@ -44,7 +44,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :event_prices, only: %i[show new create edit update]
+  resources :event_prices, only: %i[new create edit update]
 
   namespace :api do
     namespace :v1 do

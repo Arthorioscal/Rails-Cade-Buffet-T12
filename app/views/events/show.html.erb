@@ -28,23 +28,13 @@
 
     <div class="col-md-6">
       <% if @event.photos.attached? %>
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-          <div class="carousel-inner">
-            <% @event.photos.each_with_index do |photo, index| %>
-              <div class="carousel-item <%= 'active' if index.zero? %>">
-                <h3>Fotos do Evento:</h3>
-                <%= image_tag url_for(photo), class: 'd-block w-100' %>
-              </div>
-            <% end %>
-          </div>
-          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Anterior</span>
-          </a>
-          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Próximo</span>
-          </a>
+        <h3>Fotos do Evento:</h3>
+        <div class="photo-grid">
+          <% @event.photos.each do |photo| %>
+            <div class="photo-item">
+              <%= image_tag url_for(photo), class: 'd-block', style: 'max-width: 500px; max-height: 500px;' %>
+            </div>
+          <% end %>
         </div>
       <% end %>
       <div class="card">
@@ -100,9 +90,10 @@
 
   <div class="row mt-3">
     <div class="col-md-12">
-      <% if current_user.role == 'buffet_owner' %>
+      <% if current_user.role == 'buffet_owner' && @event.buffet.user == current_user %>
         <%= link_to 'Editar', edit_event_path(@event), class: 'btn btn-primary' %>
-      <% else %>
+      <% end%>
+      <% if current_user.role == 'client' %>
         <%= link_to 'Realizar Pedido', new_order_path(event_id: @event.id), class: 'btn btn-primary' %>
       <% end %>
     </div>

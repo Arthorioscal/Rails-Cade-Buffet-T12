@@ -116,7 +116,7 @@ RSpec.describe Buffet, type: :model do
             it 'false when cnpj is not unique' do
                 user = User.create!(email: 'raiden@mgs.com', password: 'solidsnakefan', role: :buffet_owner)
                 user2 = User.create!(email: 'raidenz@mgs.com', password: 'solidsnakefanz', role: :buffet_owner)
-                buffet1 = Buffet.create!(brand_name: 'Buffet do Snake', corporate_name: 'Buffet Metal Gear Ltda', cnpj: '89032028000114',
+                Buffet.create!(brand_name: 'Buffet do Snake', corporate_name: 'Buffet Metal Gear Ltda', cnpj: '89032028000114',
                 phone: '11999999999', email: 'solidsnakefans@mail.com', address: 'Rua do Buffet, 123', neighborhood: 'Bairro do Buffet',
                 state: 'São Paulo', city: 'São Paulo', zip_code: '12345678', description: 'Buffet especializado em festas de aniversário',
                 payment_methods: 'Dinheiro, cartão de crédito e débito', user: user)
@@ -130,7 +130,7 @@ RSpec.describe Buffet, type: :model do
             it 'false when email is not unique' do
                 user = User.create!(email: 'raiden@mgs.com', password: 'solidsnakefan', role: :buffet_owner)
                 user2 = User.create!(email: 'raidenz@mgs.com', password: 'solidsnakefanz', role: :buffet_owner)
-                buffet1 = Buffet.create!(brand_name: 'Buffet do Snake', corporate_name: 'Buffet Metal Gear Ltda', cnpj: '89032028000114',
+                Buffet.create!(brand_name: 'Buffet do Snake', corporate_name: 'Buffet Metal Gear Ltda', cnpj: '89032028000114',
                 phone: '11999999999', email: 'solidsnakefans@mail.com', address: 'Rua do Buffet, 123', neighborhood: 'Bairro do Buffet',
                 state: 'São Paulo', city: 'São Paulo', zip_code: '12345678', description: 'Buffet especializado em festas de aniversário',
                 payment_methods: 'Dinheiro, cartão de crédito e débito', user: user)
@@ -138,6 +138,20 @@ RSpec.describe Buffet, type: :model do
                 phone: '11999999998', email: 'solidsnakefans@mail.com', address: 'Rua do Raiden, 123', neighborhood: 'Bairro do Raiden',
                 state: 'Rio Grande do Sul', city: 'Caxias do Sul', zip_code: '12345679', description: 'Buffet especializado em festas de casamento',
                 payment_methods: 'Dinheiro, cartão de crédito e débito', user: user2)
+                expect(buffet2.valid?).to be_falsey
+            end
+
+            it 'false when the user already has one buffet' do
+                user = User.create!(email: 'raiden@mgs.com', password: 'solidsnakefan', role: :buffet_owner)
+                Buffet.create!(brand_name: 'Buffet do Snake', corporate_name: 'Buffet Metal Gear Ltda', cnpj: '89032028000114',
+                    phone: '11999999999', email: 'solidsnakefans@mail.com', address: 'Rua do Buffet, 123', neighborhood: 'Bairro do Buffet',
+                    state: 'São Paulo', city: 'São Paulo', zip_code: '12345678', description: 'Buffet especializado em festas de aniversário',
+                    payment_methods: 'Dinheiro, cartão de crédito e débito', user: user)
+                buffet2 = Buffet.new(brand_name: 'Buffet do Raiden', corporate_name: 'Buffet do Raiden Ltda', cnpj: '89032028000114',
+                    phone: '11999999998', email: 'solidsnakefans@mail.com', address: 'Rua do Raiden, 123', neighborhood: 'Bairro do Raiden',
+                    state: 'Rio Grande do Sul', city: 'Caxias do Sul', zip_code: '12345679', description: 'Buffet especializado em festas de casamento',
+                    payment_methods: 'Dinheiro, cartão de crédito e débito', user: user)
+                
                 expect(buffet2.valid?).to be_falsey
             end
         end

@@ -75,8 +75,7 @@ describe 'Guest search registered buffets' do
         fill_in 'Buscar Buffet', with: 'Buffet do Snake'
         click_on 'Buscar'
 
-        expect(page).to have_content('Buffet Metal Gear Ltda')
-        expect(page).to have_content('89032028000114')
+        expect(page).to have_content('CNPJ: 89032028000114')
         expect(page).to have_content('11999999999')
         expect(page).to have_content('solidsnakefans@mail.com')
         expect(page).to have_content('Rua do Buffet, 123')

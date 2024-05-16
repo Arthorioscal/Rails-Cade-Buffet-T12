@@ -23,7 +23,7 @@
             <div class="col-md-6">
                 <div class="Buffet-pfr_cover_photo">
                     <p> <strong> Foto de Capa do Buffet: </strong> </p>
-                    <%= image_tag @buffet.cover_photo, class: "Buffet-prf-card-img-top" if @buffet.cover_photo.attached? %>
+                    <%= image_tag @buffet.cover_photo, class: "img-fluid Buffet-prf-card-img-top" if @buffet.cover_photo.attached? %>
                 </div>
             </div>
         </div>
@@ -86,6 +86,8 @@
                                     <p class="Event-card-text">Preço do Evento (Fim de Semana): <%= event_type.event_price.we_price %></p>
                                     <p class="Event-card-text">Preço por Pessoa Adicional (Fim de Semana): <%= event_type.event_price.we_add_person_price %></p>
                                     <p class="Event-card-text">Preço por Hora Extra (Fim de Semana): <%= event_type.event_price.we_extra_hour_price %></p>
+                                    <%= link_to 'Editar Preço deste Evento', edit_event_price_path(event_type.id), class: "btn btn-primary" %>
+
                                 </div>
                                     <h2> Gerenciar Promoções do Evento </h2>
                                     <% if event_type.promotion.present? %>
@@ -117,7 +119,9 @@
                 <div class="Event-card-footer">
                     <%= link_to 'Cadastrar outro Tipo de Evento', new_event_path, class: "btn btn-primary" %>
                     <%= link_to 'Editar Evento', edit_event_path(event_type), class: "btn btn-primary" %>
-                    <%= link_to 'Cadastrar Preço deste Evento', url_for(controller: 'event_prices', action: 'new', event_id: event_type.id), class: "btn btn-primary" %>
+                    <% if event_type.event_price.blank? %>
+                        <%= link_to 'Cadastrar Preço deste Evento', url_for(controller: 'event_prices', action: 'new', event_id: event_type.id), class: "btn btn-primary" %>
+                    <% end %>
                     <%= button_to 'Ativar/Desativar Evento', toggle_active_event_path(event_type), class: "btn btn-primary" %>
                 </div>
             </div>

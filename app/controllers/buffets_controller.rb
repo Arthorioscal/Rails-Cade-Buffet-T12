@@ -16,8 +16,8 @@ class BuffetsController < ApplicationController
         @query = params[:query]
         @buffets = Buffet.where(active: true).joins(:events).distinct
         .where("buffets.brand_name LIKE :query OR buffets.city LIKE :query OR events.name LIKE :query OR buffets.address LIKE :query", query: "%#{@query}%")
-        .order(:name)
-
+        .order('buffets.brand_name')
+    
         if @buffets.count == 1
             redirect_to buffet_path(@buffets.first)
         end

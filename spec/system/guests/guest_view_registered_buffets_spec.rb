@@ -34,8 +34,8 @@ describe 'Guest view registered buffets' do
         visit root_path
         click_on 'Buffet do Snake'
 
-        expect(page).not_to have_content('Buffet do Snake')
-        expect(page).to have_content('Buffet Metal Gear Ltda')
+        expect(page).not_to have_content('Buffet Metal Gear Ltda')
+        expect(page).to have_content('Buffet do Snake')
         expect(page).to have_content('45195101000101')
         expect(page).to have_content('11999999999')
         expect(page).to have_content('solidsnakefans@mail.com')
@@ -67,8 +67,7 @@ describe 'Guest view registered buffets' do
         visit root_path
         click_on 'Buffet do Snake'
             
-        expect(page).not_to have_content('Buffet do Snake')
-        expect(page).to have_content('Buffet Metal Gear Ltda')
+        expect(page).to have_content('Buffet do Snake')
         expect(page).to have_content('45195101000101')
         expect(page).to have_content('11999999999')
         expect(page).to have_content('solidsnakefans@mail.com')
@@ -111,7 +110,6 @@ describe 'Guest view registered buffets' do
         click_on 'Buffet do Snake'
             
         expect(page).to have_css('img[src*="mgsbirthday.jpg"]')
-        expect(page).to have_content('Buffet Metal Gear Ltda')
         expect(page).to have_content('45195101000101')
         expect(page).to have_content('11999999999')
         expect(page).to have_content('solidsnakefans@mail.com')

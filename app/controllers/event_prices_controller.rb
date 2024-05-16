@@ -1,9 +1,6 @@
 class EventPricesController < ApplicationController
-    def show
-        @event = Event.find(params[:event_id])
-        @event_price = EventPrice.find(params[:id])
-    end
-
+    before_action :authenticate_user!
+    
     def new
         @event = Event.find(params[:event_id])
         @event_price = EventPrice.new
@@ -22,12 +19,12 @@ class EventPricesController < ApplicationController
     end
 
     def edit
-        @event = Event.find(params[:event_id])
+        @event = Event.find_by(params[:event_id])
         @event_price = EventPrice.find(params[:id])
     end
 
     def update
-        @event = Event.find(params[:event_id])
+        @event = Event.find_by(id: params[:event_id])
         @event_price = EventPrice.find(params[:id])
         if @event_price.update(event_price_params)
             redirect_to event_path(@event), notice: 'Preço do evento foi atualizado com sucesso.'

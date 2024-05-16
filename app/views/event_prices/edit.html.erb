@@ -1,4 +1,18 @@
-<%= form_with(model: @event_price, url: event_prices_path(event_id: @event.id), html: { class: 'row gy-2 gx-3 align-items-center' }) do |form| %>
+<div class="container">
+  <h1 class="my-4">Editar o preço do evento</h1>
+  <h3 class="my-4">Não coloque use pontos, letras ou símbolos ao cadastrar os preços. Ex: ""."", "R$", ","</h3>
+  <% if @event_price.errors.any? %>
+    <div class="alert alert-danger">
+      <h2>Erro ao cadastrar fornecedor</h2>
+      <ul>
+        <% @event_price.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<%= form_with(model: @event_price, url: event_price_path(@event_price, event_id: @event.id), method: :patch, html: { class: 'row gy-2 gx-3 align-items-center' }) do |form| %>
     <%= form.hidden_field :event_id, value: @event.id %>
 
     <div class="col-auto">
@@ -35,3 +49,6 @@
         <%= form.submit 'Cadastrar', class: 'btn btn-primary' %>
     </div>
 <% end %>
+
+  <%= link_to 'Voltar', buffet_profile_path(@event.buffet.id), class: 'btn btn-secondary mt-3' %>
+</div>
