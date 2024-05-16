@@ -42,7 +42,7 @@ describe 'Buffet owner confirms order with promotions' do
         at_buffet_location: true, buffet: buffet)
         EventPrice.create!(wd_price: 2000, wd_add_person_price: 70, wd_extra_hour_price: 100, we_price: 2500, we_add_person_price: 80, we_extra_hour_price: 150, event: event)
         client = User.create!(email: 'bigboss@gmail.com', password: 'bigboss', name: 'Big Boss', cpf: '11543210023', role: :client)
-        order = Order.create!(event_date: 6.days.from_now, estimated_guests: 50, details: 'Festa de aniversário de 50 anos', event_address: 'Rua do Evento, 123', buffet: buffet, event: event, user: client)
+        order = Order.create!(event_date: Time.now.beginning_of_week + 11.days, estimated_guests: 50, details: 'Festa de aniversário de 50 anos', event_address: 'Rua do Evento, 123', buffet: buffet, event: event, user: client)
         Promotion.create!(name: 'DEU A LOCA NO DONO', start_date: 1.day.from_now, end_date: 10.days.from_now, weekday_discount: 0.1, weekend_discount: 0.05, event: event)
 
         login_as user, scope: :user

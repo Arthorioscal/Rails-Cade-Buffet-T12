@@ -12,6 +12,9 @@ class Event < ApplicationRecord
 
   validate :max_and_min_people_cannot_be_zero
 
+  #validates :partial_cancellation_days, :total_cancellation_days, numericality: { only_integer: true, greater_than: 0 }
+  #validates :partial_cancellation_fine, :total_cancellation_fine, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 1 }
+
   def max_and_min_people_cannot_be_zero
     if min_people == 0
         errors.add(:min_people, 'não pode ser zero')

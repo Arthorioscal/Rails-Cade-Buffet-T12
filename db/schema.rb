@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_15_025311) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_16_000029) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -87,7 +87,20 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_15_025311) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "active", default: true
+    t.integer "partial_cancellation_days"
+    t.decimal "partial_cancellation_fine"
+    t.integer "total_cancellation_days"
+    t.decimal "total_cancellation_fine"
     t.index ["buffet_id"], name: "index_events_on_buffet_id"
+  end
+
+  create_table "fines", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.decimal "amount"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_fines_on_order_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -166,6 +179,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_15_025311) do
   add_foreign_key "buffets", "users"
   add_foreign_key "event_prices", "events"
   add_foreign_key "events", "buffets"
+  add_foreign_key "fines", "orders"
   add_foreign_key "messages", "orders"
   add_foreign_key "messages", "users"
   add_foreign_key "orders", "buffets"

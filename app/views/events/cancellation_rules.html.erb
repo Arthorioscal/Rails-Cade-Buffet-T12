@@ -1,0 +1,15 @@
+<%= form_with model: @event, url: { action: "update_cancellation_rules" }, method: :patch do |form| %>
+    <%= form.label :partial_cancellation_days %>
+    <%= form.number_field :partial_cancellation_days %>
+
+    <%= form.label :partial_cancellation_fine %>
+    <%= form.number_field :partial_cancellation_fine, step: 0.01 %>
+
+    <%= form.label :total_cancellation_days %>
+    <%= form.number_field :total_cancellation_days %>
+
+    <%= form.label :total_cancellation_fine %>
+    <%= form.number_field :total_cancellation_fine, step: 0.01 %>
+
+    <%= form.submit %>
+<% end %>

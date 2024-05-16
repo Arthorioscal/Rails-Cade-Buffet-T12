@@ -26,17 +26,21 @@ Rails.application.routes.draw do
     
     member do
       post :toggle_active
+      get :cancellation_rules
+      patch :update_cancellation_rules
     end
-  
   end
 
   resources :orders, only: %i[index show new create edit update] do
     resources :messages, only: %i[create]
+    resources :fines, only: %i[show update]
     
     member do
       get :buffet_confirmation_form
       patch :buffet_confirmation
       patch :client_confirmation
+      get :cancel_confirmation
+      patch :cancel
     end
   end
 

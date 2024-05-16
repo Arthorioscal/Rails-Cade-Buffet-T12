@@ -1,16 +1,17 @@
 class Order < ApplicationRecord
+  has_one :fine
   has_many :messages, dependent: :destroy
   belongs_to :buffet
   belongs_to :event
   belongs_to :user
 
-  enum status: { awaiting_evaluation: 0, confirmed_by_owner: 1, confirmed: 2, canceled: 3}
+  enum status: { awaiting_evaluation: 0, confirmed_by_owner: 1, confirmed: 2, cancelled: 3}
 
   validates :event_date, :estimated_guests, :details, :order_code, :status, presence: true
   validates :estimated_guests, numericality: { only_integer: true, greater_than: 0 }
   validates :order_code, length: { is: 8 }
 
-  validates :status, inclusion: { in: %w[awaiting_evaluation confirmed_by_owner confirmed canceled] }
+  validates :status, inclusion: { in: %w[awaiting_evaluation confirmed_by_owner confirmed cancelled] }
 
   validates :valid_until, :final_price, :discount, :extra_fee, :description, presence: true, if: :status_confirmed?
   
@@ -47,12 +48,5 @@ class Order < ApplicationRecord
   #  if self.valid_until.present? && self.valid_until < Date.today
   #    self.errors.add(:valid_until, 'O pedido expirou')
   # end
-  #end
-
-  #def cancel_if_not_confirmed_and_event_date_passed
-  #  if !status_confirmed? || status == 'awaiting_evaluation' && event_date < Date.current
-  #    self.status = 'canceled'
-  #    self.save
-  #  end
   #end
 end

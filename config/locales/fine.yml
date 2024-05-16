@@ -1,0 +1,8 @@
+pt-BR:
+  activerecord:
+    attributes:
+      fine:
+        amount: 'Valor da Multa'
+        status: 'Status'
+        paid: 'Pago'
+        unpaid: 'Não Pago'

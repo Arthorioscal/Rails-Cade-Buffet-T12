@@ -49,9 +49,37 @@ class OrdersController < ApplicationController
         end
     end
 
+    def cancel_confirmation
+        @order = Order.find(params[:id])
+        days_remaining = (@order.event_date - Date.today).to_i
+        if @order.event.partial_cancellation_fine.present?
+          if days_remaining <= @order.event.partial_cancellation_days
+            @cancellation_fee = (@order.final_price * @order.event.partial_cancellation_fine)
+          elsif days_remaining < @order.event.partial_cancellation_days && days_remaining <= @order.event.total_cancellation_days
+            @cancellation_fee = @order.final_price * @order.event.total_cancellation_fine
+          end
+        end
+    end
+
+    def cancel
+        @order = Order.find(params[:id])
+        cancellation_fee = params[:cancellation_fee]
+        if @order.update(status: 'cancelled')
+            Fine.create(order: @order, amount: cancellation_fee, status: 'unpaid')
+            redirect_to @order, notice: 'Tipo de evento atualizado com sucesso.'
+        else
+            flash.now[:notice] = 'Não foi possível atualizar o tipo de evento, tente novamente'
+            render :cancel_confirmation
+        end
+    end
+
     private
 
     def order_params
         params.require(:order).permit(:event_date, :estimated_guests, :details, :event_address, :buffet_id, :event_id, :final_price, :valid_until, :extra_fee, :discount, :description, :order_payment_method)
+    end
+
+    def calculate_fine
+        
     end
 end

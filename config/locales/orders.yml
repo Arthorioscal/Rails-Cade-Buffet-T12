@@ -20,7 +20,7 @@ pt-BR:
         awaiting_evaluation: 'Aguardando Avaliação'
         confirmed_by_owner: "Confirmado pelo Dono do Buffet"
         confirmed: 'Confirmado'
-        canceled: 'Cancelado'
+        cancelled: 'Cancelado'
         created_at: 'Data de Criação'
         updated_at: 'Data de Atualização'
         valid_until: 'Data de validade para confirmação'

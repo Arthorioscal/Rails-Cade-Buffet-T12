@@ -20,6 +20,12 @@
                 <p class="card-text">Preço do Pedido (sem acréscimo): <%= number_to_currency(@order.final_price) %></p>
                 <p class="card-text">Valor Total: <%= number_to_currency(@order.final_price - @order.discount + @order.extra_fee) %></p>
                 <p class="card-text">Meio de Pagamento: <%= @order.order_payment_method %></p>
+            <% elsif @order.status == 'cancelled'%>
+                <p class="card-text">Multa à ser paga: <%= (@order.fine.amount) %></p>
+                <p class="card-text">Status da multa: <%= t("activerecord.attributes.fine.#{@order.fine.status}") %></p>
+                <% if @order.fine.status == 'unpaid'%>
+                    <p class="card-text">Confirmar Pagamento da Multa: <%= button_to 'Confirmar Pagamento', order_fine_path(@order), method: :patch, class: "btn btn-danger" %><p>
+                <% end %>
             <% else %>
                 <%= link_to 'Confirmar Pedido', buffet_confirmation_form_order_path(@order), method: :get, class: "btn btn-primary" %>
             <% end %>

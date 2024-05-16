@@ -4,13 +4,13 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title"><%= @event.name %></h5>
-          <% if @event.promotion.present?%>
+          <% if @event.promotion.present? %>
             <div class="alert alert-success" role="alert">
-              <h5> Este evento está com uma Promoção Ativa!</h5>
-              <p> Promoção Ativa: <%= @event.promotion.name %></p>
-              <p> Desconto na Semana: <%= @event.promotion.weekday_discount * 100%>%</p>
-              <p> Desconto no Fim de Semana: <%= @event.promotion.weekend_discount * 100%>%</p>
-              <p> Está promoção vai até o dia: <%= @event.promotion.end_date.strftime('%d/%m/%Y')%></p>
+              <h5>Este evento está com uma Promoção Ativa!</h5>
+              <p>Promoção Ativa: <%= @event.promotion.name %></p>
+              <p>Desconto na Semana: <%= @event.promotion.weekday_discount * 100 %>%</p>
+              <p>Desconto no Fim de Semana: <%= @event.promotion.weekend_discount * 100 %>%</p>
+              <p>Está promoção vai até o dia: <%= @event.promotion.end_date.strftime('%d/%m/%Y') %></p>
             </div>
           <% end %>
           <p class="card-text"><strong>Descrição: </strong><%= @event.description %></p>
@@ -32,7 +32,7 @@
           <div class="carousel-inner">
             <% @event.photos.each_with_index do |photo, index| %>
               <div class="carousel-item <%= 'active' if index.zero? %>">
-                <h3> Fotos do Evento: </h3>
+                <h3>Fotos do Evento:</h3>
                 <%= image_tag url_for(photo), class: 'd-block w-100' %>
               </div>
             <% end %>
@@ -47,8 +47,56 @@
           </a>
         </div>
       <% end %>
+      <div class="card">
+        <div class="card-body">
+          <% if @event.partial_cancellation_fine.present? %>
+            <h5 class="card-title">Regras de Cancelamento:</h5>
+            <p class="card-text">Dias para Cancelamento Parcial: <%= @event.partial_cancellation_days %> dias antes do dia do evento</p>
+            <p class="card-text">Multa para Cancelamento Parcial: <%= 100 * @event.partial_cancellation_fine %>%</p>
+            <p class="card-text">Dias para Cancelamento Total: <%= @event.total_cancellation_days %> dias antes do dia do evento</p>
+            <p class="card-text">Multa de Cancelamento Total: <%= 100 * @event.total_cancellation_fine %>%</p>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
+  <% if @event.event_price.present?%>
+    <div class="row mt-3">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Preços do Evento:</h5>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <strong>Preço durante a semana:</strong>
+                <%= @event.event_price.wd_price %>
+              </li>
+              <li class="list-group-item">
+                <strong>Preço por pessoa durante a semana:</strong>
+                <%= @event.event_price.wd_add_person_price %>
+              </li>
+              <li class="list-group-item">
+                <strong>Preço por hora extra durante a semana:</strong>
+                <%= @event.event_price.wd_extra_hour_price %>
+              </li>
+              <li class="list-group-item">
+                <strong>Preço durante o fim de semana:</strong>
+                <%= @event.event_price.we_price %>
+              </li>
+              <li class="list-group-item">
+                <strong>Preço por pessoa durante o fim de semana:</strong>
+                <%= @event.event_price.we_add_person_price %>
+              </li>
+              <li class="list-group-item">
+                <strong>Preço por hora extra durante o fim de semana:</strong>
+                <%= @event.event_price.we_extra_hour_price %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
 
   <div class="row mt-3">
     <div class="col-md-12">

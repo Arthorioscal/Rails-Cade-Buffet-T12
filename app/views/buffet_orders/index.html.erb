@@ -8,6 +8,9 @@
                 <% orders.each do |order| %>
                     <a href="<%= buffet_buffet_order_path(@buffet, order) %>" class="btn btn-info">
                         Pedido: <%= order.order_code %>
+                        <% if order.fine.present?%>
+                            Pedido: <%= order.order_code %> - Status da Multa = <%= t("activerecord.attributes.fine.#{order.fine.status}") %>
+                        <% end %>
                     </a>
                 <% end %>
             </div>

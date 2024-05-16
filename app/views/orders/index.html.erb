@@ -9,6 +9,10 @@
             <p> Válido até: <%= l(o.valid_until) %> </p>
             <p> Valor Total: <%= number_to_currency(o.final_price - o.discount + o.extra_fee)%> </p>
         <% end %>
+        <% if o.fine.present?%>
+            <p> Valor da multa: <%= number_to_currency(o.fine.amount) %> </p>
+            <p> Status da multa: <%= t("activerecord.attributes.fine.#{o.fine.status}") %> </p>
+        <% end %>
         <% if o.event_date <= Date.today && o.status == 'confirmed'%>
             <%= link_to 'Avaliar Buffet', new_buffet_review_path(o.buffet) %>
         <% end %>

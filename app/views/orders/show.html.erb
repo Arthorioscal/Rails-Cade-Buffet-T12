@@ -26,12 +26,18 @@
         <h2> Pedido expirado. </h2>
         <p> Este pedido expirou em <%= l(@order.valid_until) %>. </p>
         <p> Para mais informações, entre em contato com o buffet. </p>
-    <% else %>
+    <% elsif @order.status == 'confirmed' %>
+        <p> Valor Total: <%= number_to_currency(@order.final_price - @order.discount + @order.extra_fee) %> </p>
+        <p> Meio de Pagamento: <%= @order.order_payment_method %> </p>
+        <%= link_to 'Cancelar Pedido', cancel_confirmation_order_path(@order)%>
+    <% elsif @order.status == 'cancelled' %>
+        <p> Valor da multa: <%= number_to_currency(@order.fine.amount) %> </p>
+        <p> Status da multa: <%= t("activerecord.attributes.fine.#{@order.fine.status}") %> </p>
+    <% else%>
         <h2> Este pedido ainda não foi confirmado pelo buffet. </h2>
         <p> Para mais informações, entre em contato com o buffet. </p>
     <% end %>
 </div>
-
 <div>
     <h2> Mensagens </h2>
     <% @order.messages.each do |message| %>

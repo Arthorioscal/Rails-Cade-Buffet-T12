@@ -54,10 +54,25 @@
                             <p class="Event-card-text">Quantidade Máxima de Convidados: <%= event_type.max_people %></p>
                             <p class="Event-card-text">Duração do Evento: <%= event_type.duration %></p>
                             <p class="Event-card-text">Event-cardápio para o Evento: <%= event_type.menu %></p>
-                            <p class="Event-card-text">Serve bebidas Alcoólicas: <%= event_type.alcohol %></p>
-                            <p class="Event-card-text">Disponibiliza serviço de decoração: <%= event_type.decoration %></p>
-                            <p class="Event-card-text">Disponibiliza serviço de estacionamento: <%= event_type.parking_service %></p>
-                            <p class="Event-card-text">Realiza evento em outros locais: <%= event_type.at_buffet_location %></p>
+                            <p class="Event-card-text">Serve bebidas Alcoólicas: <%= t(event_type.alcohol) %></p>
+                            <p class="Event-card-text">Disponibiliza serviço de decoração: <%= t(event_type.decoration) %></p>
+                            <p class="Event-card-text">Disponibiliza serviço de estacionamento: <%= t(event_type.parking_service) %></p>
+                            <p class="Event-card-text">Realiza evento em outros locais: <%= t(event_type.at_buffet_location) %></p>
+                        </div>
+                        <div class="card">
+                        <div class="card-body">
+                            <% if event_type.partial_cancellation_fine.present? %>
+                            <h5 class="card-title">Regras de Cancelamento:</h5>
+                            <p class="card-text">Dias para Cancelamento Parcial: <%= event_type.partial_cancellation_days %></p>
+                            <p class="card-text">Multa para Cancelamento Parcial: <%= event_type.partial_cancellation_fine %></p>
+                            <p class="card-text">Dias para Cancelamento Total: <%= event_type.total_cancellation_days %></p>
+                            <p class="card-text">Multa para Cancelamento Total: <%= event_type.total_cancellation_fine %></p>
+                            <%= link_to 'Editar Regras de Cancelamento', cancellation_rules_event_path(event_type), class: "btn btn-primary" %>
+                            <% else %>
+                            <h5 class="card-title">Cadastre Aqui as regras referente ao cancelamento de pedidos:</h5>
+                            <%= link_to 'Cadastrar Regras de Cancelamento', cancellation_rules_event_path(event_type), class: "btn btn-primary" %>
+                            <% end %>
+                        </div>
                         </div>
                     </div>
                     <div class="col-md-6">

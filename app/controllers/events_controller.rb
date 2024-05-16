@@ -35,7 +35,7 @@ class EventsController < ApplicationController
         @buffet = current_user.buffet
         @event = Event.find(params[:id])
         if @event.update(event_params)
-            redirect_to events_path(@event), notice: 'Tipo de evento atualizado com sucesso.'
+            redirect_to buffet_profile_path(current_user.buffet), notice: 'Tipo de evento atualizado com sucesso.'
         else
             flash.now[:notice] = 'Não foi possível atualizar o tipo de evento, tente novamente'
             render :edit
@@ -48,10 +48,24 @@ class EventsController < ApplicationController
         redirect_to buffet_profile_path(current_user.buffet), notice: 'Status do tipo de evento atualizado com sucesso.'
     end
 
+    def cancellation_rules
+        @event = Event.find(params[:id])
+    end
+
+    def update_cancellation_rules
+        @event = Event.find(params[:id])
+        if @event.update(event_params)
+            redirect_to buffet_profile_path(current_user.buffet), notice: 'Regras de cancelamento atualizadas com sucesso.'
+        else
+            flash.now[:notice] = 'Não foi possível atualizar as regras de cancelamento, tente novamente'
+            render :show
+        end
+    end
+
     private
 
     def event_params
-        params.require(:event).permit(:name, :description, :min_people, :max_people, :duration, :menu, :alcohol, :decoration, :parking_service, :at_buffet_location, :buffet_id, photos: [])    
+        params.require(:event).permit(:name, :description, :min_people, :max_people, :duration, :menu, :alcohol, :decoration, :parking_service, :at_buffet_location, :buffet_id, :partial_cancellation_fine, :total_cancellation_days, :total_cancellation_fine, :partial_cancellation_days, photos: [])    
     end
 
     def user_not_authenticated
