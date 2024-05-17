@@ -1,8 +1,47 @@
 # Cade Buffet TreinaDev 12
 
-## Dependências do Sistema
+### Tópicos 
+
+:small_blue_diamond: [Descrição do projeto](#descrição-do-projeto-star)
+
+:small_blue_diamond: [O que a aplicação é capaz de fazer](#o-que-a-aplicação-é-capaz-de-fazer-checkered_flag)
+
+:small_blue_diamond: [Pré-requesitos](#pré-requesitos)
+
+:small_blue_diamond: [Como rodar a aplicação](#como-rodar-a-aplicação-arrow_forward)
+
+:small_blue_diamond: [Gems usadas](gems-usadas)
+
+## Descrição do projeto :star:
+
+## O que a aplicação é capaz de fazer :checkered_flag:
+
+## Pré-requesitos
 
 Este projeto foi desenvolvido com Ruby versão 3.3.0 e Rails 7.1.3.2.
+
+:warning: [Ruby](https://www.ruby-lang.org/en/downloads/)
+
+:warning: [Rails](https://guides.rubyonrails.org/getting_started.html)
+
+## Como rodar a aplicação :arrow_forward:
+
+1. Clone o repositório do projeto.
+2. Entre no diretório do projeto e execute os seguintes comandos:
+
+```bash
+bundle install # Isso vai instalar todas as dependências necessárias
+rails db:create # Vai criar o banco de dados usado no ambiente atual (sqlite3)
+rails db:migrate # Vai executar todas as migrações pendentes do projeto
+rails server # Iniciar o servidor no url padrão (http://localhost:3000)
+```
+Agora espera-se que o projeto já esteja rodando porém com nada criado, então para navegação inicial do projeto rode:
+
+```bash
+rails db:seed
+```
+
+Nota: Tomei a licença poética ao criar os buffets :P
 
 ### Gems Usadas:
 
@@ -25,36 +64,3 @@ Este projeto foi desenvolvido com Ruby versão 3.3.0 e Rails 7.1.3.2.
 - **rspec-rails**: Framework de testes usado em todos os testes feitos durante o desenvolvimento. Versão: 6.1.2
 
 - **capybara**: Gem de teste onde ajuda a testar a aplicação web simulando um usuario real interagindo. Versão: 3.40.0
-
-## Como rodar o projeto:
-
-1. Clone o repositório do projeto.
-2. Entre no diretório do projeto e execute os seguintes comandos:
-
-```bash
-bundle install # Isso vai instalar todas as dependências necessárias
-rails db:create # Vai criar o banco de dados usado no ambiente atual (sqlite3)
-rails db:migrate # Vai executar todas as migrações pendentes do projeto
-rails server # Iniciar o servidor no url padrão (http://localhost:3000)
-
-#Agora espera-se que o projeto já esteja rodando porém com nada criado, então para navegação inicial do projeto rode:
-
-rails db:seed
-
-#Nota: Tomei a liberdade de criar os buffets :P
-
-```
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
