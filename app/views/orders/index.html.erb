@@ -8,10 +8,16 @@
                     <%= link_to "Pedido: #{o.order_code}", order_path(o), class: 'h2' %>
                 </div>
                 <div class="card-body">
-                    <p>Status do Pedido: <span class="badge bg-primary"><%= t(o.status, scope: [:activerecord, :attributes, :order]).upcase %></span></p>
+                    <% if o.status == 'awaiting_evaluation'%>
+                        <p>Status do Pedido: <span class="badge bg-warning text-dark"><%= t(o.status, scope: [:activerecord, :attributes, :order]).upcase %></span></p>
+                    <% elsif o.status == 'canceled' || o.status == 'expired' %>
+                        <p>Status do Pedido: <span class="badge bg-danger"><%= t(o.status, scope: [:activerecord, :attributes, :order]).upcase %></span></p>
+                    <% elsif o.status == 'confirmed' || o.status == 'confirmed_by_owner' %>
+                        <p>Status do Pedido: <span class="badge bg-success"><%= t(o.status, scope: [:activerecord, :attributes, :order]).upcase %></span></p>
+                    <% end %>
                     <p>Data Estimada: <%= l(o.event_date) %></p>
                     <% if o.status == 'confirmed_by_owner' %>
-                        <p>Válido até: <%= l(o.valid_until) %></p>
+                        <p>Data-limite para confirmação do pedido: <%= l(o.valid_until) %></p>
                         <p>Valor Total: <%= number_to_currency(o.final_price - o.discount + o.extra_fee) %></p>
                     <% end %>
                     <% if o.fine.present? %>

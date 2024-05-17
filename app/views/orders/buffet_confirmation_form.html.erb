@@ -1,28 +1,20 @@
 <% final_price = 0 %>
-<% if @order.event.promotion.present? && @order.event.promotion.end_date >= @order.event_date%>
-  <% if weekday?(@order.event_date) %>
-    <% wd_price = (@order.event.event_price.wd_price) * ( 1 - @order.event.promotion.weekday_discount) %>
-    <% wd_extra_person = @order.event.event_price.wd_add_person_price %>
-    <% wd_extra_hour = @order.event.event_price.wd_extra_hour_price %>
-    <% final_price = calculate_final_price(@order, wd_price, wd_extra_person, wd_extra_hour) %>
+<% event_price = @order.event.event_price %>
+<% is_weekday = weekday?(@order.event_date) %>
+<% has_promotion = @order.event.promotion.present? && @order.event.promotion.end_date >= @order.event_date %>
+
+<% if is_weekday %>
+  <% wd_price = event_price.wd_price %>
+  <% wd_price *= (1 - @order.event.promotion.weekday_discount) if has_promotion %>
+  <% wd_extra_person = event_price.wd_add_person_price %>
+  <% wd_extra_hour = event_price.wd_extra_hour_price %>
+  <% final_price = calculate_final_price(@order, wd_price, wd_extra_person, wd_extra_hour) %>
 <% else %>
-    <% we_price = (@order.event.event_price.we_price) * ( 1- @order.event.promotion.weekend_discount)%>
-    <% we_extra_person = @order.event.event_price.we_add_person_price %>
-    <% we_extra_hour = @order.event.event_price.we_extra_hour_price %>
-    <% final_price = calculate_final_price(@order, we_price, we_extra_person, we_extra_hour) %>
-  <% end %>
-<%else %>
-  <% if weekday?(@order.event_date) %>
-    <% wd_price = @order.event.event_price.wd_price %>
-    <% wd_extra_person = @order.event.event_price.wd_add_person_price %>
-    <% wd_extra_hour = @order.event.event_price.wd_extra_hour_price %>
-    <% final_price = calculate_final_price(@order, wd_price, wd_extra_person, wd_extra_hour) %>
-<% else %>
-    <% we_price = @order.event.event_price.we_price %>
-    <% we_extra_person = @order.event.event_price.we_add_person_price %>
-    <% we_extra_hour = @order.event.event_price.we_extra_hour_price %>
-    <% final_price = calculate_final_price(@order, we_price, we_extra_person, we_extra_hour) %>
-  <% end %>
+  <% we_price = event_price.we_price %>
+  <% we_price *= (1 - @order.event.promotion.weekend_discount) if has_promotion %>
+  <% we_extra_person = event_price.we_add_person_price %>
+  <% we_extra_hour = event_price.we_extra_hour_price %>
+  <% final_price = calculate_final_price(@order, we_price, we_extra_person, we_extra_hour) %>
 <% end %>
 
 <div class="container">

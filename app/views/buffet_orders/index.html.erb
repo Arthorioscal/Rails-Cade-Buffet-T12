@@ -3,23 +3,39 @@
 
     <% if @orders.present? %>
         <% @orders.each do |status, orders| %>
-            <h2 class="mt-4">Status do Pedido: <%= t(status, scope: [:activerecord, :attributes, :order]) %></h2>
-            <div class="list-group">
-                <% orders.each do |order| %>
-                    <% if order.status == 'awaiting_evaluation'%>
+            <% if status == 'awaiting_evaluation' %>
+                <h2 class="mt-4">Status do Pedido: <%= t(status, scope: [:activerecord, :attributes, :order]) %></h2>
+                <div class="list-group">
+                    <% orders.each do |order| %>
                         <a href="<%= buffet_buffet_order_path(@buffet, order) %>" class="btn btn-info">
-                    <% elsif order.status == 'confirmed' || order.status == 'confirmed_by_owner'%>
-                        <a href="<%= buffet_buffet_order_path(@buffet, order) %>" class="btn btn-success">
-                    <% elsif order.status == 'cancelled'%>
-                        <a href="<%= buffet_buffet_order_path(@buffet, order) %>" class="btn btn-danger">
+                            Pedido: <%= order.order_code %> / Data do Evento: <%= l(order.event_date) %>
+                            <% if order.fine.present?%>
+                                Pedido: <%= order.order_code %> - Status da Multa = <%= t("activerecord.attributes.fine.#{order.fine.status}") %>
+                            <% end %>
+                        </a>
                     <% end %>
-                        Pedido: <%= order.order_code %> / Data do Evento: <%= l(order.event_date) %>
-                        <% if order.fine.present?%>
-                            Pedido: <%= order.order_code %> - Status da Multa = <%= t("activerecord.attributes.fine.#{order.fine.status}") %>
+                </div>
+            <% end %>
+        <% end %>
+
+        <% @orders.each do |status, orders| %>
+            <% unless status == 'awaiting_evaluation' %>
+                <h2 class="mt-4">Status do Pedido: <%= t(status, scope: [:activerecord, :attributes, :order]) %></h2>
+                <div class="list-group">
+                    <% orders.each do |order| %>
+                        <% if order.status == 'confirmed' || order.status == 'confirmed_by_owner'%>
+                            <a href="<%= buffet_buffet_order_path(@buffet, order) %>" class="btn btn-success">
+                        <% elsif order.status == 'cancelled'%>
+                            <a href="<%= buffet_buffet_order_path(@buffet, order) %>" class="btn btn-danger">
                         <% end %>
-                    </a>
-                <% end %>
-            </div>
+                            Pedido: <%= order.order_code %> / Data do Evento: <%= l(order.event_date) %>
+                            <% if order.fine.present?%>
+                                Pedido: <%= order.order_code %> - Status da Multa = <%= t("activerecord.attributes.fine.#{order.fine.status}") %>
+                            <% end %>
+                        </a>
+                    <% end %>
+                </div>
+            <% end %>
         <% end %>
     <% else %>
         <div class="alert alert-info" role="alert">
