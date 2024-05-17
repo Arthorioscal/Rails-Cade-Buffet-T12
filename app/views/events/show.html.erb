@@ -8,9 +8,10 @@
             <div class="alert alert-success" role="alert">
               <h5>Este evento está com uma Promoção Ativa!</h5>
               <p>Promoção Ativa: <%= @event.promotion.name %></p>
+              <p><strong> OS DESCONTOS SÃO SOBRE O PREÇO BASE DO EVENTO!! </strong></p>
               <p>Desconto na Semana: <%= @event.promotion.weekday_discount * 100 %>%</p>
               <p>Desconto no Fim de Semana: <%= @event.promotion.weekend_discount * 100 %>%</p>
-              <p>Está promoção vai até o dia: <%= @event.promotion.end_date.strftime('%d/%m/%Y') %></p>
+              <p>Esta promoção vai até o dia: <%= @event.promotion.end_date.strftime('%d/%m/%Y') %></p>
             </div>
           <% end %>
           <p class="card-text"><strong>Descrição: </strong><%= @event.description %></p>

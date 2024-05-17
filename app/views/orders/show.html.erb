@@ -51,11 +51,15 @@
         </div>
         <div class="card-body">
             <% @order.messages.each do |message| %>
-                <p>
-                    <strong><%= message.user.buffet ? message.user.buffet.brand_name : message.user.name %>:</strong>
-                    <%= message.content %>
-                    <em><%= message.created_at.strftime('%d/%m/%Y %H:%M') %></em>
-                </p>
+                <div class="message">
+                    <div class="message-header">
+                        <strong class="message-author"><%= message.user.buffet ? message.user.buffet.brand_name : message.user.name %></strong>
+                        <em class="message-date"><%= message.created_at.strftime('%d/%m/%Y %H:%M') %></em>
+                    </div>
+                    <p class="message-content">
+                        <%= message.content %>
+                    </p>
+                </div>
             <% end %>
         </div>
     </div>
@@ -64,7 +68,7 @@
         <div class="card-body">
             <%= form_for [@order, Message.new] do |f| %>
                 <div class="form-group">
-                    <%= f.label :content, class: 'form-label' %>
+                    <%= f.label :content, "Chat", class: 'form-label' %>
                     <%= f.text_area :content, class: 'form-control' %>
                 </div>
                 <%= f.submit 'Enviar mensagem', class: 'btn btn-primary' %>

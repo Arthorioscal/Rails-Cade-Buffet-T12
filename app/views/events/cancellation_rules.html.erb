@@ -2,22 +2,22 @@
     <div class="card-body">
         <div class="form-group">
             <%= form.label :partial_cancellation_days, class: 'form-label' %>
-            <%= form.number_field :partial_cancellation_days, class: 'form-control', placeholder: "Insira o número de dias"%>
+            <%= form.number_field :partial_cancellation_days, class: 'form-control', placeholder: "Insira o número de dias", required: true %>
         </div>
 
         <div class="form-group">
             <%= form.label :partial_cancellation_fine, class: 'form-label' %>
-            <%= form.number_field :partial_cancellation_fine, step: 0.01, class: 'form-control', placeholder: "Coloque o valor em decimal Ex: 0.2 -> 20%" %>
+            <%= form.number_field :partial_cancellation_fine, step: 0.01, class: 'form-control', placeholder: "Coloque o valor em decimal Ex: 0.2 -> 20%", required: true %>
         </div>
 
         <div class="form-group">
             <%= form.label :total_cancellation_days, class: 'form-label' %>
-            <%= form.number_field :total_cancellation_days, class: 'form-control', placeholder: "Insira o número de dias" %>
+            <%= form.number_field :total_cancellation_days, class: 'form-control', placeholder: "Insira o número de dias", required: true %>
         </div>
 
         <div class="form-group">
             <%= form.label :total_cancellation_fine, class: 'form-label' %>
-            <%= form.number_field :total_cancellation_fine, step: 0.01, class: 'form-control', placeholder: "Coloque o valor em decimal Ex: 1 -> 100%" %>
+            <%= form.number_field :total_cancellation_fine, step: 0.01, class: 'form-control', placeholder: "Coloque o valor em decimal Ex: 1 -> 100%", required: true %>
         </div>
 
         <%= form.submit 'Cadastrar', class: 'btn btn-primary' %>

@@ -56,7 +56,7 @@ class OrdersController < ApplicationController
         @order = Order.find(params[:id])
         days_remaining = (@order.event_date - Date.today).to_i
         if @order.event.partial_cancellation_fine.present?
-          if days_remaining <= @order.event.partial_cancellation_days
+          if days_remaining <= @order.event.partial_cancellation_days  && days_remaining > @order.event.total_cancellation_days
             @cancellation_fee = (@order.final_price * @order.event.partial_cancellation_fine)
           elsif days_remaining < @order.event.partial_cancellation_days && days_remaining <= @order.event.total_cancellation_days
             @cancellation_fee = @order.final_price * @order.event.total_cancellation_fine

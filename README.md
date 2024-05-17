@@ -1,5 +1,7 @@
 # Cade Buffet TreinaDev 12
 
+> Status do Projeto: Concluido com sucesso :heavy_check_mark:
+
 ### Tópicos 
 
 :small_blue_diamond: [Descrição do projeto](#descrição-do-projeto-star)
