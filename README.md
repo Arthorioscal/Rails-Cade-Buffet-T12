@@ -10,9 +10,9 @@
 
 :small_blue_diamond: [Como rodar a aplicação](#como-rodar-a-aplicação-arrow_forward)
 
-:small_blue_diamond: [Gems usadas](gems-usadas)
+:small_blue_diamond: [Gems usadas](#gems-usadas)
 
-:small_blue_diamond: [Documentação da API](documentação-da-api)
+:small_blue_diamond: [Documentação da API](#documentação-da-api)
 
 
 ## Descrição do projeto :star:
@@ -70,22 +70,22 @@ Nota: Tomei a licença poética ao criar os buffets e suas fotos :P
 
 ## Documentação da API:
 
-# Listagem de Endpoints
+## Listagem de Endpoints
 
 - **Listagem de Buffets**
 Este endpoint fornece uma listagem completa de buffets cadastrados na plataforma.
 
 **Endpoint**: `GET api/v1/buffets`
 
-# Parâmetros Aceitos:
+#### Parâmetros Aceitos:
 
 - `search` (opcional): Texto para filtrar a busca pelo nome do buffet.
 
-# Resposta:
+#### Resposta:
 
 Retorna um array de objetos, onde cada objeto representa um buffet. Cada buffet inclui todas as suas informações, exceto a foto de capa, que é retornada como uma URL.
 
-# Exemplo de Resposta:
+####### Exemplo de Resposta:
 
 ```json
 [
@@ -137,15 +137,15 @@ Fornece todos os detalhes de um buffet específico.
 
 **Endpoint**: `GET api/v1/buffets/:id`
 
-# Parâmetros Aceitos:
+#### Parâmetros Aceitos:
 
 - `id`: ID do Buffet.
 
-# Resposta:
+#### Resposta:
 
 Retorna um objeto que representa o buffet, incluindo todas as suas informações, exceto CNPJ e razão social. A foto de capa é retornada como uma URL.
 
-# Exemplo de Resposta:
+#### Exemplo de Resposta:
 
 ```json
 [
@@ -175,16 +175,16 @@ Fornece uma lista com informações sobre os tipos de eventos disponíveis em um
 
 **Endpoint**: `GET api/v1/buffets/:buffet_id/events`
 
-# Parâmetros Aceitos:
+#### Parâmetros Aceitos:
 
 - `buffet_id`: ID do Buffet. 
 
-# Resposta:
+#### Resposta:
 
 Resposta: Retorna um array de objetos, onde cada objeto representa um tipo de evento. Cada evento inclui todas as suas informações.
 
 
-# Exemplo de Resposta:
+#### Exemplo de Resposta:
 
 ```json
 [
@@ -240,7 +240,7 @@ Verifica a disponibilidade para realizar um evento em um buffet específico
 
 **Endpoint**: `GET api/v1/buffets/:buffet_id/events/:id/availability`
 
-# Parâmetros Aceitos:
+#### Parâmetros Aceitos:
 
 - `buffet_id`: ID do Buffet.
 
@@ -250,11 +250,11 @@ Verifica a disponibilidade para realizar um evento em um buffet específico
 
 - `guests`:  Quantidade de convidados.
 
-# Resposta:
+#### Resposta:
 
 Retorna um objeto que indica se o evento está disponível na data e para a quantidade de convidados especificada. Se o evento estiver disponível, o objeto também inclui o valor prévio do pedido. Se o evento não estiver disponível, o objeto inclui uma mensagem de erro.
 
-# Exemplo de Resposta:
+#### Exemplo de Resposta:
 
 api/v1/buffets/1/events/1/availability?date=14/01/2025&guests=10
 
