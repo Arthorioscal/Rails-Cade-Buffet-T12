@@ -9,19 +9,13 @@ class Event < ApplicationRecord
 
   validates :name, :description, :min_people, :max_people, :duration, :menu, :buffet_id, presence: true
   validates :alcohol, :decoration, :parking_service, :at_buffet_location, inclusion: { in: [true, false] }
+  validates :min_people, :max_people, :duration, numericality: { only_integer: true, greater_than: 0 }
+  
+  validates :partial_cancellation_days, :total_cancellation_days, numericality: { only_integer: true, greater_than: 0 }, allow_blank: true
+  validates :partial_cancellation_fine, :total_cancellation_fine, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 1 }, allow_blank: true
 
-  validate :max_and_min_people_cannot_be_zero
-
-  #validates :partial_cancellation_days, :total_cancellation_days, numericality: { only_integer: true, greater_than: 0 }
-  #validates :partial_cancellation_fine, :total_cancellation_fine, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 1 }
-
-  def max_and_min_people_cannot_be_zero
-    if min_people == 0
-        errors.add(:min_people, 'não pode ser zero')
-    end
-    if max_people == 0
-        errors.add(:max_people, 'não pode ser zero')
-    end
+  def cancellation_details_present?
+    partial_cancellation_fine.present? && total_cancellation_fine.present? && partial_cancellation_days.present? && total_cancellation_days.present?
   end
 
   def available_on?(date, guests)

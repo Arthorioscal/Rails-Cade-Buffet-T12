@@ -1,9 +1,21 @@
-<h1> Resultados da busca por: <%= params[:query] %> </h1>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h1 class="text-center my-4">Resultados da busca por: <%= params[:query] %></h1>
 
-<% if @buffets.empty? %>
-  <h2> Nenhum buffet encontrado </h2>
-<% else %>
-  <% @buffets.each do |buffet| %>
-    <h2> <%= link_to "#{buffet.brand_name}", buffet_path(buffet) %> </h2>
-  <% end %>
-<% end %>
+      <% if @buffets.empty? %>
+        <div class="alert alert-warning">
+          <h2 class="text-center">Nenhum buffet encontrado</h2>
+        </div>
+      <% else %>
+        <% @buffets.each do |buffet| %>
+          <div class="my-3 p-3 bg-white rounded shadow-sm">
+            <h2 class="border-bottom border-gray pb-2 mb-0">
+              <%= link_to "#{buffet.brand_name}", buffet_path(buffet), class: 'text-decoration-none text-dark' %>
+            </h2>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

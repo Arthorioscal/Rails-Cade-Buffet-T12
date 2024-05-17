@@ -1,14 +1,20 @@
-<h1> Editar Tipo de Evento </h1>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h1 class="text-center my-4">Editar Tipo de Evento</h1>
 
-<%if @event.errors.any?%>
-    <div>
-        <h2>Erro ao cadastrar fornecedor</h2>
-        <ul>
+      <% if @event.errors.any? %>
+        <div class="alert alert-danger">
+          <h2>Erro ao cadastrar fornecedor</h2>
+          <ul>
             <% @event.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
+              <li><%= message %></li>
             <% end %>
-        </ul>
-    </div>
-<% end %>
+          </ul>
+        </div>
+      <% end %>
 
-<%= render 'form', event: @event %>
+      <%= render 'form', event: @event %>
+    </div>
+  </div>
+</div>

@@ -16,8 +16,36 @@
 
 
 ## Descrição do projeto :star:
+<p align="justify"> Aplicação de busca e pedidos de Buffets </p>
 
 ## O que a aplicação é capaz de fazer :checkered_flag:
+#### Tarefas referentes ao Dono de Buffet
+- [X] Cadastro de conta como Dono de Buffet, passando email e senha
+- [X] Cadastro de Buffet, passando CNPJ (válido), endereço, razão social, nome fantasia, foto de capa e etc...
+- [X] Cadastro de Eventos aos Buffets, passando nomes de evento, fotos do evento, descrição, cardápio e etc...
+- [X] Cadastro de Preços aos Eventos do Buffet, com preços base por dia da semana e adicionais extra
+- [X] Avaliação de Pedidos e suas informações feitos ao Buffet, com notificação caso já exista outro pedido pendente para aquele dia do evento e possibilidade de confirmação do pedido.
+- [X] Desativação e Ativação de Eventos dos Buffets
+- [X] Cadastro e remoção de Promoções aos Eventos dos Buffets
+
+
+#### Visitantes
+- [X] Visitante é capaz de buscar os eventos por nome fantasia, cidade ou tipo de festa, exibindo a busca em ordem alfabética
+- [X] Visitante é capaz de ver detalhes de um Buffet, exibindo todos os Eventos do Buffet e seus detalhes
+
+#### Clientes
+- [X] Cadastro de conta como Cliente, passando email, CPF(Válido), nome e senha
+- [X] Cliente consegue realizar pedidos de Tipos de Evento para o Buffet, passando data, quantidade de convidados, detalhes do evento e etc...
+- [X] Após a avaliação do Dono, o cliente pode avaliar o preço dado ao pedido e confirmar aquele pedido caso a data-limite para confirmação estabelecida pelo dono possibilite.
+- [X] Após a conclusão do pedido e o acontecimento do evento, cliente é capaz de avaliar e dar sua nota para o Buffet
+- [X] Cadastro de multas em caso de cancelamento de pedidos já confirmados pelo cliente.
+
+#### Pedidos
+- [X] Cada pedido criado tem seus status: 'aguardando avaliação', 'confirmado pelo dono do buffet', 'confirmado', 'cancelado' e 'expirado'
+- [X] Troca de mensagens de Client e Dono na tela do Pedido
+
+#### API
+- [X] API estabelecida com diversos endpoints como listagem dos buffets existentes, consultas de disponibilidades e etc...(mais detalhes na documentação da API)
 
 ## Pré-requesitos
 

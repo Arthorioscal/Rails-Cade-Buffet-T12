@@ -13,9 +13,9 @@
 
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <nav class="navbar navbar-expand-lg bg-body-secondary">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#"><%= link_to "Cade Buffet", root_path %></a>
+          <a class="navbar-brand text-white text-uppercase font-weight-bold" href="#"><%= link_to "Cade Buffet Home", root_path, class: "btn btn-outline-primary" %></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -24,10 +24,10 @@
               <% if user_signed_in? %>
                 <% if current_user.role == 'buffet_owner' && Buffet.exists?(user_id: current_user.id) %>
                   <li class="nav-item">
-                    <%= link_to "Meu Buffet", buffet_profile_path(current_user.buffet), class: "nav-link" %>
+                    <%= link_to "Meu Buffet", buffet_profile_path(current_user.buffet), class: "btn btn-outline-dark" %>
                   </li>
                   <li class="nav-item">
-                    <%= link_to 'Meus Pedidos', buffet_buffet_orders_path(buffet_id: current_user.buffet.id), class: "nav-link" %>
+                    <%= link_to 'Meus Pedidos', buffet_buffet_orders_path(buffet_id: current_user.buffet.id), class: "btn btn-outline-dark" %>
                   </li>
                 <% elsif current_user.role == 'client'%>
                   <li class="nav-item">
@@ -38,7 +38,7 @@
                   <%= link_to current_user.email, "#", class: "nav-link" %>
                 </li>
                 <li class="nav-item">
-                  <%= button_to 'Sair', destroy_user_session_path, method: :delete, class: "nav-link" %>
+                  <%= button_to 'Sair', destroy_user_session_path, method: :delete, class: "btn btn-outline-danger" %>
                 </li>
               <% else %>
                 <li class="nav-item">

@@ -42,10 +42,16 @@ pt-BR:
               blank: "não pode ficar em branco"
             min_people:
               blank: "Quantidade mínima de pessoas não pode ficar em branco"
+              greater_than: "Quantidade mínima de pessoas deve ser maior que 0"
+              not_a_number: "Quantidade mínima de pessoas deve ser um número"
             max_people:
               blank: "Quantidade máxima de pessoas não pode ficar em branco"
+              greater_than: "Quantidade máxima de pessoas deve ser maior que 0"
+              not_a_number: "Quantidade máxima de pessoas deve ser um número"
             duration:
+              not_a_number: "Quantidade máxima de pessoas deve ser um número"
               blank: "Duração padrão do evento em minutos não pode ficar em branco"
+              greater_than: "Duração padrão do evento em minutos deve ser maior que 0"
             menu:
               blank: "Cardápio para o evento não pode ficar em branco"
   errors:

@@ -17,13 +17,25 @@ pt-BR:
           attributes:
             wd_price:
               blank: "Preço (Durante a semana) não pode ficar em branco"
+              greater_than_or_equal_to: "Preço (Durante a semana) deve ser maior ou igual a 0"
+              not_a_number: "Preço (Durante a semana) deve ser um número"
             wd_add_person_price:
               blank: "Preço adicional por pessoa (Durante a semana) não pode ficar em branco"
+              greater_than_or_equal_to: "Preço adicional por pessoa (Durante a semana) deve ser maior ou igual a 0"
+              not_a_number: "Preço adicional por pessoa (Durante a semana) deve ser um número"
             wd_extra_hour_price:
               blank: "Preço extra por hora (Durante a semana) não pode ficar em branco"
+              greater_than_or_equal_to: "Preço extra por hora (Durante a semana) deve ser maior ou igual a 0"
+              not_a_number: "Preço extra por hora (Durante a semana) deve ser um número"
             we_price:
               blank: "Preço (Fim de semana) não pode ficar em branco"
+              greater_than_or_equal_to: "Preço (Fim de semana) deve ser maior ou igual a 0"
+              not_a_number: "Preço (Fim de semana) deve ser um número"
             we_add_person_price:
               blank: "Preço adicional por pessoa (Fim de semana) não pode ficar em branco"
+              greater_than_or_equal_to: "Preço adicional por pessoa (Fim de semana) deve ser maior ou igual a 0"
+              not_a_number: "Preço adicional por pessoa (Fim de semana) deve ser um número"
             we_extra_hour_price:
               blank: "Preço extra por hora (Fim de semana) não pode ficar em branco"
+              greater_than_or_equal_to: "Preço extra por hora (Fim de semana) deve ser maior ou igual a 0"
+              not_a_number: "Preço extra por hora (Fim de semana) deve ser um número"

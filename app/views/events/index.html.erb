@@ -1,18 +1,35 @@
-<h1> Eventos Cadastrados </h1>
-<% if current_user.buffet.events.present? %>
-  <% @events.each do |event| %>
-    <h2> <%= event.name %> </h2>
-    <p> <%= event.description %> </p>
-    <p> <%= event.min_people %> </p>
-    <p> <%= event.max_people %> </p>
-    <p> <%= event.duration %> </p>
-    <p> <%= event.menu %> </p>
-    <p> <%= t("activerecord.attributes.event.alcohol_values.#{event.alcohol}") %> </p>
-    <p> <%= t("activerecord.attributes.event.decoration_values.#{event.decoration}") %> </p>
-    <p> <%= t("activerecord.attributes.event.parking_service_values.#{event.parking_service}") %> </p>
-    <p> <%= t("activerecord.attributes.event.at_buffet_location_values.#{event.at_buffet_location}") %> </p>
-    <%= link_to 'Editar', edit_event_path(event) %>
-  <% end %>
-<% else %>
-  <%= link_to 'Cadastrar Evento', new_event_path %>
-<% end %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h1 class="text-center my-4">Eventos Cadastrados</h1>
+
+      <% if current_user.buffet.events.present? %>
+        <% @events.each do |event| %>
+          <div class="card mb-4">
+            <div class="card-header">
+              <h2 class="mb-0"><%= event.name %></h2>
+            </div>
+            <div class="card-body">
+              <p><%= event.description %></p>
+              <p><strong>Min People:</strong> <%= event.min_people %></p>
+              <p><strong>Max People:</strong> <%= event.max_people %></p>
+              <p><strong>Duration:</strong> <%= event.duration %></p>
+              <p><strong>Menu:</strong> <%= event.menu %></p>
+              <p><strong>Alcohol:</strong> <%= t("activerecord.attributes.event.alcohol_values.#{event.alcohol}") %></p>
+              <p><strong>Decoration:</strong> <%= t("activerecord.attributes.event.decoration_values.#{event.decoration}") %></p>
+              <p><strong>Parking Service:</strong> <%= t("activerecord.attributes.event.parking_service_values.#{event.parking_service}") %></p>
+              <p><strong>At Buffet Location:</strong> <%= t("activerecord.attributes.event.at_buffet_location_values.#{event.at_buffet_location}") %></p>
+            </div>
+            <div class="card-footer">
+              <%= link_to 'Editar', edit_event_path(event), class: 'btn btn-primary' %>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="alert alert-info">
+          <p>No events found. <%= link_to 'Cadastrar Evento', new_event_path %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
     before_action :authenticate_user!
     before_action :user_not_authenticated, only: [:edit, :update]
+    before_action :authenticate_user_buffet_owner, only: [:new, :create, :edit, :update, :toggle_active, :cancellation_rules,:update_cancellation_rules]
 
     def index
         @events = Event.where(active: true)
@@ -72,6 +73,12 @@ class EventsController < ApplicationController
         @event = Event.find(params[:id])
         if @event.buffet.user != current_user
             redirect_to root_path, notice: 'Você não tem permissão para acessar essa página'
+        end
+    end
+
+    def authenticate_user_buffet_owner
+        unless current_user.role == 'buffet_owner'
+            redirect_to root_path, alert: 'Você não está autorizado a acessar esta página.'
         end
     end
 end

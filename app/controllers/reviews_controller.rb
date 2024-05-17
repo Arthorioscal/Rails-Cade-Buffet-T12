@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+    before_action :authenticate_user_client, only: [:new, :create]
     before_action :set_buffet, only: [:new, :create, :index, :show]
     before_action :set_review, only: [:show]
     before_action :check_order_status, only: [:create]
@@ -49,5 +50,11 @@ class ReviewsController < ApplicationController
   
     def review_params
       params.require(:review).permit(:rating, :comment)
+    end
+
+    def authenticate_user_client
+      unless current_user.role == 'client'
+        redirect_to root_path, alert: 'You are not authorized to access this page.'
+      end
     end
   end

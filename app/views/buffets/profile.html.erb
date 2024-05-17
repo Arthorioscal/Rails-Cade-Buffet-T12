@@ -61,16 +61,16 @@
                         </div>
                         <div class="card">
                         <div class="card-body">
-                            <% if event_type.partial_cancellation_fine.present? %>
-                            <h5 class="card-title">Regras de Cancelamento:</h5>
-                            <p class="card-text">Dias para Cancelamento Parcial: <%= event_type.partial_cancellation_days %></p>
-                            <p class="card-text">Multa para Cancelamento Parcial: <%= event_type.partial_cancellation_fine %></p>
-                            <p class="card-text">Dias para Cancelamento Total: <%= event_type.total_cancellation_days %></p>
-                            <p class="card-text">Multa para Cancelamento Total: <%= event_type.total_cancellation_fine %></p>
-                            <%= link_to 'Editar Regras de Cancelamento', cancellation_rules_event_path(event_type), class: "btn btn-primary" %>
+                            <% if event_type.cancellation_details_present? %>
+                                <h5 class="card-title">Regras de Cancelamento:</h5>
+                                <p class="card-text">Dias para Cancelamento Parcial: <%= event_type.partial_cancellation_days %> dias(s)</p>
+                                <p class="card-text">Multa para Cancelamento Parcial: <%=100 * event_type.partial_cancellation_fine %>%</p>
+                                <p class="card-text">Dias para Cancelamento Total: <%= event_type.total_cancellation_days %> dias(s)</p>
+                                <p class="card-text">Multa para Cancelamento Total: <%= 100 * event_type.total_cancellation_fine %>%</p>
+                                <%= link_to 'Editar Regras de Cancelamento', cancellation_rules_event_path(event_type), class: "btn btn-primary" %>
                             <% else %>
-                            <h5 class="card-title">Cadastre Aqui as regras referente ao cancelamento de pedidos:</h5>
-                            <%= link_to 'Cadastrar Regras de Cancelamento', cancellation_rules_event_path(event_type), class: "btn btn-primary" %>
+                                <h5 class="card-title">Cadastre Aqui as regras referente ao cancelamento de pedidos:</h5>
+                                <%= link_to 'Cadastrar Regras de Cancelamento', cancellation_rules_event_path(event_type), class: "btn btn-primary" %>
                             <% end %>
                         </div>
                         </div>
@@ -86,8 +86,7 @@
                                     <p class="Event-card-text">Preço do Evento (Fim de Semana): <%= event_type.event_price.we_price %></p>
                                     <p class="Event-card-text">Preço por Pessoa Adicional (Fim de Semana): <%= event_type.event_price.we_add_person_price %></p>
                                     <p class="Event-card-text">Preço por Hora Extra (Fim de Semana): <%= event_type.event_price.we_extra_hour_price %></p>
-                                    <%= link_to 'Editar Preço deste Evento', edit_event_price_path(event_type.id), class: "btn btn-primary" %>
-
+                                    <%= link_to 'Editar Preço deste Evento', edit_event_event_price_path(event_type.id, event_type.event_price.id), class: "btn btn-primary" %>
                                 </div>
                                     <h2> Gerenciar Promoções do Evento </h2>
                                     <% if event_type.promotion.present? %>
@@ -117,12 +116,12 @@
                     </div>
                 </div>
                 <div class="Event-card-footer">
-                    <%= link_to 'Cadastrar outro Tipo de Evento', new_event_path, class: "btn btn-primary" %>
-                    <%= link_to 'Editar Evento', edit_event_path(event_type), class: "btn btn-primary" %>
-                    <% if event_type.event_price.blank? %>
-                        <%= link_to 'Cadastrar Preço deste Evento', url_for(controller: 'event_prices', action: 'new', event_id: event_type.id), class: "btn btn-primary" %>
-                    <% end %>
-                    <%= button_to 'Ativar/Desativar Evento', toggle_active_event_path(event_type), class: "btn btn-primary" %>
+                    <%= link_to 'Cadastrar outro Tipo de Evento', new_event_path, class: "btn btn-primary mb-2 mr-2" %>
+<%= link_to 'Editar Evento', edit_event_path(event_type), class: "btn btn-primary mb-2 mr-2" %>
+<% if event_type.event_price.blank? %>
+    <%= link_to 'Cadastrar Preço deste Evento', url_for(controller: 'event_prices', action: 'new', event_id: event_type.id), class: "btn btn-primary mb-2 mr-2" %>
+<% end %>
+<%= button_to 'Ativar/Desativar Evento', toggle_active_event_path(event_type), class: "btn btn-primary mb-2" %>
                 </div>
             </div>
         <% end %>

@@ -12,9 +12,7 @@
     </div>
   <% end %>
 
-<%= form_with(model: @event_price, url: event_price_path(@event_price, event_id: @event.id), method: :patch, html: { class: 'row gy-2 gx-3 align-items-center' }) do |form| %>
-    <%= form.hidden_field :event_id, value: @event.id %>
-
+<%= form_with(model: @event_price, url: event_event_price_path(@event_price, event_id: @event.id), method: :patch, html: { class: 'row gy-2 gx-3 align-items-center' }) do |form| %>
     <div class="col-auto">
         <%= form.label :wd_price %>
         <%= form.text_field :wd_price, class: 'form-control', placeholder: 'Preço base durante a semana' %>
@@ -45,7 +43,7 @@
         <%= form.text_field :we_extra_hour_price, class: 'form-control', placeholder: 'Preço por hora extra(Fim de semana)' %>
     </div>
 
-    <div class="col-auto">
+    <div class="">
         <%= form.submit 'Cadastrar', class: 'btn btn-primary' %>
     </div>
 <% end %>

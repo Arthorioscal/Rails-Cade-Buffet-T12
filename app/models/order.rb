@@ -5,14 +5,18 @@ class Order < ApplicationRecord
   belongs_to :event
   belongs_to :user
 
-  enum status: { awaiting_evaluation: 0, confirmed_by_owner: 1, confirmed: 2, cancelled: 3, expired: 4}
+  enum status: { 
+    awaiting_evaluation: 0, 
+    confirmed_by_owner: 1, 
+    confirmed: 2, 
+    cancelled: 3, 
+    expired: 4
+  }
 
   validates :event_date, :estimated_guests, :details, :order_code, :status, presence: true
   validates :estimated_guests, numericality: { only_integer: true, greater_than: 0 }
   validates :order_code, length: { is: 8 }
-
   validates :status, inclusion: { in: %w[awaiting_evaluation confirmed_by_owner confirmed cancelled expired] }
-
   validates :valid_until, :final_price, :discount, :extra_fee, :description, presence: true, if: :status_confirmed?
   
   validate :event_date_cannot_be_in_the_past
@@ -20,7 +24,6 @@ class Order < ApplicationRecord
   validate :valid_until_cannot_be_in_the_past
 
   before_validation :generate_order_code, on: :create
-
 
   private
 
@@ -47,6 +50,6 @@ class Order < ApplicationRecord
   def valid_until_cannot_be_in_the_past
     if self.valid_until.present? && self.valid_until < Date.today
       self.errors.add(:valid_until, 'O pedido expirou')
-   end
+    end
   end
 end

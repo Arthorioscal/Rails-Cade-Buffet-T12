@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   
   resources :events, only: %i[index show new create edit update] do
     resources :promotions, only: %i[new create destroy]
+    resources :event_prices, only: %i[new create edit update]
     
     member do
       post :toggle_active
@@ -44,7 +45,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :event_prices, only: %i[new create edit update]
+  #resources :event_prices, only: %i[new create edit update]
 
   namespace :api do
     namespace :v1 do

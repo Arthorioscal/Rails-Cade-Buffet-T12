@@ -1,4 +1,4 @@
-<%= form_with(model: @event_price, url: event_prices_path(event_id: @event.id), html: { class: 'row gy-2 gx-3 align-items-center' }) do |form| %>
+<%= form_with(model: @event_price, url: event_event_prices_path(event_id: @event.id), html: { class: 'row gy-2 gx-3 align-items-center' }) do |form| %>
     <%= form.hidden_field :event_id, value: @event.id %>
 
     <div class="col-auto">

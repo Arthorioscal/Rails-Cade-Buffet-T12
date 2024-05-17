@@ -13,7 +13,7 @@
     </div>
     <div class="col-auto">
         <%= f.label :phone %>
-        <%= f.text_field :phone, class: 'form-control', placeholder: 'Celular para contato' %>
+        <%= f.text_field :phone, class: 'form-control', placeholder: 'Celular para contato', pattern: "[0-9()]*" %>
     </div>
     <div class="col-auto">
         <%= f.label :email %>

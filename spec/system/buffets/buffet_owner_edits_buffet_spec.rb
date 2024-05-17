@@ -61,4 +61,6 @@ describe 'Buffet Owner edits his buffet' do
         expect(response).to redirect_to(root_path)
         expect(flash[:notice]).to eq('Você não tem permissão para acessar essa página')
     end
+
+    
 end

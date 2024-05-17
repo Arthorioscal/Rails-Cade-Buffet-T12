@@ -1,9 +1,6 @@
 class FinesController < ApplicationController
     before_action :authenticate_user!
-
-    def show
-        @fine = Fine.find(params[:id])
-    end
+    before_action :authenticate_user_buffet_owner, only: [:update]
     
     def update
         @fine = Fine.find_by(order_id: params[:order_id])
@@ -12,6 +9,12 @@ class FinesController < ApplicationController
         else
             flash.now[:notice] = 'Não foi possível confirmar o pagamento da multa, tente novamente'
             render :show
+        end
+    end
+
+    def authenticate_user_buffet_owner
+        unless current_user.role == 'buffet_owner'
+            redirect_to root_path, alert: 'Você não está autorizado a acessar esta página.'
         end
     end
 end
