@@ -1,6 +1,8 @@
 class OrdersController < ApplicationController
     before_action :authenticate_user!
     before_action :authenticate_user_client, only: [:new, :create]
+    before_action :authenticate_user_buffet, only: [:buffet_confirmation_form, :buffet_confirmation]
+
 
     def index
         @orders = current_user.orders
@@ -82,5 +84,9 @@ class OrdersController < ApplicationController
 
     def authenticate_user_client
         redirect_to root_path, notice: 'Acesso não autorizado' unless current_user.role == 'client'
+    end
+
+    def authenticate_user_buffet
+        redirect_to root_path, notice: 'Acesso não autorizado' unless current_user.role == 'buffet_owner'
     end
 end

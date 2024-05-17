@@ -1,20 +1,23 @@
 <%= form_with model: [@buffet, @review], html: { class: 'needs-validation' }, novalidate: true do |review|%>
-  <div class="mb-3">
-    <%= review.label :rating, class: 'form-label' %>
-    <%= review.number_field :rating, in: 1..5, step: 1, placeholder: 'Apenas valores de 1 a 5',
-     class: 'form-control', required: true, oninput: "validity.valid||(value='');" %>
-  </div>
+  <div class="row">
+    <div class="col-lg-6 offset-lg-3">
+      <div class="mb-3">
+        <%= review.label :rating, class: 'form-label' %>
+        <%= review.number_field :rating, in: 0..5, step: 1, placeholder: 'Apenas valores inteiros de 0 a 5',
+         class: 'form-control', required: true, oninput: "validity.valid||(value='');" %>
+      </div>
 
+      <div class="mb-3">
+        <%= review.label :comment, class: 'form-label' %>
+        <%= review.text_area :comment, class: 'form-control', required: true %>
+      </div>
 
-  <div class="mb-3">
-    <%= review.label :comment, class: 'form-label' %>
-    <%= review.text_area :comment, class: 'form-control', required: true %>
-  </div>
+      <%= review.hidden_field :buffet_id, value: @buffet.id %>
+      <%= review.hidden_field :user_id, value: current_user.id %>
 
-  <%= review.hidden_field :buffet_id, value: @buffet.id %>
-  <%= review.hidden_field :user_id, value: current_user.id %>
-
-  <div class="mb-3">
-    <%= review.submit 'Enviar Avaliação', class: 'btn btn-primary' %>
+      <div class="mb-3">
+        <%= review.submit 'Enviar Avaliação', class: 'btn btn-primary' %>
+      </div>
+    </div>
   </div>
 <% end %>

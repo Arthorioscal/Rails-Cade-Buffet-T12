@@ -10,4 +10,4 @@ pt-BR:
       messages:
         taken: "Você já avaliou este buffet."
         blank: "não pode ficar em branco;"
-        inclusion: "Avaliação deve ser entre 1 e 5."
+        inclusion: "Avaliação deve ser entre 0 e 5."

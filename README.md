@@ -72,7 +72,7 @@ Nota: Tomei a licença poética ao criar os buffets e suas fotos :P
 
 ## Listagem de Endpoints
 
-- **Listagem de Buffets**
+## Listagem de Buffets
 Este endpoint fornece uma listagem completa de buffets cadastrados na plataforma.
 
 **Endpoint**: `GET api/v1/buffets`
@@ -85,7 +85,7 @@ Este endpoint fornece uma listagem completa de buffets cadastrados na plataforma
 
 Retorna um array de objetos, onde cada objeto representa um buffet. Cada buffet inclui todas as suas informações, exceto a foto de capa, que é retornada como uma URL.
 
-####### Exemplo de Resposta:
+#### Exemplo de Resposta:
 
 ```json
 [
@@ -132,7 +132,7 @@ Retorna um array de objetos, onde cada objeto representa um buffet. Cada buffet 
 ]
 ```
 
-- **Detalhes de um buffet**
+## Detalhes de um buffet
 Fornece todos os detalhes de um buffet específico.
 
 **Endpoint**: `GET api/v1/buffets/:id`
@@ -170,7 +170,7 @@ Retorna um objeto que representa o buffet, incluindo todas as suas informações
 ]
 ```
 
-- **Listagem de tipos de eventos de um buffet**
+## Listagem de tipos de eventos de um buffet
 Fornece uma lista com informações sobre os tipos de eventos disponíveis em um buffet específico.
 
 **Endpoint**: `GET api/v1/buffets/:buffet_id/events`
@@ -235,7 +235,7 @@ Resposta: Retorna um array de objetos, onde cada objeto representa um tipo de ev
 ]
 ```
 
-- **Consulta de disponibilidade**
+## Consulta de disponibilidade
 Verifica a disponibilidade para realizar um evento em um buffet específico
 
 **Endpoint**: `GET api/v1/buffets/:buffet_id/events/:id/availability`

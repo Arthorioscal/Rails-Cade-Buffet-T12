@@ -1,15 +1,25 @@
-<%= form_with model: @event, url: { action: "update_cancellation_rules" }, method: :patch do |form| %>
-    <%= form.label :partial_cancellation_days %>
-    <%= form.number_field :partial_cancellation_days %>
+<%= form_with model: @event, url: { action: "update_cancellation_rules" }, method: :patch, class: 'card border-primary mb-3' do |form| %>
+    <div class="card-body">
+        <div class="form-group">
+            <%= form.label :partial_cancellation_days, class: 'form-label' %>
+            <%= form.number_field :partial_cancellation_days, class: 'form-control', placeholder: "Insira o número de dias"%>
+        </div>
 
-    <%= form.label :partial_cancellation_fine %>
-    <%= form.number_field :partial_cancellation_fine, step: 0.01 %>
+        <div class="form-group">
+            <%= form.label :partial_cancellation_fine, class: 'form-label' %>
+            <%= form.number_field :partial_cancellation_fine, step: 0.01, class: 'form-control', placeholder: "Coloque o valor em decimal Ex: 0.2 -> 20%" %>
+        </div>
 
-    <%= form.label :total_cancellation_days %>
-    <%= form.number_field :total_cancellation_days %>
+        <div class="form-group">
+            <%= form.label :total_cancellation_days, class: 'form-label' %>
+            <%= form.number_field :total_cancellation_days, class: 'form-control', placeholder: "Insira o número de dias" %>
+        </div>
 
-    <%= form.label :total_cancellation_fine %>
-    <%= form.number_field :total_cancellation_fine, step: 0.01 %>
+        <div class="form-group">
+            <%= form.label :total_cancellation_fine, class: 'form-label' %>
+            <%= form.number_field :total_cancellation_fine, step: 0.01, class: 'form-control', placeholder: "Coloque o valor em decimal Ex: 1 -> 100%" %>
+        </div>
 
-    <%= form.submit %>
+        <%= form.submit class: 'btn btn-primary' %>
+    </div>
 <% end %>

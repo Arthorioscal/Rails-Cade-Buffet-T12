@@ -28,8 +28,8 @@ pt-BR:
         active:
           true: Ativo
           false: Inativo
-        parcial_cancelation_fine: Multa para cancelamento parcial
-        total_cancelation_fine: Multa para cancelamento total
+        partial_cancellation_fine: Multa para cancelamento parcial
+        total_cancellation_fine: Multa para cancelamento total
         partial_cancellation_days: 'Dias antes do evento para cancelamento parcial'
         total_cancellation_days: 'Dias antes do evento para cancelamento total'
     errors:

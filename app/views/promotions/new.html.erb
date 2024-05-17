@@ -1,32 +1,49 @@
-<%= form_with model: [@event, @promotion] do |form| %>
-    <div class="mb-3">
-        <%= form.label :name, class: 'form-label' %>
-        <%= form.text_field :name, class: 'form-control', required: true %>
-    </div>
-    
-    <div class="mb-3">
-        <%= form.label :start_date %>
-        <%= form.date_field :start_date %>
-    </div>
+<% if @promotion.errors.any? %>
+  <div class="alert alert-danger" role="alert">
+    <h4 class="alert-heading">Erro ao realizar pedido</h4>
+    <ul>
+      <% @promotion.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+    <hr>
+    <p class="mb-0">Por favor, corrija os erros acima e tente novamente.</p>
+  </div>
+<% end %>
 
-    <div class="mb-3">
-        <%= form.label :end_date %>
-        <%= form.date_field :end_date %>
-    </div>
+<%= form_with model: [@event, @promotion], html: { class: 'container' } do |form| %>
+  <div class="row">
+    <div class="col-lg-6 offset-lg-3">
+      <div class="mb-3">
+          <%= form.label :name, class: 'form-label' %>
+          <%= form.text_field :name, class: 'form-control', required: true, placeholder: "Escreva o nome da promoção" %>
+      </div>
+      
+      <div class="mb-3">
+          <%= form.label :start_date %>
+          <%= form.date_field :start_date, class: 'form-control' %>
+      </div>
 
-    <div class="mb-3">
-        <%= form.label :weekday_discount %>
-        <%= form.number_field :weekday_discount, step: 0.01 %>
-    </div>
+      <div class="mb-3">
+          <%= form.label :end_date %>
+          <%= form.date_field :end_date, class: 'form-control' %>
+      </div>
 
-    <div class="mb-3">
-        <%= form.label :weekend_discount %>
-        <%= form.number_field :weekend_discount, step: 0.01 %>
-    </div>
+      <div class="mb-3">
+          <%= form.label :weekday_discount %>
+          <%= form.number_field :weekday_discount, step: 0.01, class: 'form-control', placeholder: "Escreva em decimal Ex: 0.2 = 20%" %>
+      </div>
 
-    <%= form.hidden_field :event_id, value: @event.id %>
+      <div class="mb-3">
+          <%= form.label :weekend_discount %>
+          <%= form.number_field :weekend_discount, step: 0.01, class: 'form-control', placeholder: "Escreva em decimal Ex: 0.2 = 20%" %>
+      </div>
 
-    <div class="mb-3">
-        <%= form.submit 'Criar Promoção', class: 'btn btn-primary' %>
+      <%= form.hidden_field :event_id, value: @event.id %>
+
+      <div class="mb-3">
+          <%= form.submit 'Criar Promoção', class: 'btn btn-primary' %>
+      </div>
     </div>
+  </div>
 <% end %>

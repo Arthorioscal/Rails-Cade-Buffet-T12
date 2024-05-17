@@ -26,7 +26,9 @@ pt-BR:
               blank: "não pode ficar em branco"
               less_than_or_equal_to: "deve ser menor ou igual a 1"
               greater_than_or_equal_to: "deve ser maior ou igual a 0"
+              not_a_number: "não é um número"
             weekend_discount:
               blank: "não pode ficar em branco"
               less_than_or_equal_to: "deve ser menor ou igual a 1"
               greater_than_or_equal_to: "deve ser maior ou igual a 0"
+              not_a_number: "não é um número"

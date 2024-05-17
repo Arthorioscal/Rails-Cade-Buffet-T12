@@ -23,7 +23,7 @@ RSpec.describe Review, type: :model do
       buffet = Buffet.create(brand_name: "EU NAO AGUENTO MAIS ESCREVER TESTES")
       review = Review.new(user: user, buffet: buffet, rating: 6)
       expect(review).not_to be_valid
-      expect(review.errors[:rating]).to include("Avaliação deve ser entre 1 e 5.")
+      expect(review.errors[:rating]).to include("Avaliação deve ser entre 0 e 5.")
     end
   end
 end
